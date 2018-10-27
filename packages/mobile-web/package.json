@@ -1,8 +1,10 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "dominicfallows-multichannel-app-mobile-web",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "repository": "https://github.com/dominicfallows/dominicfallows-multichannel-app.git",
+  "author": "Dominic Fallows <consultant@dominicfallows.uk>",
+  "license": "UNLICENSED",
+  "private": true,
   "dependencies": {
     "gatsby": "^2.0.19",
     "gatsby-image": "^2.0.15",
@@ -19,8 +21,8 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "MIT",
   "scripts": {
+    "start": "yarn develop",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"src/**/*.js\"",
@@ -28,9 +30,5 @@
   },
   "devDependencies": {
     "prettier": "^1.14.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
   }
 }

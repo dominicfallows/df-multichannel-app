@@ -1,8 +1,26 @@
 {
   "name": "dominicfallows-multichannel-app",
+  "description": "Dominic Fallows' multichannel app for web, mobile web and mobile native",
   "version": "1.0.0",
-  "repository": "https://github.com/dominicfallows/dominicfallows-multichannel-app.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominicfallows/dominicfallows-multichannel-app.git"
+  },
+  "homepage": "https://dominicfallows.uk",
   "author": "Dominic Fallows <consultant@dominicfallows.uk>",
-  "license": "UNLICENSED",
-  "private": true
+  "licenses": [
+    {
+      "name": "MIT",
+      "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/LICENSE.md"
+    },
+    {
+      "name": "CC BY-SA 4.0",
+      "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/LICENSE.md"
+    }
+  ],
+  "main": "n/a",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/issues"
+  }
 }

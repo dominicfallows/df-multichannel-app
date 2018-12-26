@@ -1,36 +1,34 @@
-# dominicfallows-multichannel-app
+# Dominic Fallows' multichannel app for web, mobile web and mobile native
 
 ## Structure
 
 ```bash
 packages/
-  core/
-    services/ # Shared JS services
-    contexts/ # Shared React Contexts
-    helpers/ # Shared JS helpers
-  shared/
-    native/ # Shared React Native components
-    web/ # Shared React DOM components
-    styles/ # Shared JS styles
-    assets/ # Shared assets, like SVGs etc
   mobile/ # React Native with TypeScript
-  mobile-web/ # Gatsby PWA with TypeScript and React Native for Web
-  web/ # Gatsby PWS with TypeScript and React DOM
+  mobile-web/ # Gatsby SPWA with TypeScript and React Native for Web
+  shared/
+    content/ # Shared content (text, images etc)
+    contexts/ # Shared React contexts
+    helpers/ # Shared JS helpers
+    services/ # Shared JS services
+    styles/ # Shared JS styles
+  shared-native/ # Shared React Native components
+  web/ # Gatsby SPWa with TypeScript and React DOM
 ```
 
-## Get started with Core or Shared
+## Get started with Shared package
 
 TODO
 
-## Get started with Web
+## Get started with Web package
 
 TODO
 
-## Get started with Mobile Web
+## Get started with Mobile Web packages
 
 TODO
 
-## Get started with Mobile
+## Get started with Mobile package
 
 ### To run your app on iOS
 

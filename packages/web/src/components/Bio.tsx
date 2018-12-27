@@ -1,15 +1,15 @@
-import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
-import Image from 'gatsby-image'
+import { graphql, StaticQuery } from "gatsby";
+import Image from "gatsby-image";
+import * as React from "react";
 
-import { rhythm } from '../utils/typography'
+import { rhythm } from "../utils/typography";
 
 function Bio() {
   return (
     <StaticQuery
       query={bioQuery}
       render={data => {
-        const { author, social } = data.site.siteMetadata
+        const { author, social } = data.site.siteMetadata;
         return (
           <div
             style={{
@@ -21,24 +21,24 @@ function Bio() {
               fixed={data.avatar.childImageSharp.fixed}
               alt={author}
               style={{
-                marginRight: rhythm(1 / 2),
-                marginBottom: 0,
-                minWidth: 50,
                 borderRadius: `100%`,
+                marginBottom: 0,
+                marginRight: rhythm(1 / 2),
+                minWidth: 50,
               }}
             />
             <p>
-              Blog by <strong>{author}</strong>, Technical Lead and Senior Developer 
-              for web, mobile and cloud apps.<br /><br />
-              {" "}
-              Follow me on <br />
+              Blog by <strong>{author}</strong>, Technical Lead and Senior
+              Developer for web, mobile and cloud apps.
+              <br />
+              <br /> Follow me on <br />
               <a href={`https://twitter.com/${social.twitter}`}>Twitter</a>
             </p>
           </div>
-        )
+        );
       }}
     />
-  )
+  );
 }
 
 const bioQuery = graphql`
@@ -59,6 +59,6 @@ const bioQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default Bio
+export default Bio;

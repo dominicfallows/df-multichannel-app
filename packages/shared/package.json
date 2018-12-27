@@ -1,0 +1,32 @@
+{
+  "name": "shared",
+  "version": "1.0.0",
+  "description": "The shared package for Dominic Fallows' multichannel app for web, mobile web and mobile native.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominicfallows/dominicfallows-multichannel-app.git"
+  },
+  "author": "Dominic Fallows <consultant@dominicfallows.uk>",
+  "licenses": [
+    {
+      "name": "MIT",
+      "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/LICENSE.md"
+    },
+    {
+      "name": "CC BY-SA 4.0",
+      "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/LICENSE.md"
+    }
+  ],
+  "main": "n/a",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/issues"
+  },
+  "devDependencies": {
+    "prettier": "^1.14.2",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.2.2"
+  }
+}

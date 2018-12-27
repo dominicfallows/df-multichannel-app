@@ -9,17 +9,18 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/../shared/content/blog`,
+        path: `${__dirname}/../shared/src/content/blog`,
         name: `blog`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/../shared/content/assets`,
+        path: `${__dirname}/../shared/src/content/assets`,
         name: `assets`,
       },
     },
@@ -63,7 +64,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `../shared/content/assets/gatsby-icon.png`,
+        icon: `../shared/src/content/assets/gatsby-icon.png`,
       },
     },
     `gatsby-plugin-offline`,

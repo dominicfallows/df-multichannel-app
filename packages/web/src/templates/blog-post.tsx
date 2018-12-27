@@ -1,16 +1,41 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql, Link } from "gatsby";
+import * as React from "react";
 
-import Bio from '../components/bio'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
-import { rhythm, scale } from '../utils/typography'
+import Bio from "../components/Bio";
+import Layout from "../components/Layout";
+import SEO from "../components/SEO";
+import { rhythm, scale } from "../utils/typography";
 
-class BlogPostTemplate extends React.Component {
+import { MarkdownRemarkNode } from "@df/shared/interfaces/markdown";
+
+export interface BlogPostTemplateProps {
+  data: {
+    site: {
+      siteMetadata: {
+        title: string;
+        author: string;
+      }
+    };
+
+    markdownRemark: MarkdownRemarkNode;
+  };
+
+  location: {
+    pathname: string;
+  };
+
+  pageContext: {
+    next: MarkdownRemarkNode;
+    previous: MarkdownRemarkNode;
+  };
+}
+
+class BlogPostTemplate extends React.Component<BlogPostTemplateProps> {
   render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+    const { markdownRemark, site } = this.props.data;
+    const post = markdownRemark;
+    const siteTitle = site.siteMetadata.title;
+    const { previous, next } = this.props.pageContext;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -59,11 +84,11 @@ class BlogPostTemplate extends React.Component {
           </li>
         </ul>
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -83,4 +108,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

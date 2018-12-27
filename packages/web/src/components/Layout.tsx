@@ -1,13 +1,20 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import { Link } from "gatsby";
+import * as React from "react";
 
-import { rhythm, scale } from '../utils/typography'
+import { rhythm, scale } from "../utils/typography";
 
-class Layout extends React.Component {
+export interface LayoutProps {
+  location: {
+    pathname: string;
+  };
+  title: string;
+}
+
+class Layout extends React.Component<LayoutProps> {
   render() {
-    const { location, title, children } = this.props
-    const rootPath = `${__PATH_PREFIX__}/`
-    let header
+    const { location, title, children } = this.props;
+    const rootPath = `${process.env.__PATH_PREFIX__}/`;
+    let header;
 
     if (location.pathname === rootPath) {
       header = (
@@ -20,37 +27,37 @@ class Layout extends React.Component {
         >
           <Link
             style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
               color: `inherit`,
+              boxShadow: `none`,
+              textDecoration: `none`
             }}
             to={`/`}
           >
             {title}
           </Link>
         </h1>
-      )
+      );
     } else {
       header = (
         <h3
           style={{
             fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
             marginBottom: rhythm(-1),
+            marginTop: 0,
           }}
         >
           <Link
             style={{
               boxShadow: `none`,
-              textDecoration: `none`,
               color: `inherit`,
+              textDecoration: `none`,
             }}
             to={`/`}
           >
             {title}
           </Link>
         </h3>
-      )
+      );
     }
     return (
       <div
@@ -65,17 +72,22 @@ class Layout extends React.Component {
         {children}
         <footer
           style={{
-            marginTop: `4rem`,
             fontSize: `12px`,
+            marginTop: `4rem`,
           }}
         >
-          Built with{' '}
+          Built with{" "}
           <a href="https://www.gatsbyjs.org" target="_blank">
             Gatsby
           </a>
-          . Unless otherwise stated, all <abbr title="text, images, graphics, logos, audio,
-          video and other content">content</abbr> is Copyright &copy; 2018 Dominic Fallows and
-          licensed under the{' '}
+          . Unless otherwise stated, all{" "}
+          <abbr
+            title="text, images, graphics, logos, audio,
+          video and other content"
+          >
+            content
+          </abbr>{" "}
+          is Copyright &copy; 2018 Dominic Fallows and licensed under the{" "}
           <a
             rel="license"
             href="http://creativecommons.org/licenses/by-sa/4.0/"
@@ -84,7 +96,7 @@ class Layout extends React.Component {
             Creative Commons Attribution-ShareAlike 4.0 International License
           </a>
           . The software in this project is Copyright &copy; 2018 Dominic
-          Fallows and made available under the{' '}
+          Fallows and made available under the{" "}
           <a
             rel="license"
             href="https://opensource.org/licenses/MIT"
@@ -95,8 +107,8 @@ class Layout extends React.Component {
           .
         </footer>
       </div>
-    )
+    );
   }
 }
 
-export default Layout
+export default Layout;

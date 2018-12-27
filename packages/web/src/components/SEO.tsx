@@ -1,22 +1,38 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
+import { graphql, StaticQuery } from "gatsby";
+import * as React from "react";
+import * as Helmet from "react-helmet";
 
-function SEO({ description, lang, meta, keywords, title, homepage }) {
+export interface SEOProps {
+  description?: string;
+  lang?: string;
+  meta?: [
+    {
+      name: string;
+      content: string;
+    }
+  ];
+  title: string;
+  homepage?: boolean;
+}
+
+const SEO = (props: SEOProps) => {
+  const { description, lang, meta, title, homepage } = props;
+
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
         const metaDescription =
-          description || data.site.siteMetadata.description
+          description || data.site.siteMetadata.description;
         return (
           <Helmet
             htmlAttributes={{
               lang,
             }}
             title={title}
-            titleTemplate={homepage ? `%s` : `%s | ${data.site.siteMetadata.title}`}
+            titleTemplate={
+              homepage ? `%s` : `%s | ${data.site.siteMetadata.title}`
+            }
             meta={[
               {
                 name: `description`,
@@ -50,29 +66,19 @@ function SEO({ description, lang, meta, keywords, title, homepage }) {
                 name: `twitter:description`,
                 content: metaDescription,
               },
-            ].concat(meta)}
+            ].concat(meta || [])}
           />
-        )
+        );
       }}
     />
-  )
-}
+  );
+};
 
 SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  homepage: false,
-}
+  lang: `en`
+};
 
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.array,
-  title: PropTypes.string.isRequired,
-  homepage: PropTypes.bool.isRequired,
-}
-
-export default SEO
+export default SEO;
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {
@@ -84,4 +90,4 @@ const detailsQuery = graphql`
       }
     }
   }
-`
+`;

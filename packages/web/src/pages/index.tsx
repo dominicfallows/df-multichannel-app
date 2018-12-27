@@ -1,26 +1,45 @@
-import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql, Link } from "gatsby";
+import * as React from "react";
 
-import Bio from '../components/bio'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
-import { rhythm } from '../utils/typography'
+import Bio from "../components/Bio";
+import Layout from "../components/Layout";
+import SEO from "../components/SEO";
+import { rhythm } from "../utils/typography";
 
-class BlogIndex extends React.Component {
+import { MarkdownRemarkNode } from "@df/shared/interfaces/markdown";
+
+export interface BlogIndexProps {
+  data: {
+    site: {
+      siteMetadata: {
+        title: string;
+      }
+    };
+  
+    allMarkdownRemark: {
+      edges: [{
+        node: MarkdownRemarkNode;
+      }];
+    };
+  };
+
+  location: {
+    pathname: string;
+  };
+}
+
+class BlogIndex extends React.Component<BlogIndexProps> {
   render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+    const { data } = this.props;
+    const siteTitle = data.site.siteMetadata.title;
+    const posts = data.allMarkdownRemark.edges;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO
-          title={siteTitle}
-          homepage={true}
-        />
+        <SEO title={siteTitle} homepage={true} />
         <Bio />
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
+        {posts.map(({ node }: { node: MarkdownRemarkNode }) => {
+          const title = node.frontmatter.title || node.fields.slug;
           return (
             <div key={node.fields.slug}>
               <h3
@@ -35,14 +54,14 @@ class BlogIndex extends React.Component {
               <small>{node.frontmatter.date}</small>
               <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
             </div>
-          )
+          );
         })}
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
@@ -66,4 +85,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

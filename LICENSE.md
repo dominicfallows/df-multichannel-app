@@ -2,7 +2,7 @@
 
 ## Content
 
-Unless otherwise stated, all text, images, graphics, logos, audio, video and other content is copyright by **Copyright (c) 2018 [Dominic Fallows](https://dominicfallows.uk)** and licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
+Unless otherwise stated, all content (text, images, graphics, logos, audio, video and other content) is copyright by **Copyright (c) 2018 [Dominic Fallows](https://dominicfallows.uk)** and licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ## Software
 

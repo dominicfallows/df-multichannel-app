@@ -73,8 +73,8 @@ class Layout extends React.Component {
           <a href="https://www.gatsbyjs.org" target="_blank">
             Gatsby
           </a>
-          . Unless otherwise stated, all text, images, graphics, logos, audio,
-          video and other content is Copyright &copy; 2018 Dominic Fallows and
+          . Unless otherwise stated, all <abbr title="text, images, graphics, logos, audio,
+          video and other content">content</abbr> is Copyright &copy; 2018 Dominic Fallows and
           licensed under the{' '}
           <a
             rel="license"

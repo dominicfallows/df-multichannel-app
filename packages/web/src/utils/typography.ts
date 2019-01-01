@@ -1,13 +1,25 @@
 import Typography from "typography";
-import GitHubTheme from "typography-theme-github";
 
-GitHubTheme.overrideThemeStyles = () => {
-  return {};
-};
+const systemFontStack = [
+  "-apple-system",
+  "BlinkMacSystemFont",
+  "Segoe UI",
+  "Helvetica",
+  "Arial",
+  "sans-serif",
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
+];
 
-// delete GitHub.googleFonts
-
-const typography = new Typography(GitHubTheme);
+const typography = new Typography({
+  baseFontSize: "16px",
+  baseLineHeight: 1.666,
+  scaleRatio: 2,
+  headerFontFamily: systemFontStack,
+  bodyFontFamily: systemFontStack,
+  includeNormalize: true
+});
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== `production`) {

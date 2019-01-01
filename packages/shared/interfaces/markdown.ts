@@ -9,4 +9,4 @@ export interface MarkdownRemarkNode {
     date: string;
     title: string;
   };
-};
+}

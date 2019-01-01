@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Dominic Fallows - Technical Lead and Senior Developer for web, mobile and cloud apps`,
     author: `Dominic Fallows`,
-    description: `Technical Lead and Senior Developer for #web, #mobile and #cloud #apps - #UI, #JavaScript, #React, #ReactNative, #CMS`,
+    description: `Technical Lead and Senior Developer for web, mobile and cloud apps`,
     siteUrl: `https://dominicfallows.uk`,
     social: {
       twitter: `dominicfallows`,
@@ -13,14 +13,14 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/../shared/src/content/blog`,
+        path: `${__dirname}/../shared/content/blog`,
         name: `blog`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/../shared/src/content/assets`,
+        path: `${__dirname}/../shared/content/assets`,
         name: `assets`,
       },
     },
@@ -64,7 +64,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `../shared/src/content/assets/gatsby-icon.png`,
+        icon: `../shared/content/assets/gatsby-icon.png`,
       },
     },
     `gatsby-plugin-offline`,
@@ -76,4 +76,4 @@ module.exports = {
       },
     },
   ],
-}
+};

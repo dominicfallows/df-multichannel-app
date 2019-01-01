@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@df/multichannel-app-web",
   "version": "1.0.0",
   "description": "The web app package for Dominic Fallows' multichannel app for web, mobile web and mobile native.",
   "repository": {
@@ -52,8 +52,7 @@
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
     "react-typography": "^0.16.13",
-    "typography": "^0.16.17",
-    "typography-theme-github": "^0.16.18"
+    "typography": "^0.16.17"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

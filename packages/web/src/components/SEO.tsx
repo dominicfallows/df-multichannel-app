@@ -1,6 +1,6 @@
 import { graphql, StaticQuery } from "gatsby";
 import * as React from "react";
-import * as Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 
 export interface SEOProps {
   description?: string;
@@ -75,7 +75,7 @@ const SEO = (props: SEOProps) => {
 };
 
 SEO.defaultProps = {
-  lang: `en`
+  lang: `en`,
 };
 
 export default SEO;

@@ -1,6 +1,6 @@
 # Dominic Fallows' multichannel app for web, mobile web and mobile native
 
-The monorepo for Dominic Fallows' multichannel app for web, mobile web and mobile native.
+A monorepo for Dominic Fallows' multichannel app for web, mobile web and mobile native.
 
 ## What is a monorepo
 
@@ -37,9 +37,13 @@ packages/
 
 ## How to develop
 
-Make sure you are in the root of the project and run the appropriate command below. 
+Make sure you are in the root of the project.
 
-> At the moment we can only run one command, however each command starts multiple package processes as required.
+First run `yarn install && yarn bootstrap` command from the root of the project. This will prepare each of the packages.
+
+Then you can run a package script from the table below.
+
+> At the moment we can only run one package script at-a-time, however each command starts multiple package processes as required.
 > - [ ] TODO: enable running of multiple commands without conflicting package processes.
 
 | Job | Packages started | Command |

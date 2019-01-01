@@ -6,7 +6,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import { rhythm } from "../utils/typography";
 
-import { MarkdownRemarkNode } from "@df/shared/interfaces/markdown";
+import { MarkdownRemarkNode } from "@df/multichannel-app-shared/interfaces/markdown";
 
 export interface BlogIndexProps {
   data: {

@@ -13,6 +13,7 @@ export interface BlogIndexProps {
     site: {
       siteMetadata: {
         title: string;
+        titleParts: string[];
       }
     };
   
@@ -32,10 +33,11 @@ class BlogIndex extends React.Component<BlogIndexProps> {
   render() {
     const { data } = this.props;
     const siteTitle = data.site.siteMetadata.title;
+    const siteTitleParts = data.site.siteMetadata.titleParts;
     const posts = data.allMarkdownRemark.edges;
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={this.props.location} titleParts={siteTitleParts}>
         <SEO title={siteTitle} homepage={true} />
         <Bio />
         {posts.map(({ node }: { node: MarkdownRemarkNode }) => {
@@ -68,6 +70,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        titleParts
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {

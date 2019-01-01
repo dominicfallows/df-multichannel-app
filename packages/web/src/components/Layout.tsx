@@ -3,8 +3,8 @@ import * as React from "react";
 
 // import { colors } from "@df/multichannel-app-shared/styles/colors";
 import {
-  linearGradientCssString,
   linearGradientBlock1remStyle,
+  linearGradientCssString,
 } from "@df/multichannel-app-shared/styles/gradients";
 
 import { rhythm, scale } from "../utils/typography";
@@ -13,14 +13,50 @@ export interface LayoutProps {
   location: {
     pathname: string;
   };
-  title: string;
+  title?: string;
+  titleParts?: string[];
 }
 
 class Layout extends React.Component<LayoutProps> {
   render() {
-    const { location, title, children } = this.props;
+    const { location, title, titleParts, children } = this.props;
     const rootPath = `${process.env.__PATH_PREFIX__ || ""}/`;
-    let header;
+
+    const siteTitle = title ? (
+      title
+    ) : titleParts && titleParts.length > 0 ? (
+      <>
+        <span
+          style={{
+            display: "block",
+            ...scale(1.5)
+          }}
+        >
+          {titleParts[0]}
+        </span>{" "}
+        <span
+          style={{
+            display: "block",
+          }}
+        >
+          {titleParts[1]}
+        </span>{" "}
+        <span
+          style={{
+            display: "block",
+            background: linearGradientCssString,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          {titleParts[2]}
+        </span>
+      </>
+    ) : (
+      ""
+    );
+
+    let header = null;
 
     if (location.pathname === rootPath) {
       header = (
@@ -28,9 +64,6 @@ class Layout extends React.Component<LayoutProps> {
           style={{
             marginBottom: rhythm(1.5),
             marginTop: 0,
-            background: linearGradientCssString,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
           }}
         >
           <Link
@@ -41,7 +74,7 @@ class Layout extends React.Component<LayoutProps> {
             }}
             to={`/`}
           >
-            {title}
+            {siteTitle}
           </Link>
         </h1>
       );
@@ -61,7 +94,7 @@ class Layout extends React.Component<LayoutProps> {
             }}
             to={`/`}
           >
-            {title}
+            {siteTitle}
           </Link>
         </h3>
       );

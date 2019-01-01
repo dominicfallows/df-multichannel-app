@@ -1,6 +1,13 @@
+const titleParts = [
+  "Dominic Fallows",
+  "Technical Lead and Senior Developer",
+  "Web, Mobile and Cloud Apps"
+];
+
 module.exports = {
   siteMetadata: {
-    title: `Dominic Fallows - Technical Lead and Senior Developer for web, mobile and cloud apps`,
+    title: `${titleParts[0]} - ${titleParts[1]} for ${titleParts[2]}`,
+    titleParts: titleParts,
     author: `Dominic Fallows`,
     description: `Technical Lead and Senior Developer for web, mobile and cloud apps`,
     siteUrl: `https://dominicfallows.uk`,

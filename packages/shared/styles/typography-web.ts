@@ -1,6 +1,6 @@
 import Typography from "typography";
 
-import { colors } from "@df/multichannel-app-shared/styles/colors";
+import { colors } from "./colors";
 
 const headFontStack = [
   "Swiss721",

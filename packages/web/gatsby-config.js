@@ -9,7 +9,7 @@ module.exports = {
     title: `${titleParts[0]} - ${titleParts[1]} for ${titleParts[2]}`,
     titleParts: titleParts,
     author: `Dominic Fallows`,
-    description: `Technical Lead and Senior Developer for web, mobile and cloud apps`,
+    description: `Technical Lead and Senior Developer for Web, Mobile and Cloud apps`,
     siteUrl: `https://dominicfallows.uk`,
     social: {
       twitter: `dominicfallows`,
@@ -20,14 +20,14 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/../shared/content/blog`,
+        path: `../shared/content/blog`,
         name: `blog`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/../shared/content/assets`,
+        path: `../shared/content/assets`,
         name: `assets`,
       },
     },
@@ -79,7 +79,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-typography`,
       options: {
-        pathToConfigModule: `src/utils/typography`,
+        pathToConfigModule: `../shared/styles/typography-web`,
       },
     },
   ],

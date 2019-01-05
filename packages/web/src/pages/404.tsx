@@ -1,7 +1,8 @@
+import { Link } from "gatsby";
 import * as React from "react";
 
-import Layout from "../components/Layout";
 import SEO from "../components/SEO";
+import Layout from "../containers/Layout";
 
 export interface NotFoundPageProps {
   location: {
@@ -14,10 +15,15 @@ class NotFoundPage extends React.Component<NotFoundPageProps> {
     const { location } = this.props;
 
     return (
-      <Layout location={location} title="404 Not Found">
-        <SEO title="404 Not Found" />
+      <Layout location={location}>
+        <SEO
+          title="404 Not Found"
+          meta={[{ name: "robots", content: "noindex" }]}
+        />
         <h1>Not Found</h1>
-        <p>You just hit a route that doesn't exist... the sadness.</p>
+        <p>
+          Sorry, that page doesn't exist. Go to <Link to="/">homepage</Link>.
+        </p>
       </Layout>
     );
   }

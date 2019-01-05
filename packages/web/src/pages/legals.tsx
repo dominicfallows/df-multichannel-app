@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import Layout from "../components/Layout";
 import SEO from "../components/SEO";
+import Layout from "../containers/Layout";
 
 export interface LegalsProps {
   location: {
@@ -18,16 +18,17 @@ class Legals extends React.Component<LegalsProps> {
         <h1>Legals</h1>
 
         <p>
-          Unless otherwise stated, all content (text, images, graphics, logos, audio,{" "}
-          video and other content is Copyright &copy; 2018 Dominic Fallows and licensed{" "}
-          under the{" "}
+          Unless otherwise stated, all content (text, images, graphics, logos,
+          audio, video and other content is Copyright &copy; 2018 Dominic
+          Fallows and licensed under the{" "}
           <a
             rel="nofollow,license"
             href="http://creativecommons.org/licenses/by-sa/4.0/"
             target="_blank"
           >
             Creative Commons Attribution-ShareAlike 4.0 International License
-          </a>.
+          </a>
+          .
         </p>
 
         <p>
@@ -39,7 +40,8 @@ class Legals extends React.Component<LegalsProps> {
             target="_blank"
           >
             MIT license
-          </a>.
+          </a>
+          .
         </p>
 
         <p>

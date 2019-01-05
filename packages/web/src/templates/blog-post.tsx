@@ -1,12 +1,15 @@
 import { graphql, Link } from "gatsby";
 import * as React from "react";
 
-import Bio from "../components/Bio";
-import Layout from "../components/Layout";
-import SEO from "../components/SEO";
-import { rhythm, scale } from "../utils/typography";
-
 import { MarkdownRemarkNode } from "@df/multichannel-app-shared/interfaces/markdown";
+import {
+  rhythm,
+  scale,
+} from "@df/multichannel-app-shared/styles/typography-web";
+
+import Bio from "../components/Bio";
+import SEO from "../components/SEO";
+import Layout from "../containers/Layout";
 
 export interface BlogPostTemplateProps {
   data: {
@@ -28,7 +31,7 @@ class BlogPostTemplate extends React.Component<BlogPostTemplateProps> {
     const { markdownRemark } = this.props.data;
     const post = markdownRemark;
     const { previous, next } = this.props.pageContext;
-    
+
     return (
       <Layout location={this.props.location}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />

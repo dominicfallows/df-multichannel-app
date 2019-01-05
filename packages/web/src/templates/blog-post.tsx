@@ -10,14 +10,6 @@ import { MarkdownRemarkNode } from "@df/multichannel-app-shared/interfaces/markd
 
 export interface BlogPostTemplateProps {
   data: {
-    site: {
-      siteMetadata: {
-        title: string;
-        titleParts: string[];
-        author: string;
-      }
-    };
-
     markdownRemark: MarkdownRemarkNode;
   };
 
@@ -33,13 +25,12 @@ export interface BlogPostTemplateProps {
 
 class BlogPostTemplate extends React.Component<BlogPostTemplateProps> {
   render() {
-    const { markdownRemark, site } = this.props.data;
+    const { markdownRemark } = this.props.data;
     const post = markdownRemark;
-    const siteTitleParts = site.siteMetadata.titleParts;
     const { previous, next } = this.props.pageContext;
     
     return (
-      <Layout location={this.props.location} titleParts={siteTitleParts}>
+      <Layout location={this.props.location}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
         <h1>{post.frontmatter.title}</h1>
         <p
@@ -93,13 +84,6 @@ export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        titleParts
-        author
-      }
-    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)

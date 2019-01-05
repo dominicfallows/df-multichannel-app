@@ -11,7 +11,7 @@ export interface SEOProps {
       content: string;
     }
   ];
-  title: string;
+  title?: string;
   homepage?: boolean;
 }
 
@@ -29,7 +29,7 @@ const SEO = (props: SEOProps) => {
             htmlAttributes={{
               lang,
             }}
-            title={title}
+            title={homepage ? data.site.siteMetadata.title : title}
             titleTemplate={
               homepage ? `%s` : `%s | ${data.site.siteMetadata.title}`
             }

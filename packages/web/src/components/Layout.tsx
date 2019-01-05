@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { graphql, Link, StaticQuery } from "gatsby";
 import * as React from "react";
 
 // import { colors } from "@df/multichannel-app-shared/styles/colors";
@@ -9,22 +9,28 @@ import {
 
 import { rhythm, scale } from "../utils/typography";
 
-export interface LayoutProps {
+export interface LayoutPropsBase {
   location: {
     pathname: string;
   };
-  title?: string;
-  titleParts?: string[];
+}
+export interface LayoutProps extends LayoutPropsBase {
+  data: {
+    site: {
+      siteMetadata: {
+        titleParts: string[];
+      }
+    };
+  };
 }
 
 class Layout extends React.Component<LayoutProps> {
   render() {
-    const { location, title, titleParts, children } = this.props;
+    const { location, data, children } = this.props;
     const rootPath = `${process.env.__PATH_PREFIX__ || ""}/`;
+    const titleParts = data.site.siteMetadata.titleParts;
 
-    const siteTitle = title ? (
-      title
-    ) : titleParts && titleParts.length > 0 ? (
+    const siteTitle = (
       <>
         <span
           style={{
@@ -52,8 +58,6 @@ class Layout extends React.Component<LayoutProps> {
           {titleParts[2]}
         </span>
       </>
-    ) : (
-      ""
     );
 
     let header = null;
@@ -64,6 +68,7 @@ class Layout extends React.Component<LayoutProps> {
           style={{
             marginBottom: rhythm(1.5),
             marginTop: 0,
+            clear: "both"
           }}
         >
           <Link
@@ -82,8 +87,8 @@ class Layout extends React.Component<LayoutProps> {
       header = (
         <h3
           style={{
-            marginBottom: rhythm(-1),
-            marginTop: 0,
+            marginBottom: rhythm(1.5),
+            marginTop: 0
           }}
         >
           <Link
@@ -122,34 +127,10 @@ class Layout extends React.Component<LayoutProps> {
               marginTop: `4rem`,
             }}
           >
-            Built with{" "}
-            <a href="https://www.gatsbyjs.org" target="_blank">
+            <Link to="/legals" title="Legals">The legal stuff</Link>. Built with{" "}
+            <Link to="https://www.gatsbyjs.org" title="GatsbyJS" target="_blank">
               Gatsby
-            </a>
-            . Unless otherwise stated, all{" "}
-            <abbr
-              title="text, images, graphics, logos, audio,
-            video and other content"
-            >
-              content
-            </abbr>{" "}
-            is Copyright &copy; 2018 Dominic Fallows and licensed under the{" "}
-            <a
-              rel="license"
-              href="http://creativecommons.org/licenses/by-sa/4.0/"
-              target="_blank"
-            >
-              Creative Commons Attribution-ShareAlike 4.0 International License
-            </a>
-            . The software in this project is Copyright &copy; 2018 Dominic
-            Fallows and made available under the{" "}
-            <a
-              rel="license"
-              href="https://opensource.org/licenses/MIT"
-              target="_blank"
-            >
-              MIT license
-            </a>
+            </Link>
             .
           </footer>
         </div>
@@ -158,4 +139,17 @@ class Layout extends React.Component<LayoutProps> {
   }
 }
 
-export default Layout;
+export default (props: LayoutPropsBase) => (
+  <StaticQuery
+    query={graphql`
+      query LayoutQuery {
+        site {
+          siteMetadata {
+            titleParts
+          }
+        }
+      }
+    `}
+    render={data => <Layout {...props} data={data} />}
+  />
+);

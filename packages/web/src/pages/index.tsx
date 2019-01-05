@@ -9,14 +9,7 @@ import { rhythm } from "../utils/typography";
 import { MarkdownRemarkNode } from "@df/multichannel-app-shared/interfaces/markdown";
 
 export interface BlogIndexProps {
-  data: {
-    site: {
-      siteMetadata: {
-        title: string;
-        titleParts: string[];
-      }
-    };
-  
+  data: {  
     allMarkdownRemark: {
       edges: [{
         node: MarkdownRemarkNode;
@@ -32,13 +25,11 @@ export interface BlogIndexProps {
 class BlogIndex extends React.Component<BlogIndexProps> {
   render() {
     const { data } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
-    const siteTitleParts = data.site.siteMetadata.titleParts;
     const posts = data.allMarkdownRemark.edges;
 
     return (
-      <Layout location={this.props.location} titleParts={siteTitleParts}>
-        <SEO title={siteTitle} homepage={true} />
+      <Layout location={this.props.location}>
+        <SEO homepage={true} />
         <Bio />
         {posts.map(({ node }: { node: MarkdownRemarkNode }) => {
           const title = node.frontmatter.title || node.fields.slug;
@@ -67,12 +58,6 @@ export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-        titleParts
-      }
-    }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {

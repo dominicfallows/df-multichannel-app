@@ -1,9 +1,25 @@
 import Typography from "typography";
 
-const systemFontStack = [
+import { colors } from "@df/multichannel-app-shared/styles/colors";
+
+const headFontStack = [
+  "Swiss721",
   "-apple-system",
   "BlinkMacSystemFont",
-  "Segoe UI",
+  // "Segoe UI",
+  "Helvetica",
+  "Arial",
+  "sans-serif",
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
+];
+
+const bodyFontStack = [
+  "Swiss721",
+  "-apple-system",
+  "BlinkMacSystemFont",
+  // "Segoe UI",
   "Helvetica",
   "Arial",
   "sans-serif",
@@ -14,11 +30,26 @@ const systemFontStack = [
 
 const typography = new Typography({
   baseFontSize: "16px",
-  baseLineHeight: 1.666,
+  baseLineHeight: 1.4,
   scaleRatio: 2,
-  headerFontFamily: systemFontStack,
-  bodyFontFamily: systemFontStack,
-  includeNormalize: true
+  headerFontFamily: headFontStack,
+  headerWeight: "bold",
+  bodyFontFamily: bodyFontStack,
+  bodyWeight: "normal",
+  includeNormalize: true,
+  overrideStyles:  (props) => ({
+    "a": {
+      textDecoration: "none",
+      color: colors.blue
+    },
+    "a:hover": {
+      color: colors.green
+    },
+    "h2, h3, h4": {
+      marginBottom: props.rhythm(1),
+      marginTop:0
+    }
+  })
 });
 
 // Hot reload typography in development.

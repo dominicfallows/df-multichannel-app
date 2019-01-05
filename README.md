@@ -72,3 +72,7 @@ Because we use both TypeScript and multiple different frameworks across the pack
 - React Native and React DOM both have their own conflicting TypeScript Definitions - which prevents use of [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces) and [Lerna](https://github.com/lerna/lerna)
 - Gatsby compiles TypeScript using [@babel/preset-typescript](@babel/preset-typescript) - which prevents use of more recent TypeScript monorepo support, like [TypeScript Project References](https://www.typescriptlang.org/docs/handbook/project-references.html)
 - Lerna is designed to work with JavaScript monorepos that publish compiled code to NPM. We need to handle raw TypeScript code and store to GitHub.
+
+## License
+
+See [LICENSE.md](LICENSE.md)

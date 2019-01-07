@@ -2,7 +2,7 @@ import { graphql, StaticQuery } from "gatsby";
 import Image from "gatsby-image";
 import * as React from "react";
 
-import { rhythm } from "@df/multichannel-app-shared/styles/typography-web";
+import { rhythm } from "@df/multichannel-app-shared-web/styles/typography";
 
 function Bio() {
   return (

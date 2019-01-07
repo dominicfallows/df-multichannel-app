@@ -1,0 +1,1 @@
+export type LayoutBreakpoint = "sm" | "md" | "lg" | "xl";

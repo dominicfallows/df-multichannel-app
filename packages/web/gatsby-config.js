@@ -1,7 +1,7 @@
 const titleParts = [
   "Dominic Fallows",
   "Technical Lead and Senior Developer",
-  "Web, Mobile and Cloud Apps"
+  "Web, Mobile and Cloud Apps",
 ];
 
 module.exports = {
@@ -17,11 +17,17 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-typescript`,
+    `gatsby-plugin-catch-links`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-feed`,
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `../shared/content/blog`,
-        name: `blog`,
+        path: `../shared/content/markdown`,
+        name: `markdown`,
       },
     },
     {
@@ -53,15 +59,12 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
-    `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -74,12 +77,10 @@ module.exports = {
         icon: `../shared/content/assets/gatsby-icon.png`,
       },
     },
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-typography`,
       options: {
-        pathToConfigModule: `../shared/styles/typography-web`,
+        pathToConfigModule: `../shared-web/styles/typography`,
       },
     },
   ],

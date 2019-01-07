@@ -1,6 +1,6 @@
-import { Link } from "gatsby";
 import * as React from "react";
 
+import Link from "@df/multichannel-app-shared-web/components/Link";
 import SEO from "../components/SEO";
 import Layout from "../containers/Layout";
 
@@ -22,7 +22,11 @@ class NotFoundPage extends React.Component<NotFoundPageProps> {
         />
         <h1>Not Found</h1>
         <p>
-          Sorry, that page doesn't exist. Go to <Link to="/">homepage</Link>.
+          Sorry, that page doesn't exist. Go to{" "}
+          <Link to="/" title="Home" type="primary">
+            homepage
+          </Link>
+          .
         </p>
       </Layout>
     );

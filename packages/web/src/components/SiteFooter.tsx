@@ -1,5 +1,6 @@
-import { Link } from "gatsby";
 import * as React from "react";
+
+import Link from "@df/multichannel-app-shared-web/components/Link";
 
 const SiteFooter = () => (
   <footer
@@ -10,11 +11,11 @@ const SiteFooter = () => (
     }}
   >
     Copyright &copy; Dominic Fallows 2018-2019.{" "}
-    <Link to="/legals" title="Legals">
+    <Link to="/legals" title="Legals" type="primary">
       The legal stuff
     </Link>
     . Built with{" "}
-    <Link to="https://www.gatsbyjs.org" title="GatsbyJS" target="_blank">
+    <Link to="https://www.gatsbyjs.org" title="GatsbyJS" target="_blank" type="primary">
       Gatsby
     </Link>
     .

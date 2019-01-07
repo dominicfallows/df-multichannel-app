@@ -1,7 +1,6 @@
 import * as React from "react";
 
-import { linearGradientBlock1remStyle } from "@df/multichannel-app-shared/styles/gradients";
-import { rhythm } from "@df/multichannel-app-shared/styles/typography-web";
+import { grid } from "@df/multichannel-app-shared-web/styles/grid";
 
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
@@ -18,23 +17,16 @@ class Layout extends React.Component<LayoutProps> {
 
     return (
       <>
-        <div
+        <SiteHeader location={location} />
+        <main
+          role="main"
           style={{
-            ...linearGradientBlock1remStyle,
-          }}
-        />
-        <div
-          style={{
-            marginLeft: `auto`,
-            marginRight: `auto`,
-            maxWidth: `800px`,
-            padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
+            ...grid.container
           }}
         >
-          <SiteHeader location={location} />
-          <main role="main">{children}</main>
-          <SiteFooter />
-        </div>
+          {children}
+        </main>
+        <SiteFooter />
       </>
     );
   }

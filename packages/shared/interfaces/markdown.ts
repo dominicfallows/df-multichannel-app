@@ -6,7 +6,9 @@ export interface MarkdownRemarkNode {
     slug: string;
   };
   frontmatter: {
-    date: string;
+    created: string;
+    updated: string;
     title: string;
+    taxonomy: string[];
   };
 }

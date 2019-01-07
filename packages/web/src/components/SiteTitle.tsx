@@ -5,7 +5,7 @@ import { linearGradientCssString } from "@df/multichannel-app-shared/styles/grad
 import {
   rhythm,
   scale,
-} from "@df/multichannel-app-shared/styles/typography-web";
+} from "@df/multichannel-app-shared-web/styles/typography";
 
 export interface SiteTitlePropsBase {
   location: {
@@ -43,15 +43,18 @@ const SiteTitle = (props: SiteTitlePropsBase) => (
         <>
           <span
             style={{
-              display: "block",
-              ...scale(1.5),
+              // display: "block",
+              fontSize: "2rem",
+              lineHeight: "2rem"
             }}
           >
             {titleParts[0]}
           </span>{" "}
           <span
             style={{
-              display: "block",
+              // display: "block",
+              fontSize: "1rem",
+              lineHeight: "2rem"
             }}
           >
             {titleParts[1]}
@@ -59,6 +62,8 @@ const SiteTitle = (props: SiteTitlePropsBase) => (
           <span
             style={{
               display: "block",
+              fontSize: "1.5rem",
+              lineHeight: "1.6rem",
               background: linearGradientCssString,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -75,9 +80,7 @@ const SiteTitle = (props: SiteTitlePropsBase) => (
         siteTitle = (
           <h1
             style={{
-              marginBottom: rhythm(1.5),
-              marginTop: 0,
-              clear: "both",
+              margin: 0
             }}
           >
             <Link

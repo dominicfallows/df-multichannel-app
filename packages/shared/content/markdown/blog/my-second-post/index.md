@@ -1,6 +1,12 @@
 ---
-title: My Second Post!
-date: '2015-05-06T23:46:37.121Z'
+title: "My Second Post!"
+created: "2019-01-06T09:00:00.000Z"
+updated: "2019-01-06T09:00:00.000Z"
+taxonomy: [
+  "web",
+  "business",
+  "work-life-balance"
+]
 ---
 
 Wow! I love blogging so much already.

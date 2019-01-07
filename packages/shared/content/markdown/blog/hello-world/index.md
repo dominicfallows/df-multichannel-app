@@ -1,9 +1,15 @@
 ---
-title: Hello World
-date: '2015-05-01T22:12:03.284Z'
+title: "Hello World"
+created: "2019-01-06T11:00:00.000Z"
+updated: "2019-01-06T11:00:00.000Z"
+taxonomy: [
+  "work-life-balance"
+]
 ---
 
 This is my first post on my new fake blog! How exciting!
+
+[hi folks](/blog/hi-folks)
 
 I'm sure I'll write a lot more interesting things in the future.
 

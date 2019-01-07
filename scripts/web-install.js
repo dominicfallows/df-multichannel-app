@@ -15,12 +15,13 @@ try {
   execSync(`yarn install`, { stdio: "inherit" });
 
   /**
-   * Installing local package @df/multichannel-app-shared
+   * Installing linked local packages
    */
   console.log(
-    colors.yellow("Installing local package @df/multichannel-app-shared")
+    colors.yellow("Installing linked local packages")
   );
   execSync(`yarn link @df/multichannel-app-shared`, { stdio: "inherit" });
+  execSync(`yarn link @df/multichannel-app-shared-web`, { stdio: "inherit" });
 
   process.exit(0);
 } catch (err) {

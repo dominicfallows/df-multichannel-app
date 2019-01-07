@@ -1,6 +1,11 @@
 ---
-title: New Beginnings
-date: '2015-05-28T22:40:32.169Z'
+title: "New Beginnings"
+created: "2019-01-06T10:00:00.000Z"
+updated: "2019-01-06T10:00:00.000Z"
+taxonomy: [
+  "mobile",
+  "work-life-balance"
+]
 ---
 
 Far far away, behind the word mountains, far from the countries Vokalia and

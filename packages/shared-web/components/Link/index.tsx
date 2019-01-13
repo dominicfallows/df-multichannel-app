@@ -26,7 +26,7 @@ class Link extends React.Component<LinkProps, LinkState> {
   render() {
     const { activeStyle, children, rel, style, target, title, to, type } = this.props;
     const { hover } = this.state;
-
+    
     return (
       <GatsbyLink
         to={to}

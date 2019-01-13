@@ -13,6 +13,9 @@ export const linkStyle = (type: LinkType) => {
     case "white":
       style.color = colors.white;
       break;
+    case "grey":
+      style.color = colors.grey2;
+      break;
     case "secondary": 
       style.color = colors.green;
       break;
@@ -32,6 +35,9 @@ export const linkStyleHover = (type: LinkType) => {
   switch(type) {
     case "white":
       style.borderBottomColor = colors.white;
+      break;
+    case "grey":
+      style.borderBottomColor = colors.grey2;
       break;
     case "secondary": 
       style.borderBottomColor = colors.green;
@@ -53,6 +59,9 @@ export const linkStyleActive = (type: LinkType) => {
   switch(type) {
     case "white":
       style.borderBottomColor = colors.white;
+      break;
+    case "grey":
+      style.borderBottomColor = colors.grey2;
       break;
     case "secondary": 
       style.borderBottomColor = colors.green;

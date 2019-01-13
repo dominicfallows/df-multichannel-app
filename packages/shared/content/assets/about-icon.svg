@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="23px" viewBox="0 0 25 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Navigation---iPhone-SE" transform="translate(-252.000000, -524.000000)" fill="#B1B1B1">
+            <g id="about" transform="translate(250.000000, 524.000000)">
+                <g id="about-icon" transform="translate(2.000000, 0.000000)">
+                    <ellipse id="Oval" cx="12.5" cy="6.35294118" rx="6.25" ry="6.35294118"></ellipse>
+                    <path d="M6.75015599e-14,22.8705882 C1.85185185,17.7882353 6.01851852,15.2470588 12.5,15.2470588 C23.1481481,15.2470588 25,22.8705882 25,22.8705882 C25,22.8705882 16.6666667,22.8705882 6.75015599e-14,22.8705882 Z" id="Path-3"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export type LinkType = "primary" | "secondary" | "white";
+export type LinkType = "primary" | "secondary" | "white" | "grey";
 
 export interface LinkProps {
   type: LinkType;

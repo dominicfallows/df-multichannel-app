@@ -65,8 +65,8 @@ class BlogPostTemplate extends React.Component<BlogPostTemplateProps> {
                 listStyle: `none`,
                 padding: 0,
                 margin: `${rhythm(1)} 0`,
-                borderTop: `1px solid ${colors.lightGrey}`,
-                borderBottom: `1px solid ${colors.lightGrey}`
+                borderTop: `1px solid ${colors.grey1}`,
+                borderBottom: `1px solid ${colors.grey1}`
               }}
             >
               <li style={{margin: 0, padding: `${rhythm(0.5)} ${rhythm(1)} ${rhythm(0.5)} 0` }}>

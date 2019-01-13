@@ -72,9 +72,11 @@ module.exports = {
         short_name: `Dominic Fallows`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `../shared/content/assets/gatsby-icon.png`,
+        theme_color: `#0095cc`,
+        // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
+        // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
+        display: "standalone",
+        icon: `../shared/content/assets/favicon.jpg`, // auto-creates icon set
       },
     },
     {

@@ -10,7 +10,7 @@ try {
    * Install dependencies
    */
   console.log(
-    colors.yellow(
+    colors.cyan(
       "Installing dependencies for @df/multichannel-app-shared-web"
     )
   );
@@ -23,7 +23,7 @@ try {
    * Resetting previous global linked package
    */
   console.log(
-    colors.yellow(
+    colors.cyan(
       "Resetting previous global linked package for @df/multichannel-app-shared-web"
     )
   );
@@ -36,7 +36,7 @@ try {
    * Creating new global linked package
    */
   console.log(
-    colors.yellow(
+    colors.cyan(
       "Creating new global linked package for @df/multichannel-app-shared-web"
     )
   );
@@ -46,7 +46,7 @@ try {
    * Installing linked local packages
    */
   console.log(
-    colors.yellow("Installing linked local packages")
+    colors.cyan("Installing linked local packages")
   );
   execSync(`yarn link @df/multichannel-app-shared`, { stdio: "inherit" });
 

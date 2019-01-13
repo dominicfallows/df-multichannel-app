@@ -10,7 +10,7 @@ try {
    * Install dependencies
    */
   console.log(
-    colors.yellow(
+    colors.cyan(
       "Installing dependencies for @df/multichannel-app-shared"
     )
   );
@@ -23,7 +23,7 @@ try {
    * Resetting previous global linked package
    */
   console.log(
-    colors.yellow(
+    colors.cyan(
       "Resetting previous global linked package for @df/multichannel-app-shared"
     )
   );
@@ -36,7 +36,7 @@ try {
    * Creating new global linked package
    */
   console.log(
-    colors.yellow(
+    colors.cyan(
       "Creating new global linked package for @df/multichannel-app-shared"
     )
   );

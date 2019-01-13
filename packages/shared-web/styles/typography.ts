@@ -40,7 +40,8 @@ const typography = new Typography({
   overrideStyles:  (props) => ({
     "a": {
       textDecoration: "none",
-      color: colors.blue
+      color: colors.blue,
+      outline: "none"
     },
     "a:hover": {
       color: colors.green

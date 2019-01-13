@@ -1,124 +1,88 @@
 import { graphql, Link, StaticQuery } from "gatsby";
 import * as React from "react";
 
-import { linearGradientCssString } from "@df/multichannel-app-shared/styles/gradients";
-import {
-  rhythm,
-  scale,
-} from "@df/multichannel-app-shared-web/styles/typography";
+import logo from "@df/multichannel-app-shared/content/assets/logo.svg";
+import { colors } from "@df/multichannel-app-shared/styles/colors";
 
-export interface SiteTitlePropsBase {
-  location: {
-    pathname: string;
-  };
+export interface SiteTitleState {
+  hover: boolean;
 }
 
-export interface SiteTitleProps extends SiteTitlePropsBase {
-  data: {
-    site: {
-      siteMetadata: {
-        titleParts: string[];
-      };
+export interface SiteTitleDataInterface {
+  site: {
+    siteMetadata: {
+      title: string;
     };
   };
 }
 
-const SiteTitle = (props: SiteTitlePropsBase) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            titleParts
+class SiteTitle extends React.Component<{}, SiteTitleState> {
+  state = {
+    hover: false
+  };
+
+  mouseOver = () => this.setState({
+    hover: true
+  })
+
+  mouseOut = () => this.setState({
+    hover: false
+  })
+
+  render() {
+
+    return (
+      <StaticQuery
+        query={graphql`
+          query SiteTitleQuery {
+            site {
+              siteMetadata {
+                title
+              }
+            }
           }
-        }
-      }
-    `}
-    render={data => {
-      const { location } = props;
-      const rootPath = `${process.env.__PATH_PREFIX__ || ""}/`;
-      const titleParts = data.site.siteMetadata.titleParts;
+        `}
+        render={(data: SiteTitleDataInterface) => {
+          const siteLogo = (
+            <div style={{
+              display: "flex",
+              alignItems: "center"
+            }}>
+              <img
+                src={logo}
+                alt="Dominic Fallows"
+                style={{
+                  height: "30px",
+                  width: "auto",
+                  display: "block",
+                  marginBottom: 0
+                }}
+              />
+            </div>
+          );
 
-      const siteTitleText = (
-        <>
-          <span
-            style={{
-              // display: "block",
-              fontSize: "2rem",
-              lineHeight: "2rem"
-            }}
-          >
-            {titleParts[0]}
-          </span>{" "}
-          <span
-            style={{
-              // display: "block",
-              fontSize: "1rem",
-              lineHeight: "2rem"
-            }}
-          >
-            {titleParts[1]}
-          </span>{" "}
-          <span
-            style={{
-              display: "block",
-              fontSize: "1.5rem",
-              lineHeight: "1.6rem",
-              background: linearGradientCssString,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            {titleParts[2]}
-          </span>
-        </>
-      );
-
-      let siteTitle = null;
-
-      if (location.pathname === rootPath) {
-        siteTitle = (
-          <h1
-            style={{
-              margin: 0
-            }}
-          >
+          return (
             <Link
               style={{
                 color: `inherit`,
                 boxShadow: `none`,
                 textDecoration: `none`,
+                background: this.state.hover ? colors.blue : "transparent",
+                display: "block",
+                padding: "0.5rem 1rem"
               }}
+              onMouseOver={() => this.mouseOver()}
+              onMouseOut={() => this.mouseOut()}
               to={`/`}
+              title={data.site.siteMetadata.title}
             >
-              {siteTitleText}
+              {siteLogo}
             </Link>
-          </h1>
-        );
-      } else {
-        siteTitle = (
-          <span
-            style={{
-              marginBottom: rhythm(1.5),
-              marginTop: 0,
-            }}
-          >
-            <Link
-              style={{
-                boxShadow: `none`,
-                color: `inherit`,
-                textDecoration: `none`,
-              }}
-              to={`/`}
-            >
-              {siteTitleText}
-            </Link>
-          </span>
-        );
-      }
-      return siteTitle;
-    }}
-  />
-);
+          );
+        }}
+      />
+    );
+  }
+}
 
 export default SiteTitle;

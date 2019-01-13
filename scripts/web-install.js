@@ -10,7 +10,7 @@ try {
    * Install dependencies
    */
   console.log(
-    colors.yellow("Installing dependencies for @df/multichannel-app-web")
+    colors.cyan("Installing dependencies for @df/multichannel-app-web")
   );
   execSync(`yarn install`, { stdio: "inherit" });
 
@@ -18,7 +18,7 @@ try {
    * Installing linked local packages
    */
   console.log(
-    colors.yellow("Installing linked local packages")
+    colors.cyan("Installing linked local packages")
   );
   execSync(`yarn link @df/multichannel-app-shared`, { stdio: "inherit" });
   execSync(`yarn link @df/multichannel-app-shared-web`, { stdio: "inherit" });

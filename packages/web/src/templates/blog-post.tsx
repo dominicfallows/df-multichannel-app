@@ -39,7 +39,9 @@ class BlogPostTemplate extends React.Component<BlogPostTemplateProps> {
         <SEO title={post.frontmatter.title} description={post.excerpt} />
 
         <article>
-          <h1>{post.frontmatter.title}</h1>
+          <header>
+            <h1>{post.frontmatter.title}</h1>
+          </header>
 
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
 
@@ -66,10 +68,15 @@ class BlogPostTemplate extends React.Component<BlogPostTemplateProps> {
                 padding: 0,
                 margin: `${rhythm(1)} 0`,
                 borderTop: `1px solid ${colors.grey1}`,
-                borderBottom: `1px solid ${colors.grey1}`
+                borderBottom: `1px solid ${colors.grey1}`,
               }}
             >
-              <li style={{margin: 0, padding: `${rhythm(0.5)} ${rhythm(1)} ${rhythm(0.5)} 0` }}>
+              <li
+                style={{
+                  margin: 0,
+                  padding: `${rhythm(0.5)} ${rhythm(1)} ${rhythm(0.5)} 0`,
+                }}
+              >
                 {previous && (
                   <Link
                     type="secondary"
@@ -81,7 +88,12 @@ class BlogPostTemplate extends React.Component<BlogPostTemplateProps> {
                   </Link>
                 )}
               </li>
-              <li style={{margin: 0, padding: `${rhythm(0.5)} 0 ${rhythm(0.5)} ${rhythm(1)}` }}>
+              <li
+                style={{
+                  margin: 0,
+                  padding: `${rhythm(0.5)} 0 ${rhythm(0.5)} ${rhythm(1)}`,
+                }}
+              >
                 {next && (
                   <Link
                     type="secondary"

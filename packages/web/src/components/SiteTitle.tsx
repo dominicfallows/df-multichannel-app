@@ -18,19 +18,20 @@ export interface SiteTitleDataInterface {
 
 class SiteTitle extends React.Component<{}, SiteTitleState> {
   state = {
-    hover: false
+    hover: false,
   };
 
-  mouseOver = () => this.setState({
-    hover: true
-  })
+  mouseOver = () =>
+    this.setState({
+      hover: true,
+    });
 
-  mouseOut = () => this.setState({
-    hover: false
-  })
+  mouseOut = () =>
+    this.setState({
+      hover: false,
+    });
 
   render() {
-
     return (
       <StaticQuery
         query={graphql`
@@ -44,10 +45,12 @@ class SiteTitle extends React.Component<{}, SiteTitleState> {
         `}
         render={(data: SiteTitleDataInterface) => {
           const siteLogo = (
-            <div style={{
-              display: "flex",
-              alignItems: "center"
-            }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <img
                 src={logo}
                 alt="Dominic Fallows"
@@ -55,7 +58,7 @@ class SiteTitle extends React.Component<{}, SiteTitleState> {
                   height: "30px",
                   width: "auto",
                   display: "block",
-                  marginBottom: 0
+                  marginBottom: 0,
                 }}
               />
             </div>
@@ -69,7 +72,7 @@ class SiteTitle extends React.Component<{}, SiteTitleState> {
                 textDecoration: `none`,
                 background: this.state.hover ? colors.blue : "transparent",
                 display: "block",
-                padding: "0.5rem 1rem"
+                padding: "0.5rem 1rem",
               }}
               onMouseOver={() => this.mouseOver()}
               onMouseOut={() => this.mouseOut()}

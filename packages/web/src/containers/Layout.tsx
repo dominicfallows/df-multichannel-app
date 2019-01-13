@@ -21,7 +21,7 @@ class Layout extends React.Component<LayoutProps> {
         <main
           role="main"
           style={{
-            ...grid.container
+            ...grid.container,
           }}
         >
           {children}

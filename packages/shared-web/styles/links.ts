@@ -5,70 +5,46 @@ import { LinkType } from "../components/Link/interfaces/props";
 
 export const linkStyle = (type: LinkType) => {
   const style: React.CSSProperties = {
-    textDecoration: "none",
-    paddingBottom: "2px"
+    textDecoration: "none"
   };
 
-  switch(type) {
+  switch (type) {
     case "white":
       style.color = colors.white;
       break;
     case "grey":
       style.color = colors.grey2;
       break;
-    case "secondary": 
+    case "tag":
+      style.color = colors.grey2;
+      style.backgroundColor = colors.grey1;
+      style.display = "inline-block";
+      style.fontSize = "12px";
+      style.padding = "2px 4px";
+      break;
+    case "secondary":
       style.color = colors.green;
       break;
     case "primary":
       style.color = colors.blue;
   }
-  
+
   return style;
 };
 
-export const linkStyleHover = (type: LinkType) => {
+export const linkStyleHover = (type: LinkType): React.CSSProperties => {
   const style: React.CSSProperties = {
-    borderBottomStyle: "solid",
-    borderBottomWidth: "1px"
+    textDecoration: "underline"
   };
 
-  switch(type) {
-    case "white":
-      style.borderBottomColor = colors.white;
+  switch (type) {
+    case "tag":
+      style.color = colors.blue;
+      style.textDecoration = "none";
       break;
-    case "grey":
-      style.borderBottomColor = colors.grey2;
+    default:
       break;
-    case "secondary": 
-      style.borderBottomColor = colors.green;
-      break;
-    case "primary":
-      style.borderBottomColor = colors.blue;
   }
-  
-  return style;
-};
 
-export const linkStyleActive = (type: LinkType) => {
-  const style: React.CSSProperties = {
-    textDecoration: "none",
-    borderBottomStyle: "solid",
-    borderBottomWidth: "2px"
-  };
-
-  switch(type) {
-    case "white":
-      style.borderBottomColor = colors.white;
-      break;
-    case "grey":
-      style.borderBottomColor = colors.grey2;
-      break;
-    case "secondary": 
-      style.borderBottomColor = colors.green;
-      break;
-    case "primary":
-      style.borderBottomColor = colors.blue;
-  }
-  
   return style;
 };

@@ -13,7 +13,7 @@ const HamburgerIcon = ({ open }: { open: boolean }) => {
       cursor: "pointer",
       border: "2.5px solid transparent",
       background: "transparent",
-      outline: "none"
+      outline: "none",
     },
     span: {
       display: "block",
@@ -44,16 +44,16 @@ const HamburgerIcon = ({ open }: { open: boolean }) => {
       left: "50%",
     },
     spanNth2__open: {
-      transform: "rotate(45deg)"
+      transform: "rotate(45deg)",
     },
     spanNth3__open: {
-      transform: "rotate(-45deg)"
+      transform: "rotate(-45deg)",
     },
     spanNth4__open: {
       top: "8px",
       width: "0%",
       left: "50%",
-    }
+    },
   };
 
   return (
@@ -62,28 +62,28 @@ const HamburgerIcon = ({ open }: { open: boolean }) => {
         style={{
           ...styles.span,
           ...styles.spanNth1,
-          ...(open ? styles.spanNth1__open : {})
+          ...(open ? styles.spanNth1__open : {}),
         }}
       />
       <span
         style={{
           ...styles.span,
           ...styles.spanNth2,
-          ...(open ? styles.spanNth2__open : {})
+          ...(open ? styles.spanNth2__open : {}),
         }}
       />
       <span
         style={{
           ...styles.span,
           ...styles.spanNth3,
-          ...(open ? styles.spanNth3__open : {})
+          ...(open ? styles.spanNth3__open : {}),
         }}
       />
       <span
         style={{
           ...styles.span,
           ...styles.spanNth4,
-          ...(open ? styles.spanNth4__open : {})
+          ...(open ? styles.spanNth4__open : {}),
         }}
       />
     </button>

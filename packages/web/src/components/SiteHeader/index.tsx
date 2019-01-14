@@ -24,7 +24,7 @@ const SiteHeader = () => (
         <div style={{ ...grid.container }}>
           <div
             style={{
-              display: breakpoint === "sm" ? "block" : "flex",
+              display: breakpoint === "sm" ? "inline-block" : "flex",
               alignItems: breakpoint === "sm" ? undefined : "center",
             }}
           >

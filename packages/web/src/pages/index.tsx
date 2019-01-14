@@ -10,6 +10,7 @@ import Layout from "../containers/Layout";
 
 import { MarkdownRemarkNode } from "@df/multichannel-app-shared/interfaces/markdown";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
+import { grid } from "@df/multichannel-app-shared-web/styles/grid";
 
 export interface BlogIndexProps {
   data: {
@@ -39,83 +40,93 @@ class BlogIndex extends React.Component<BlogIndexProps> {
         <LayoutContextConsumer>
           {({ breakpoint }) => (
             <>
-              <Bio />
+              <Bio isHome={true} />
 
-              {posts.map(({ node }: { node: MarkdownRemarkNode }) => {
-                const title = node.frontmatter.title || node.fields.slug;
-                return (
-                  <article
-                    key={node.fields.slug}
-                    style={{
-                      padding: "1rem 0",
-                      borderBottom: `1px dotted ${colors.grey2}`,
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    <header
-                      style={{
-                        display: breakpoint === "sm" ? "block" : "flex",
-                      }}
-                    >
-                      <h3
+              <section style={{
+                background: colors.grey1,
+                padding: "1rem"
+              }}>
+                <div style={{ ...grid.container }}>
+                  {posts.map(({ node }: { node: MarkdownRemarkNode }, i) => {
+                    const title = node.frontmatter.title || node.fields.slug;
+                    return (
+                      <article
+                        key={node.fields.slug}
                         style={{
-                          marginBottom: breakpoint === "sm" ? "0.5rem" : "1rem",
-                          flexGrow: breakpoint === "sm" ? undefined : 1,
+                          padding: "1rem",
+                          marginBottom: (i + 1) < posts.length ? "1rem" : 0,
+                          background: colors.white
                         }}
                       >
-                        <Link
-                          style={{ color: colors.black }}
-                          to={node.fields.slug}
-                          title={title}
-                          type="primary"
+                        <header
+                          style={{
+                            display: breakpoint === "sm" ? "block" : "flex",
+                          }}
                         >
-                          {title}
-                        </Link>
-                      </h3>
-
-                      <nav
-                        style={{
-                          flexShrink: breakpoint === "sm" ? undefined : 1,
-                          marginBottom:
-                            breakpoint === "sm" ? "0.5rem" : undefined,
-                        }}
-                      >
-                        {node.frontmatter.taxonomy.map((t: string) => (
-                          <Link
-                            to={`/blog/${t}`}
-                            title={`More posts about #${t}`}
-                            type="tag"
+                          <h3
                             style={{
-                              marginBottom: "5px",
-                              marginLeft:
-                                breakpoint === "sm" ? undefined : "10px",
-                              marginRight:
-                                breakpoint === "sm" ? "10px" : undefined,
+                              marginBottom: breakpoint === "sm" ? "0.5rem" : "1rem",
+                              flexGrow: breakpoint === "sm" ? undefined : 1
                             }}
                           >
-                            #{t}
-                          </Link>
-                        ))}
-                      </nav>
-                    </header>
-                    <p
-                      dangerouslySetInnerHTML={{ __html: node.excerpt }}
-                      style={{
-                        fontSize: "0.9em",
-                        marginBottom: "1rem",
-                      }}
-                    />
-                    <footer
-                      style={{
-                        fontSize: "0.8rem",
-                        color: colors.grey2,
-                      }}
-                    >
-                      {node.frontmatter.created}
-                    </footer>
-                  </article>
-                );
-              })}
+                            <Link
+                              style={{
+                                color: colors.blue,
+                                fontWeight: 400
+                              }}
+                              to={node.fields.slug}
+                              title={title}
+                              type="primary"
+                            >
+                              {title}
+                            </Link>
+                          </h3>
+
+                          <nav
+                            style={{
+                              flexShrink: breakpoint === "sm" ? undefined : 1,
+                              marginBottom:
+                                breakpoint === "sm" ? "0.5rem" : undefined,
+                            }}
+                          >
+                            {node.frontmatter.taxonomy.map((t: string) => (
+                              <Link
+                                to={`/blog/${t}`}
+                                title={`More posts about #${t}`}
+                                type="tag"
+                                style={{
+                                  marginBottom: "5px",
+                                  marginLeft:
+                                    breakpoint === "sm" ? undefined : "10px",
+                                  marginRight:
+                                    breakpoint === "sm" ? "10px" : undefined,
+                                }}
+                              >
+                                #{t}
+                              </Link>
+                            ))}
+                          </nav>
+                        </header>
+                        <p
+                          dangerouslySetInnerHTML={{ __html: node.excerpt }}
+                          style={{
+                            fontSize: "0.9em",
+                            marginBottom: "1rem",
+                          }}
+                        />
+                        <footer
+                          style={{
+                            fontSize: "0.8rem",
+                            color: colors.grey2,
+                          }}
+                        >
+                          {node.frontmatter.created}
+                        </footer>
+                      </article>
+                    );
+                  })}
+                </div>
+              </section>
             </>
           )}
         </LayoutContextConsumer>

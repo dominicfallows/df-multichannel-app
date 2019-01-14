@@ -9,11 +9,30 @@ module.exports = {
     title: `${titleParts[0]} - ${titleParts[1]} for ${titleParts[2]}`,
     titleParts: titleParts,
     author: `Dominic Fallows`,
-    description: `Technical Lead and Senior Developer for Web, Mobile and Cloud apps`,
+    description: `Welcome, I’m Dominic. I have 18+ years experience in developing and delivering web, mobile and cloud applications using the latest technologies.`,
     siteUrl: `https://dominicfallows.uk`,
-    social: {
-      twitter: `dominicfallows`,
-    },
+    social: [
+      {
+        name: "Twitter",
+        profile: `dominicfallows`,
+        url: `https://twitter.com/dominicfallows`
+      },
+      {
+        name: "GitHub",
+        profile: `dominicfallows`,
+        url: `https://github.com/dominicfallows`
+      },
+      {
+        name: "npm",
+        profile: `dominicfallows`,
+        url: `https://www.npmjs.com/~dominicfallows`
+      },
+      {
+        name: "LinkedIn",
+        profile: `dominicfallows`,
+        url: `https://www.linkedin.com/in/dominicfallows`
+      },
+    ],
   },
   plugins: [
     `gatsby-plugin-typescript`,

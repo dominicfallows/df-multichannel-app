@@ -13,8 +13,8 @@ const SiteFooter = () => (
         role="contentinfo"
         style={{
           fontSize: "12px",
-          marginTop: "4rem",
-          marginBottom: breakpoint === "sm" ? "4rem" : "1rem",
+          marginTop: "1rem",
+          paddingBottom: breakpoint === "sm" ? "4rem" : "1rem",
           color: colors.grey3,
           textAlign: breakpoint === "sm" ? "center" : "left",
         }}

@@ -1,6 +1,8 @@
+import { Location } from "@reach/router";
 import { graphql, Link, StaticQuery } from "gatsby";
 import * as React from "react";
 
+import icon from "@df/multichannel-app-shared/content/assets/icon.svg";
 import logo from "@df/multichannel-app-shared/content/assets/logo.svg";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 
@@ -43,46 +45,50 @@ class SiteTitle extends React.Component<{}, SiteTitleState> {
             }
           }
         `}
-        render={(data: SiteTitleDataInterface) => {
-          const siteLogo = (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <img
-                src={logo}
-                alt="Dominic Fallows"
-                style={{
-                  height: "30px",
-                  width: "auto",
-                  display: "block",
-                  marginBottom: 0,
-                }}
-              />
-            </div>
-          );
+        render={(data: SiteTitleDataInterface) => (
+          <Location>
+            {({ location }) => {
+              const siteLogo = (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <img
+                    src={location.pathname === "/" ? icon : logo}
+                    alt="Dominic Fallows"
+                    style={{
+                      height: "30px",
+                      width: "auto",
+                      display: "block",
+                      marginBottom: 0,
+                    }}
+                  />
+                </div>
+              );
 
-          return (
-            <Link
-              style={{
-                color: `inherit`,
-                boxShadow: `none`,
-                textDecoration: `none`,
-                background: this.state.hover ? colors.blue : "transparent",
-                display: "block",
-                padding: "0.5rem 1rem",
-              }}
-              onMouseOver={() => this.mouseOver()}
-              onMouseOut={() => this.mouseOut()}
-              to={`/`}
-              title={data.site.siteMetadata.title}
-            >
-              {siteLogo}
-            </Link>
-          );
-        }}
+              return (
+                <Link
+                  style={{
+                    color: `inherit`,
+                    boxShadow: `none`,
+                    textDecoration: `none`,
+                    background: this.state.hover ? colors.blue : "transparent",
+                    display: "block",
+                    padding: "0.5rem 1rem",
+                  }}
+                  onMouseOver={() => this.mouseOver()}
+                  onMouseOut={() => this.mouseOut()}
+                  to={`/`}
+                  title={data.site.siteMetadata.title}
+                >
+                  {siteLogo}
+                </Link>
+              );
+            }}
+          </Location>
+        )}
       />
     );
   }

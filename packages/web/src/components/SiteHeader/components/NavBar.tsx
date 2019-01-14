@@ -11,62 +11,13 @@ import projectsIconActive from "@df/multichannel-app-shared/content/assets/proje
 import projectsIcon from "@df/multichannel-app-shared/content/assets/projects-icon.svg";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 
-const NavListItem = (props: {
-  to: string;
-  title: string;
-  label: string;
-  icon: string;
-  iconActive: string;
-  active: boolean;
-}) => (
-  <li
-    style={{
-      marginLeft: "1rem",
-      marginRight: "1rem",
-      marginTop: 0,
-      marginBottom: 0,
-    }}
-  >
-    <Link
-      to={props.to}
-      title={props.title}
-      type={"grey"}
-      style={{
-        fontSize: "11px",
-        borderBottomColor: "transparent",
-        color: props.active ? colors.blue : colors.grey2,
-        textAlign: "center",
-        borderBottom: "none",
-        padding: 0,
-        display: "block",
-        lineHeight: 1,
-      }}
-      activeStyle={{
-        color: colors.blue,
-      }}
-    >
-      <img
-        src={props.active ? props.iconActive : props.icon}
-        alt={props.title}
-        style={{
-          display: "block",
-          width: "22px",
-          height: "20px",
-          padding: 0,
-          margin: "0 auto 5px auto",
-        }}
-      />
-      {props.label}
-    </Link>
-  </li>
-);
-
 const NavBar = () => (
   <nav
     role="navigation"
     style={{
       textAlign: "center",
-      background: colors.grey1,
+      background: colors.greySlate,
+      borderTop: `1px solid ${colors.white}`,
       position: "fixed",
       bottom: 0,
       left: 0,
@@ -120,6 +71,56 @@ const NavBar = () => (
       </Location>
     </ul>
   </nav>
+);
+
+const NavListItem = (props: {
+  to: string;
+  title: string;
+  label: string;
+  icon: string;
+  iconActive: string;
+  active: boolean;
+}) => (
+  <li
+    style={{
+      marginLeft: "1rem",
+      marginRight: "1rem",
+      marginTop: 0,
+      marginBottom: 0,
+    }}
+  >
+    <Link
+      to={props.to}
+      title={props.title}
+      type={"grey"}
+      style={{
+        fontSize: "11px",
+        borderBottomColor: "transparent",
+        color: props.active ? colors.blue : colors.grey2,
+        textAlign: "center",
+        borderBottom: "none",
+        padding: 0,
+        display: "block",
+        lineHeight: 1,
+      }}
+      activeStyle={{
+        color: colors.white,
+      }}
+    >
+      <img
+        src={props.active ? props.iconActive : props.icon}
+        alt={props.title}
+        style={{
+          display: "block",
+          width: "22px",
+          height: "20px",
+          padding: 0,
+          margin: "0 auto 5px auto",
+        }}
+      />
+      {props.label}
+    </Link>
+  </li>
 );
 
 export default NavBar;

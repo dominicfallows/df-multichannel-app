@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import { grid } from "@df/multichannel-app-shared-web/styles/grid";
-
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
@@ -13,17 +11,12 @@ export interface LayoutProps {
 
 class Layout extends React.Component<LayoutProps> {
   render() {
-    const { location, children } = this.props;
+    const { children } = this.props;
 
     return (
       <>
-        <SiteHeader location={location} />
-        <main
-          role="main"
-          style={{
-            ...grid.container,
-          }}
-        >
+        <SiteHeader />
+        <main role="main">
           {children}
         </main>
         <SiteFooter />

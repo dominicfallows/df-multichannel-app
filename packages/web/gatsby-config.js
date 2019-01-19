@@ -116,9 +116,17 @@ module.exports = {
     {
       resolve: `gatsby-plugin-json-output`,
       options: {
-        graphQLQuery: "`allMarkdownRemark(limit: 1000) { \
-          edges { node { fields { path } } } \
-        }`"
+        graphQLQuery: `
+          {
+            allMarkdownRemark(limit: 1000) {
+              edges {
+                node {
+                  fields { path }
+                }
+              }
+            }
+          }
+        `
       }
     }
   ],

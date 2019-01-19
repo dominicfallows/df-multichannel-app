@@ -1,11 +1,14 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const slash = require(`slash`);
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve(`./src/templates/blog-post.tsx`);
+    const postTemplate = path.resolve(`./src/templates/post.tsx`);
+    const pageTemplate = path.resolve(`./src/templates/page.tsx`);
+
     resolve(
       graphql(
         `
@@ -21,6 +24,7 @@ exports.createPages = ({ graphql, actions }) => {
                   }
                   frontmatter {
                     title
+                    type
                   }
                 }
               }
@@ -33,19 +37,36 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors);
         }
 
-        // Create blog posts pages.
-        const posts = result.data.allMarkdownRemark.edges;
+        // Create pages
+        const edges = result.data.allMarkdownRemark.edges;
 
-        posts.forEach((post, index) => {
-          const previous =
-            index === posts.length - 1 ? null : posts[index + 1].node;
-          const next = index === 0 ? null : posts[index - 1].node;
+        edges.forEach((edge, index) => {
+          let previous;
+          let next;
+          let template;
+
+          switch (edge.node.frontmatter.type) {
+            case "post":
+              previous =
+                index === edges.length - 1 ? null : edges[index + 1].node;
+              next = index === 0 ? null : edges[index - 1].node;
+
+              template = postTemplate;
+              break;
+
+            case "page":
+              template = pageTemplate;
+              break;
+
+            default:
+              return;
+          }
 
           createPage({
-            path: post.node.fields.slug,
-            component: blogPost,
+            path: edge.node.fields.slug,
+            component: slash(template),
             context: {
-              slug: post.node.fields.slug,
+              slug: edge.node.fields.slug,
               previous,
               next,
             },

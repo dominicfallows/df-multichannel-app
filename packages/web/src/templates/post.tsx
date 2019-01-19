@@ -13,7 +13,7 @@ import Bio from "../components/Bio";
 import SEO from "../components/SEO";
 import Layout from "../containers/Layout";
 
-export interface BlogPostTemplateProps {
+export interface PostTemplateProps {
   data: {
     markdownRemark: MarkdownRemarkNode;
   };
@@ -28,7 +28,7 @@ export interface BlogPostTemplateProps {
   };
 }
 
-class BlogPostTemplate extends React.Component<BlogPostTemplateProps> {
+class PostTemplate extends React.Component<PostTemplateProps> {
   render() {
     const { markdownRemark } = this.props.data;
     const post = markdownRemark;
@@ -115,10 +115,10 @@ class BlogPostTemplate extends React.Component<BlogPostTemplateProps> {
   }
 }
 
-export default BlogPostTemplate;
+export default PostTemplate;
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)

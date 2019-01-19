@@ -42,10 +42,12 @@ class BlogIndex extends React.Component<BlogIndexProps> {
             <>
               <Bio isHome={true} />
 
-              <section style={{
-                background: colors.grey1,
-                padding: "1rem"
-              }}>
+              <section
+                style={{
+                  background: colors.grey1,
+                  padding: "1rem",
+                }}
+              >
                 <div style={{ ...grid.container }}>
                   {posts.map(({ node }: { node: MarkdownRemarkNode }, i) => {
                     const title = node.frontmatter.title || node.fields.slug;
@@ -54,8 +56,8 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                         key={node.fields.slug}
                         style={{
                           padding: "1rem",
-                          marginBottom: (i + 1) < posts.length ? "1rem" : 0,
-                          background: colors.white
+                          marginBottom: i + 1 < posts.length ? "1rem" : 0,
+                          background: colors.white,
                         }}
                       >
                         <header
@@ -65,14 +67,15 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                         >
                           <h3
                             style={{
-                              marginBottom: breakpoint === "sm" ? "0.5rem" : "1rem",
-                              flexGrow: breakpoint === "sm" ? undefined : 1
+                              marginBottom:
+                                breakpoint === "sm" ? "0.5rem" : "1rem",
+                              flexGrow: breakpoint === "sm" ? undefined : 1,
                             }}
                           >
                             <Link
                               style={{
                                 color: colors.blue,
-                                fontWeight: 400
+                                fontWeight: 400,
                               }}
                               to={node.fields.slug}
                               title={title}
@@ -82,30 +85,32 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                             </Link>
                           </h3>
 
-                          <nav
-                            style={{
-                              flexShrink: breakpoint === "sm" ? undefined : 1,
-                              marginBottom:
-                                breakpoint === "sm" ? "0.5rem" : undefined,
-                            }}
-                          >
-                            {node.frontmatter.taxonomy.map((t: string) => (
-                              <Link
-                                to={`/blog/${t}`}
-                                title={`More posts about #${t}`}
-                                type="tag"
-                                style={{
-                                  marginBottom: "5px",
-                                  marginLeft:
-                                    breakpoint === "sm" ? undefined : "10px",
-                                  marginRight:
-                                    breakpoint === "sm" ? "10px" : undefined,
-                                }}
-                              >
-                                #{t}
-                              </Link>
-                            ))}
-                          </nav>
+                          {node.frontmatter.taxonomy && (
+                            <nav
+                              style={{
+                                flexShrink: breakpoint === "sm" ? undefined : 1,
+                                marginBottom:
+                                  breakpoint === "sm" ? "0.5rem" : undefined,
+                              }}
+                            >
+                              {node.frontmatter.taxonomy.map((t: string) => (
+                                <Link
+                                  to={`/blog/${t}`}
+                                  title={`More posts about #${t}`}
+                                  type="tag"
+                                  style={{
+                                    marginBottom: "5px",
+                                    marginLeft:
+                                      breakpoint === "sm" ? undefined : "10px",
+                                    marginRight:
+                                      breakpoint === "sm" ? "10px" : undefined,
+                                  }}
+                                >
+                                  #{t}
+                                </Link>
+                              ))}
+                            </nav>
+                          )}
                         </header>
                         <p
                           dangerouslySetInnerHTML={{ __html: node.excerpt }}
@@ -139,7 +144,10 @@ export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___created], order: DESC }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___created], order: DESC }
+      filter: { frontmatter: { type: { eq: "post" } } }
+    ) {
       edges {
         node {
           excerpt

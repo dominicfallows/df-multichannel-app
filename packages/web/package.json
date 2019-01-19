@@ -49,6 +49,7 @@
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
     "react-typography": "^0.16.13",
+    "slash": "^2.0.0",
     "typography": "^0.16.17",
     "webfontloader": "^1.6.28"
   },
@@ -62,8 +63,10 @@
     "@types/react-dom": "^16.0.11",
     "@types/react-helmet": "^5.0.7",
     "@types/typography": "^0.16.2",
+    "eslint": "^5.12.0",
+    "eslint-plugin-react": "^7.12.3",
     "loader-utils": "^1.2.3",
-    "prettier": "^1.14.2",
+    "prettier": "^1.15.3",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
     "tslint-react": "^3.6.0",
@@ -73,7 +76,7 @@
     "type-check": "tsc --noEmit",
     "lint": "tslint --project .",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "format": "prettier --config ./.prettierrc --write 'src/**/*.tsx' 'src/**/*.ts' 'src/**/*.md'",
+    "format": "prettier-tslint --config ./prettier.config.js --write 'src/**/*.tsx' 'src/**/*.ts' 'src/**/*.md' 'src/**/*.mdx'",
     "develop": "gatsby develop",
     "start": "yarn develop",
     "build": "yarn format && yarn lint && gatsby build"

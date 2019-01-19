@@ -2,6 +2,7 @@
 title: "My Second Post!"
 created: "2019-01-06T09:00:00.000Z"
 updated: "2019-01-06T09:00:00.000Z"
+type: "post"
 taxonomy: [
   "web",
   "business",

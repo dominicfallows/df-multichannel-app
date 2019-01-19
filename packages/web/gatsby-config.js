@@ -42,6 +42,9 @@ module.exports = {
     `gatsby-plugin-feed`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-catch-links`,
+
+    // Add static assets before markdown files
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -56,14 +59,21 @@ module.exports = {
         name: `assets`,
       },
     },
+
+    // Now process markdown files
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          // gatsby-remark-relative-images must go before gatsby-remark-images
+          {
+            resolve: `gatsby-remark-relative-images`,
+          },
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 590,
+              withWebp: true
             },
           },
           {

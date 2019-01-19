@@ -41,5 +41,8 @@
     "web:start": "yarn --cwd packages/web start",
     "mobile:install": "node scripts/mobile-install.js",
     "mobile:start": "concurrently -n shared,mobile \"\" \"yarn --cwd packages/mobile start\""
+  },
+  "dependencies": {
+    "gatsby-remark-relative-images": "^0.2.1"
   }
 }

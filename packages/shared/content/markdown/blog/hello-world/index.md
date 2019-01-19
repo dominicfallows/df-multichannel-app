@@ -2,6 +2,7 @@
 title: "Hello World"
 created: "2019-01-06T11:00:00.000Z"
 updated: "2019-01-06T11:00:00.000Z"
+type: "post"
 taxonomy: [
   "work-life-balance"
 ]

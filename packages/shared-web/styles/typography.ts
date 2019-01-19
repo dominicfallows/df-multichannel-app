@@ -49,6 +49,9 @@ const typography = new Typography({
     "h2, h3, h4": {
       marginBottom: props.rhythm(1),
       marginTop:0
+    },
+    "img[src~=\"float-left-md\"]": {
+      float: "left"
     }
   })
 });

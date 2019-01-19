@@ -9,6 +9,10 @@ export interface MarkdownRemarkNode {
     created: string;
     updated: string;
     title: string;
-    taxonomy: string[];
+    taxonomy?: string[];
+    subNavItems?: Array<{
+      to: string;
+      title: string;
+    }>;
   };
 }

@@ -2,6 +2,7 @@ import { graphql, StaticQuery } from "gatsby";
 import Image from "gatsby-image";
 import * as React from "react";
 
+import Link from "@df/multichannel-app-shared-web/components/Link";
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
 import { grid } from "@df/multichannel-app-shared-web/styles/grid";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
@@ -22,15 +23,15 @@ class Bio extends React.Component<BioProps, BioState> {
     super(props);
 
     this.state = {
-      moreOpen: false
+      moreOpen: false,
     };
   }
 
   toggleMore = () => {
     this.setState({
-      moreOpen: !this.state.moreOpen
+      moreOpen: !this.state.moreOpen,
     });
-  }
+  };
 
   render() {
     const { moreOpen } = this.state;
@@ -47,7 +48,7 @@ class Bio extends React.Component<BioProps, BioState> {
                   style={{
                     ...grid.container,
                     display: `flex`,
-                    marginBottom: "1rem"
+                    marginBottom: "1rem",
                   }}
                 >
                   <Image
@@ -62,100 +63,142 @@ class Bio extends React.Component<BioProps, BioState> {
                   />
                   <div>
                     {this.props.isHome === true && (
-                      <h1 style={{
-                        fontSize: breakpoint === "sm" ? "1.4rem" : undefined
-                      }}>
-                        Dominic Fallows{" "}<br />
-                        <span style={{
-                          fontWeight: 400,
-                          fontSize: breakpoint === "sm" ? "0.75em" : "0.65em",
-                          lineHeight: 1.2,
-                          display: "inline-block"
-                        }}>
+                      <h1
+                        style={{
+                          fontSize: breakpoint === "sm" ? "1.4rem" : undefined,
+                        }}
+                      >
+                        Dominic Fallows <br />
+                        <span
+                          style={{
+                            fontWeight: 400,
+                            fontSize: breakpoint === "sm" ? "0.75em" : "0.65em",
+                            lineHeight: 1.2,
+                            display: "inline-block",
+                          }}
+                        >
                           Technical Lead and Senior Developer for{" "}
-                          <span style={{
-                            background: linearGradientCssString,
-                            webkitBackgroundClip: "text",
-                            webkitTextFillColor: "transparent"
-                          }}>web, mobile and cloud apps</span>
+                          <span
+                            style={{
+                              background: linearGradientCssString,
+                              webkitBackgroundClip: "text",
+                              webkitTextFillColor: "transparent",
+                            }}
+                          >
+                            web, mobile and cloud apps
+                          </span>
                         </span>
                       </h1>
                     )}
 
-                    <div style={{
-                      fontSize: "0.9em"
-                    }}>
+                    <div
+                      style={{
+                        fontSize: "0.9em",
+                      }}
+                    >
                       <p>
-                        Welcome, I’m Dominic. I have 18+ years experience in developing{" "}
-                        and delivering web, mobile and cloud applications using the{" "}
-                        latest technologies.{" "}
-                        {!moreOpen &&
+                        Welcome, I’m Dominic. I have 18+ years experience in
+                        developing and delivering web, mobile and cloud
+                        applications using the latest technologies. I have a
+                        lifelong passion for technology, software
+                        engineering and business.{" "}
+                        {!moreOpen && (
                           <span
                             style={{
                               color: colors.green,
-                              cursor: "pointer"
+                              cursor: "pointer",
                             }}
                             onClick={() => this.toggleMore()}
                           >
-                            More...
+                            &#65291; More
                           </span>
-                        }
-                      </p>
-                      
-                      <div style={{
-                      maxHeight: moreOpen ? "none" : "0",
-                      overflow: "hidden"
-                    }}>
-                      <p>
-                        I have a lifelong interest for technology and a passion for{" "}
-                        software engineering. I enjoy creating tools and experiences that{" "}
-                        make life easier for people, teams and businesses. My goal is to{" "}
-                        create well designed solutions and well crafted code, based on{" "}
-                        industry standards and design patterns.
+                        )}
                       </p>
 
-                      <p>
-                        I'm an advocate for building happy and productive teams, with a{" "}
-                        healthy work-life balance, through better communication, improving{" "}
-                        processes and keeping-things-simple, taking an agile approach to projects.
-                      </p>
+                      <div
+                        style={{
+                          maxHeight: moreOpen ? "none" : "0",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <p>
+                          I enjoy creating tools and experiences that make life
+                          easier for people, teams and businesses. My goal is to{" "}
+                          create well designed solutions and well crafted code,
+                          based on industry standards and design patterns.
+                        </p>
 
-                      <p>
-                        Currently building teams and products based on TypeScript, JavaScript,{" "}
-                        React, React Native, Node.js, AWS and Azure.
-                      </p>
+                        <p>
+                          I'm an advocate for building happy and productive
+                          teams, with a healthy work-life balance, through
+                          better communication, improving processes and
+                          keeping-things-simple, taking an agile approach to
+                          projects.
+                        </p>
 
-                      <p>
-                        <span
-                          style={{
-                            color: colors.green,
-                            cursor: "pointer"
-                          }}
-                          onClick={() => this.toggleMore()}
-                        >
-                          &#x2715; Close
-                        </span>
-                      </p>
-                    </div>  
+                        <p>
+                          Currently building teams and products based on
+                          TypeScript, JavaScript, React, React Native, Node.js,
+                          AWS and Azure. Find out more about my{" "}
+                          <Link
+                            to="/projects"
+                            title="Dominic Fallows' Projects"
+                            type="primary"
+                          >
+                            Projects
+                          </Link>
+                          .
+                        </p>
+
+                        <p>
+                          Read more in{" "}
+                          <Link
+                            to="/about"
+                            title="About Dominic Fallows"
+                            type="primary"
+                          >
+                            About
+                          </Link>
+                          .
+                        </p>
+
+                        <p>
+                          <span
+                            style={{
+                              color: colors.green,
+                              cursor: "pointer",
+                            }}
+                            onClick={() => this.toggleMore()}
+                          >
+                            &#x2715; Close
+                          </span>
+                        </p>
+                      </div>
                     </div>
-                    
+
                     <p>
-                      {social.map((s: {
-                        name: string;
-                        profile: string;
-                        url: string;
-                      }, i: number) => (
+                      {social.map(
+                        (
+                          s: {
+                            name: string;
+                            profile: string;
+                            url: string;
+                          },
+                          i: number
+                        ) => (
                           <>
                             <IconLink
                               href={s.url}
                               title={`${s.name} @${s.profile}`}
                               icon={s.name.toLowerCase() as IconLinkType}
                               style={{
-                                marginRight: "5px"
+                                marginRight: "5px",
                               }}
-                            />{(i + 1) < social.length ? " " : ""}
+                            />
+                            {i + 1 < social.length ? " " : ""}
                           </>
-                        ))}
+                        )
+                      )}
                     </p>
                   </div>
                 </div>

@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
+
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
@@ -14,13 +16,21 @@ class Layout extends React.Component<LayoutProps> {
     const { children } = this.props;
 
     return (
-      <>
-        <SiteHeader />
-        <main role="main">
-          {children}
-        </main>
-        <SiteFooter />
-      </>
+      <LayoutContextConsumer>
+        {({ breakpoint }) => (
+          <div
+            style={{
+              minHeight: "100vh",
+              position: "relative",
+              paddingBottom: breakpoint === "sm" ? "4rem" : "50px",
+            }}
+          >
+            <SiteHeader />
+            <main role="main">{children}</main>
+            <SiteFooter />
+          </div>
+        )}
+      </LayoutContextConsumer>
     );
   }
 }

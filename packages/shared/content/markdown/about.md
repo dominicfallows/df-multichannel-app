@@ -1,6 +1,6 @@
 ---
 title: "About Dominic Fallows"
-slug: "about"
+path: "/about"
 created: "2019-01-16T07:00:00.000Z"
 updated: "2019-01-16T07:00:00.000Z"
 type: "page"

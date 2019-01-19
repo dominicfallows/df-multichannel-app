@@ -21,7 +21,7 @@ const SEO = (props: SEOProps) => {
   return (
     <StaticQuery
       query={detailsQuery}
-      render={data => {
+      render={(data) => {
         const metaDescription =
           description || data.site.siteMetadata.description;
         return (
@@ -31,8 +31,7 @@ const SEO = (props: SEOProps) => {
             }}
             title={homepage ? data.site.siteMetadata.title : title}
             titleTemplate={
-              homepage ? `%s` : `%s | ${data.site.siteMetadata.title}`
-            }
+              homepage ? `%s` : `%s | ${data.site.siteMetadata.title}`}
             meta={[
               {
                 name: `description`,

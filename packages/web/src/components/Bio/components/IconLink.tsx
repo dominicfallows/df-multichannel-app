@@ -18,7 +18,7 @@ const IconLink = (props: {
 
   let iconSrc: string | undefined;
 
-  switch(icon) {
+  switch (icon) {
     case "twitter":
       iconSrc = twitterIconSrc;
       break;
@@ -43,23 +43,22 @@ const IconLink = (props: {
       target="_blank"
       style={{
         display: "inline-block",
-        ...style
+        ...style,
       }}
     >
-      {iconSrc && 
+      {iconSrc && (
         <img
           src={iconSrc}
           alt={title}
           style={{
             display: "block",
             width: "25px",
-            maxHeight: "25px"
+            maxHeight: "25px",
           }}
         />
-      }
+      )}
     </a>
   );
-
 };
 
 export default IconLink;

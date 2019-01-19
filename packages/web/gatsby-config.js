@@ -5,7 +5,7 @@ const titleParts = [
 ];
 
 module.exports = {
-  siteMetadata: {
+  siteMetadata: {    
     title: `${titleParts[0]} - ${titleParts[1]} for ${titleParts[2]}`,
     titleParts: titleParts,
     author: `Dominic Fallows`,
@@ -15,22 +15,22 @@ module.exports = {
       {
         name: "Twitter",
         profile: `dominicfallows`,
-        url: `https://twitter.com/dominicfallows`
+        url: `https://twitter.com/dominicfallows`,
       },
       {
         name: "GitHub",
         profile: `dominicfallows`,
-        url: `https://github.com/dominicfallows`
+        url: `https://github.com/dominicfallows`,
       },
       {
         name: "npm",
         profile: `dominicfallows`,
-        url: `https://www.npmjs.com/~dominicfallows`
+        url: `https://www.npmjs.com/~dominicfallows`,
       },
       {
         name: "LinkedIn",
         profile: `dominicfallows`,
-        url: `https://www.linkedin.com/in/dominicfallows`
+        url: `https://www.linkedin.com/in/dominicfallows`,
       },
     ],
   },
@@ -39,7 +39,6 @@ module.exports = {
     `gatsby-plugin-catch-links`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-feed`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
@@ -73,7 +72,7 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 590,
-              withWebp: true
+              withWebp: true,
             },
           },
           {
@@ -114,5 +113,13 @@ module.exports = {
         pathToConfigModule: `../shared-web/styles/typography`,
       },
     },
+    {
+      resolve: `gatsby-plugin-json-output`,
+      options: {
+        graphQLQuery: "`allMarkdownRemark(limit: 1000) { \
+          edges { node { fields { path } } } \
+        }`"
+      }
+    }
   ],
 };

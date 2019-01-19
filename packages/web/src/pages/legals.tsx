@@ -23,29 +23,29 @@ class Legals extends React.Component<LegalsProps> {
           <p>
             Unless otherwise stated, all content (text, images, graphics, logos,
             audio, video and other content is Copyright &copy; 2018 Dominic
-          Fallows and licensed under the{" "}
+            Fallows and licensed under the{" "}
             <a
               rel="nofollow,license"
               href="http://creativecommons.org/licenses/by-sa/4.0/"
               target="_blank"
             >
               Creative Commons Attribution-ShareAlike 4.0 International License
-          </a>
+            </a>
             .
-        </p>
+          </p>
 
           <p>
-            The software in this project is Copyright &copy; 2018 Dominic Fallows{" "}
-            and made available under the{" "}
+            The software in this project is Copyright &copy; 2018 Dominic{" "}
+            Fallows and made available under the{" "}
             <a
               rel="nofollow,license"
               href="https://opensource.org/licenses/MIT"
               target="_blank"
             >
               MIT license
-          </a>
+            </a>
             .
-        </p>
+          </p>
 
           <p>
             The webfonts are Copyright &copy; 1990-2018 MyFonts Inc. All rights{" "}
@@ -56,20 +56,20 @@ class Legals extends React.Component<LegalsProps> {
               target="_blank"
             >
               Licensed
-          </a>{" "}
+            </a>{" "}
             to Dominic Fallows.
-        </p>
+          </p>
 
           <p>
-            The icons for Twitter, LinkedIn, NPM and GitHub are licensed by Font Awesome{" "}
-            under the{" "}
+            The icons for Twitter, LinkedIn, NPM and GitHub are licensed by Font{" "}
+            Awesome under the{" "}
             <a
               rel="nofollow,license"
               href="https://fontawesome.com/license/free"
               target="_blank"
             >
               Font Awesome Free License (Icons — CC BY 4.0 License)
-          </a>
+            </a>
           </p>
         </div>
       </Layout>

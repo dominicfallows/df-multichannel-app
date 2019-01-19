@@ -39,6 +39,7 @@
     "shared-web:start": "yarn --cwd packages/shared-web run start",
     "web:install": "yarn shared:install && yarn shared-web:install && node scripts/web-install.js",
     "web:start": "yarn --cwd packages/web start",
+    "web:build": "yarn --cwd packages/web build",
     "mobile:install": "node scripts/mobile-install.js",
     "mobile:start": "concurrently -n shared,mobile \"\" \"yarn --cwd packages/mobile start\""
   },

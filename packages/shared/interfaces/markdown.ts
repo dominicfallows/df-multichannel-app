@@ -3,7 +3,7 @@ export interface MarkdownRemarkNode {
   excerpt: string;
   html: string;
   fields: {
-    slug: string;
+    path: string;
   };
   frontmatter: {
     created: string;

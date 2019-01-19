@@ -80,7 +80,7 @@ class PostTemplate extends React.Component<PostTemplateProps> {
                 {previous && (
                   <Link
                     type="secondary"
-                    to={previous.fields.slug}
+                    to={previous.fields.path}
                     title={previous.frontmatter.title}
                     rel="prev"
                   >
@@ -97,7 +97,7 @@ class PostTemplate extends React.Component<PostTemplateProps> {
                 {next && (
                   <Link
                     type="secondary"
-                    to={next.fields.slug}
+                    to={next.fields.path}
                     title={next.frontmatter.title}
                     rel="next"
                   >
@@ -118,8 +118,8 @@ class PostTemplate extends React.Component<PostTemplateProps> {
 export default PostTemplate;
 
 export const pageQuery = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+  query($pathForId: String!) {
+    markdownRemark(fields: { path: { eq: $pathForId } }) {
       id
       excerpt(pruneLength: 160)
       html

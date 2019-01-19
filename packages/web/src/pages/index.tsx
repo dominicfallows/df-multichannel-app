@@ -8,9 +8,9 @@ import Bio from "../components/Bio";
 import SEO from "../components/SEO";
 import Layout from "../containers/Layout";
 
+import { grid } from "@df/multichannel-app-shared-web/styles/grid";
 import { MarkdownRemarkNode } from "@df/multichannel-app-shared/interfaces/markdown";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
-import { grid } from "@df/multichannel-app-shared-web/styles/grid";
 
 export interface BlogIndexProps {
   data: {
@@ -45,15 +45,15 @@ class BlogIndex extends React.Component<BlogIndexProps> {
               <section
                 style={{
                   background: colors.grey1,
-                  padding: "1rem",
+                  padding: "2rem 2rem",
                 }}
               >
                 <div style={{ ...grid.container }}>
                   {posts.map(({ node }: { node: MarkdownRemarkNode }, i) => {
-                    const title = node.frontmatter.title || node.fields.slug;
+                    const title = node.frontmatter.title;
                     return (
                       <article
-                        key={node.fields.slug}
+                        key={node.fields.path}
                         style={{
                           padding: "1rem",
                           marginBottom: i + 1 < posts.length ? "1rem" : 0,
@@ -77,7 +77,7 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                                 color: colors.blue,
                                 fontWeight: 400,
                               }}
-                              to={node.fields.slug}
+                              to={node.fields.path}
                               title={title}
                               type="primary"
                             >
@@ -152,7 +152,7 @@ export const pageQuery = graphql`
         node {
           excerpt
           fields {
-            slug
+            path
           }
           frontmatter {
             created(formatString: "MMMM DD, YYYY")

@@ -37,23 +37,23 @@ const typography = new Typography({
   bodyFontFamily: bodyFontStack,
   bodyWeight: "normal",
   includeNormalize: true,
-  overrideStyles:  (props) => ({
+  overrideStyles: (props) => ({
     "a": {
       textDecoration: "none",
       color: colors.blue,
-      outline: "none"
+      outline: "none",
     },
     "a:hover": {
-      color: colors.green
+      color: colors.green,
     },
     "h2, h3, h4": {
       marginBottom: props.rhythm(1),
-      marginTop:0
+      marginTop: 0,
     },
-    "img[src~=\"float-left-md\"]": {
-      float: "left"
-    }
-  })
+    "img[src~='float-left-md']": {
+      float: "left",
+    },
+  }),
 });
 
 // Hot reload typography in development.

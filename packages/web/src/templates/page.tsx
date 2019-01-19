@@ -48,8 +48,8 @@ class PageTemplate extends React.Component<PageTemplateProps> {
 export default PageTemplate;
 
 export const pageQuery = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+  query($pathForId: String!) {
+    markdownRemark(fields: { path: { eq: $pathForId } }) {
       id
       html
       frontmatter {

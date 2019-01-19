@@ -26,12 +26,12 @@ class SiteTitle extends React.Component<{}, SiteTitleState> {
   mouseOver = () =>
     this.setState({
       hover: true,
-    });
+    })
 
   mouseOut = () =>
     this.setState({
       hover: false,
-    });
+    })
 
   render() {
     return (

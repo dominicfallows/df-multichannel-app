@@ -31,7 +31,7 @@ class Bio extends React.Component<BioProps, BioState> {
     this.setState({
       moreOpen: !this.state.moreOpen,
     });
-  };
+  }
 
   render() {
     const { moreOpen } = this.state;
@@ -39,7 +39,7 @@ class Bio extends React.Component<BioProps, BioState> {
     return (
       <StaticQuery
         query={bioQuery}
-        render={data => {
+        render={(data) => {
           const { author, social } = data.site.siteMetadata;
           return (
             <LayoutContextConsumer>
@@ -100,8 +100,8 @@ class Bio extends React.Component<BioProps, BioState> {
                         Welcome, I’m Dominic. I have 18+ years experience in
                         developing and delivering web, mobile and cloud
                         applications using the latest technologies. I have a
-                        lifelong passion for technology, software
-                        engineering and business.{" "}
+                        lifelong passion for technology, software engineering
+                        and business.{" "}
                         {!moreOpen && (
                           <span
                             style={{
@@ -184,7 +184,7 @@ class Bio extends React.Component<BioProps, BioState> {
                             profile: string;
                             url: string;
                           },
-                          i: number
+                          i: number,
                         ) => (
                           <>
                             <IconLink
@@ -197,7 +197,7 @@ class Bio extends React.Component<BioProps, BioState> {
                             />
                             {i + 1 < social.length ? " " : ""}
                           </>
-                        )
+                        ),
                       )}
                     </p>
                   </div>

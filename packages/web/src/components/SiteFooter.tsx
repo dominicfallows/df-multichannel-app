@@ -14,12 +14,26 @@ const SiteFooter = () => (
         style={{
           fontSize: "12px",
           marginTop: "1rem",
-          paddingBottom: breakpoint === "sm" ? "4rem" : "1rem",
           color: colors.grey3,
-          textAlign: breakpoint === "sm" ? "center" : "left",
+          textAlign: "center",
+          // larger than small
+          ...(breakpoint !== "sm"
+            ? {
+                padding: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "left",
+                textAlign: "left",
+                position: "absolute",
+                right: 0,
+                bottom: 0,
+                left: 0,
+                height: "50px",
+              }
+            : {}),
         }}
       >
-        <div style={{ ...grid.container }}>
+        <div style={{ ...grid.container, flexGrow: 1 }}>
           Copyright &copy; Dominic Fallows 2018-2019.{" "}
           <Link to="/legals" title="Legals" type="primary">
             The legal stuff

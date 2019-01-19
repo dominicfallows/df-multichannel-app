@@ -1,6 +1,9 @@
+const fs = require(`fs`);
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const slash = require(`slash`);
+
+const publicPath = "./public";
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -20,9 +23,10 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   fields {
-                    slug
+                    path
                   }
                   frontmatter {
+                    path
                     title
                     type
                   }
@@ -62,11 +66,13 @@ exports.createPages = ({ graphql, actions }) => {
               return;
           }
 
+          const path = edge.node.frontmatter.path || edge.node.fields.path;
+
           createPage({
-            path: edge.node.fields.slug,
+            path: path,
             component: slash(template),
             context: {
-              slug: edge.node.fields.slug,
+              pathForId: path,
               previous,
               next,
             },
@@ -81,11 +87,91 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode, trailingSlash: false });
+    const path = createFilePath({ node, getNode, trailingSlash: false });
+
     createNodeField({
-      name: `slug`,
+      name: `path`,
       node,
-      value: slug,
+      value: path,
     });
   }
+};
+
+exports.onPostBuild = async ({ graphql }) => {
+  try {
+    console.log("Generating JSON feed");
+
+    const result = await graphql(`
+      {
+        site {
+          siteMetadata {
+            title
+            description
+            author
+            siteUrl
+          }
+        }
+        allMarkdownRemark(
+          sort: { fields: [frontmatter___created], order: DESC }
+          filter: { frontmatter: { type: { eq: "post" } } }
+          limit: 1000
+        ) {
+          edges {
+            node {
+              excerpt
+              fields {
+                path
+              }
+              frontmatter {
+                created
+                updated
+                title
+              }
+            }
+          }
+        }
+      }
+    `);
+
+    if (result.errors) {
+      console.log(result.errors);
+      throw new Error(
+        "Error creating JSON feed of grahpql allMarkdownRemarks of type `posts`"
+      );
+    }
+
+    const { title, description, siteUrl, author } = result.data.site.siteMetadata;
+    const posts = result.data.allMarkdownRemark.edges.map(edge => edge.node);
+    
+    const jsonFeed = {
+      version: "https://jsonfeed.org/version/1",
+      title: title,
+      description: description,
+      home_page_url: siteUrl,
+      feed_url: `${siteUrl}/feed.json`,
+      favicon: `${siteUrl}/icons/icon-48x48.png`,
+      author: {
+        name: author
+      },
+      items: posts.map(({ fields, frontmatter, excerpt }) => ({
+        id: siteUrl + path.join(fields.path),
+        url: siteUrl + path.join(fields.path),
+        title: frontmatter.title,
+        date_published: new Date(frontmatter.created).toISOString(),
+        date_modified: new Date(frontmatter.updated).toISOString(),
+        excerpt: excerpt
+      }))
+    };
+
+
+    fs.writeFileSync(
+      path.join(publicPath, "feed.json"),
+      JSON.stringify(jsonFeed),
+      "utf8"
+    );
+
+  } catch(err) {
+    throw new Error(err);
+  }
+
 };

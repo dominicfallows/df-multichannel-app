@@ -1,3 +1,6 @@
+# Local plugin development (symlinks to other packages whilst in development)
+plugins/gatsby-plugin-json-output
+
 # Logs
 logs
 *.log

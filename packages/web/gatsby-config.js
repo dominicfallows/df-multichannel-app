@@ -4,13 +4,15 @@ const titleParts = [
   "Web, Mobile and Cloud Apps",
 ];
 
+const siteUrl = "https://dominicfallows.uk";
+
 module.exports = {
-  siteMetadata: {    
+  siteMetadata: {
     title: `${titleParts[0]} - ${titleParts[1]} for ${titleParts[2]}`,
     titleParts: titleParts,
     author: `Dominic Fallows`,
     description: `Welcome, I’m Dominic. I have 18+ years experience in developing and delivering web, mobile and cloud applications using the latest technologies.`,
-    siteUrl: `https://dominicfallows.uk`,
+    siteUrl: siteUrl,
     social: [
       {
         name: "Twitter",
@@ -116,18 +118,33 @@ module.exports = {
     {
       resolve: `gatsby-plugin-json-output`,
       options: {
+        siteUrl: siteUrl,
         graphQLQuery: `
           {
             allMarkdownRemark(limit: 1000) {
               edges {
                 node {
+                  html
                   fields { path }
+                  frontmatter {
+                    title
+                    created
+                    updated
+                  }
                 }
               }
             }
           }
-        `
-      }
-    }
+        `,
+        serialize: results =>
+          results.data.allMarkdownRemark.edges.map(({ node }) => ({
+            path: node.fields.path, // MUST contain a path
+            title: node.frontmatter.title,
+            created: node.frontmatter.created,
+            updated: node.frontmatter.updated,
+            html: node.html,
+          })),
+      },
+    },
   ],
 };

@@ -27,10 +27,10 @@
     "colors": "^1.3.3",
     "concurrently": "^4.1.0",
     "manage-linked-packages": "^1.0.2",
-    "tslint": "^5.12.0",
+    "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.17.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.4"
   },
   "scripts": {
     "shared:install": "node scripts/shared-install.js",

@@ -23,18 +23,18 @@
     "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/issues"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.10",
+    "@types/jest": "^23.3.13",
     "@types/node": "^10.12.18",
-    "@types/react": "^16.7.18",
+    "@types/react": "^16.7.20",
     "jest": "^23.6.0",
-    "prettier": "^1.15.3",
+    "prettier": "^1.16.1",
     "react": "^16.7.0",
-    "rimraf": "^2.6.2",
+    "rimraf": "^2.6.3",
     "ts-jest": "^23.10.5",
-    "tslint": "^5.12.0",
+    "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.17.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.4"
   },
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\"",

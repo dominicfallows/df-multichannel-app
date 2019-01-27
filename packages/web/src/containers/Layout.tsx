@@ -15,6 +15,12 @@ class Layout extends React.Component<LayoutProps> {
   render() {
     const { children } = this.props;
 
+    console.log({
+      NODE_ENV: process.env.NODE_ENV,
+      TEST: process.env.TEST,
+      GATSBY_TEST: process.env.GATSBY_TEST,
+    });
+
     return (
       <LayoutContextConsumer>
         {({ breakpoint }) => (

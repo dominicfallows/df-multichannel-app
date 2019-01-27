@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 const titleParts = [
   "Dominic Fallows",
   "Technical Lead and Senior Developer",
@@ -5,6 +9,32 @@ const titleParts = [
 ];
 
 const siteUrl = "https://dominicfallows.uk";
+
+/*
+GitHub GraphQL Query
+{
+  repositoryOwner(login: "dominicfallows") {
+    ... on User {
+      pinnedRepositories(first: 100) {
+        edges {
+          node {
+            name
+            updatedAt
+            createdAt
+            pushedAt
+            descriptionHTML
+            id
+            isFork
+            isPrivate
+            url
+          }
+        }
+      }
+    }
+  }
+}
+
+*/
 
 module.exports = {
   siteMetadata: {

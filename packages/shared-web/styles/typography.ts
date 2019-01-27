@@ -47,7 +47,7 @@ const typography = new Typography({
       color: colors.green,
     },
     "h2, h3, h4": {
-      marginBottom: props.rhythm(1),
+      marginBottom: "1rem",
       marginTop: 0,
     },
     "img[src~='float-left-md']": {

@@ -1,10 +1,10 @@
 import { graphql } from "gatsby";
 import * as React from "react";
 
-import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
-
 import Card from "@df/multichannel-app-shared-web/components/Card";
-import Link from "@df/multichannel-app-shared-web/components/Link";
+import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
+import { tagStyle } from "@df/multichannel-app-shared/styles/tags";
+
 import Bio from "../components/Bio";
 import SEO from "../components/SEO";
 import Layout from "../containers/Layout";
@@ -49,9 +49,11 @@ class BlogIndex extends React.Component<BlogIndexProps> {
               <section
                 style={{
                   ...gridContainerStyles,
-                  padding: "0 1rem",
+                  padding: "1rem 1rem",
                 }}
               >
+                <h2>Latest Posts</h2>
+
                 <div
                   style={{ ...cardGridContainerStyles(breakpoint) }}
                 >
@@ -61,61 +63,17 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                       <Card
                         key={node.fields.path}
                         width={50}
-                        style={{
-                          // marginBottom: i + 1 < posts.length ? "1.5rem" : 0,
-                        }}
                         to={node.fields.path}
                         title={title}
                       >
-                        <div
+                        <h3
                           style={{
-                            display: breakpoint === "sm" ? "block" : "flex",
+                            marginBottom: "0.5rem",
                           }}
                         >
-                          <h3
-                            style={{
-                              marginBottom:
-                                breakpoint === "sm" ? "0.5rem" : "1rem",
-                              flexGrow: breakpoint === "sm" ? undefined : 1,
-                            }}
-                          >
-                            {title}
-                          </h3>
+                          {title}
+                        </h3>
 
-                          {node.frontmatter.taxonomy && (
-                            <nav
-                              style={{
-                                flexShrink: breakpoint === "sm" ? undefined : 1,
-                                marginBottom:
-                                  breakpoint === "sm" ? "0.5rem" : undefined,
-                              }}
-                            >
-                              {node.frontmatter.taxonomy.map(
-                                (t: string, i: number) => (
-                                  <Link
-                                    key={i}
-                                    to={`/blog/${t}`}
-                                    title={`More posts about #${t}`}
-                                    type="tag"
-                                    style={{
-                                      marginBottom: "5px",
-                                      marginLeft:
-                                        breakpoint === "sm"
-                                          ? undefined
-                                          : "10px",
-                                      marginRight:
-                                        breakpoint === "sm"
-                                          ? "10px"
-                                          : undefined,
-                                    }}
-                                  >
-                                    #{t}
-                                  </Link>
-                                ),
-                              )}
-                            </nav>
-                          )}
-                        </div>
                         <p
                           dangerouslySetInnerHTML={{ __html: node.excerpt }}
                           style={{
@@ -123,6 +81,30 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                             marginBottom: "1rem",
                           }}
                         />
+
+                        {node.frontmatter.taxonomy && (
+                          <div
+                            style={{
+                              marginBottom: "0.5rem",
+                            }}
+                          >
+                            {node.frontmatter.taxonomy.map(
+                              (t: string, ti: number) => (
+                                <span
+                                  key={ti}
+                                  style={{
+                                    ...tagStyle,
+                                    marginBottom: 5,
+                                    marginRight: 10,
+                                  }}
+                                >
+                                  #{t}
+                                </span>
+                              ),
+                            )}
+                          </div>
+                        )}
+
                         <div
                           style={{
                             fontSize: "0.8rem",

@@ -2,6 +2,7 @@ import { graphql } from "gatsby";
 import * as React from "react";
 
 import Link from "@df/multichannel-app-shared-web/components/Link";
+import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
 import {
   rhythm,
   scale,
@@ -38,78 +39,108 @@ class PostTemplate extends React.Component<PostTemplateProps> {
       <Layout location={this.props.location}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
 
-        <article>
-          <header>
-            <h1>{post.frontmatter.title}</h1>
-          </header>
+        <LayoutContextConsumer>
+          {({ breakpoint }) => (
+            <>
+              <article>
+                <header>
+                  <h1>{post.frontmatter.title}</h1>
+                </header>
 
-          <div dangerouslySetInnerHTML={{ __html: post.html }} />
+                <div dangerouslySetInnerHTML={{ __html: post.html }} />
 
-          <footer>
-            <p
-              style={{
-                ...scale(-1 / 5),
-                display: `block`,
-                marginBottom: rhythm(1),
-                marginTop: rhythm(-1),
-              }}
-            >
-              Created: {post.frontmatter.created}.{" "}
-              {post.frontmatter.created !== post.frontmatter.updated &&
-                `Last updated: ${post.frontmatter.updated}`}
-            </p>
-
-            <ul
-              style={{
-                display: `flex`,
-                flexWrap: `wrap`,
-                justifyContent: `space-between`,
-                listStyle: `none`,
-                padding: 0,
-                margin: `${rhythm(1)} 0`,
-                borderTop: `1px solid ${colors.grey1}`,
-                borderBottom: `1px solid ${colors.grey1}`,
-              }}
-            >
-              <li
-                style={{
-                  margin: 0,
-                  padding: `${rhythm(0.5)} ${rhythm(1)} ${rhythm(0.5)} 0`,
-                }}
-              >
-                {previous && (
-                  <Link
-                    type="secondary"
-                    to={previous.fields.path}
-                    title={previous.frontmatter.title}
-                    rel="prev"
+                {post.frontmatter.taxonomy && (
+                  <nav
+                    style={{
+                      marginBottom: breakpoint === "sm" ? "0.5rem" : undefined,
+                    }}
                   >
-                    ← {previous.frontmatter.title}
-                  </Link>
+                    {post.frontmatter.taxonomy.map((t: string, ti: number) => (
+                      <Link
+                        key={ti}
+                        to={`/blog/${t}`}
+                        title={`More posts about #${t}`}
+                        type="tag"
+                        style={{
+                          marginBottom: "5px",
+                          marginLeft: breakpoint === "sm" ? undefined : "10px",
+                          marginRight: breakpoint === "sm" ? "10px" : undefined,
+                        }}
+                      >
+                        #{t}
+                      </Link>
+                    ))}
+                  </nav>
                 )}
-              </li>
-              <li
-                style={{
-                  margin: 0,
-                  padding: `${rhythm(0.5)} 0 ${rhythm(0.5)} ${rhythm(1)}`,
-                }}
-              >
-                {next && (
-                  <Link
-                    type="secondary"
-                    to={next.fields.path}
-                    title={next.frontmatter.title}
-                    rel="next"
-                  >
-                    {next.frontmatter.title} →
-                  </Link>
-                )}
-              </li>
-            </ul>
-          </footer>
-        </article>
 
-        <Bio />
+                <footer>
+                  <p
+                    style={{
+                      ...scale(-1 / 5),
+                      display: `block`,
+                      marginBottom: rhythm(1),
+                      marginTop: rhythm(-1),
+                    }}
+                  >
+                    Created: {post.frontmatter.created}.{" "}
+                    {post.frontmatter.created !== post.frontmatter.updated &&
+                      `Last updated: ${post.frontmatter.updated}`}
+                  </p>
+
+                  <ul
+                    style={{
+                      display: `flex`,
+                      flexWrap: `wrap`,
+                      justifyContent: `space-between`,
+                      listStyle: `none`,
+                      padding: 0,
+                      margin: `${rhythm(1)} 0`,
+                      borderTop: `1px solid ${colors.grey1}`,
+                      borderBottom: `1px solid ${colors.grey1}`,
+                    }}
+                  >
+                    <li
+                      style={{
+                        margin: 0,
+                        padding: `${rhythm(0.5)} ${rhythm(1)} ${rhythm(0.5)} 0`,
+                      }}
+                    >
+                      {previous && (
+                        <Link
+                          type="secondary"
+                          to={previous.fields.path}
+                          title={previous.frontmatter.title}
+                          rel="prev"
+                        >
+                          ← {previous.frontmatter.title}
+                        </Link>
+                      )}
+                    </li>
+                    <li
+                      style={{
+                        margin: 0,
+                        padding: `${rhythm(0.5)} 0 ${rhythm(0.5)} ${rhythm(1)}`,
+                      }}
+                    >
+                      {next && (
+                        <Link
+                          type="secondary"
+                          to={next.fields.path}
+                          title={next.frontmatter.title}
+                          rel="next"
+                        >
+                          {next.frontmatter.title} →
+                        </Link>
+                      )}
+                    </li>
+                  </ul>
+                </footer>
+              </article>
+
+              <Bio />
+            </>
+          )}
+        </LayoutContextConsumer>
       </Layout>
     );
   }
@@ -127,6 +158,7 @@ export const pageQuery = graphql`
         title
         created(formatString: "Do MMMM YYYY")
         updated(formatString: "Do MMMM YYYY")
+        taxonomy
       }
     }
   }

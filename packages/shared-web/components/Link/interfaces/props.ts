@@ -10,4 +10,6 @@ export interface LinkProps {
   style?: React.CSSProperties;
   activeStyle?: React.CSSProperties;
   rel?: string;
+  onMouseOver?: () => void;
+  onMouseOut?: () => void;
 }

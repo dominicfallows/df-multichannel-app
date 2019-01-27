@@ -1,13 +1,14 @@
-import { Link } from "gatsby";
 import * as React from "react";
 
+import { cardStyle, cardStyleHover } from "@df/multichannel-app-shared/styles/cards";
 import {
+  cardGridItem100Percent,
   cardGridItem25Percent,
   cardGridItem33Percent,
   cardGridItem50Percent,
-  cardGridItem100Percent,
 } from "../../styles/grid";
-import { cardStyle, cardStyleHover } from "@df/multichannel-app-shared/styles/cards";
+
+import Link from "../Link";
 
 import { CardProps } from "./interfaces/props";
 import { CardState } from "./interfaces/state";
@@ -51,6 +52,7 @@ class Card extends React.Component<CardProps, CardState> {
       <Link
         to={to}
         target={target}
+        type="primary"
         title={title}
         onMouseOut={() => this.mouseOut()}
         onMouseOver={() => this.mouseOver()}

@@ -8,7 +8,8 @@ import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 import { linearGradientCssString } from "@df/multichannel-app-shared/styles/gradients";
 
-import IconLink, { IconLinkType } from "./components/IconLink";
+import IconLink from "@df/multichannel-app-shared-web/components/Icon/IconLink";
+import { IconType } from "@df/multichannel-app-shared-web/components/Icon/interfaces/types";
 
 export interface BioProps {
   isHome?: boolean;
@@ -190,7 +191,7 @@ class Bio extends React.Component<BioProps, BioState> {
                             <IconLink
                               href={s.url}
                               title={`${s.name} @${s.profile}`}
-                              icon={s.name.toLowerCase() as IconLinkType}
+                              icon={s.name.toLowerCase() as IconType}
                               style={{
                                 marginRight: "5px",
                               }}

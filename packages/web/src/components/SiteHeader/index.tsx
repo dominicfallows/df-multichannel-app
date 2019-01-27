@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
-import { grid } from "@df/multichannel-app-shared-web/styles/grid";
+import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
 
 import { linearGradientBlockStyle } from "@df/multichannel-app-shared/styles/gradients";
 
@@ -21,7 +21,7 @@ const SiteHeader = () => (
           zIndex: 9999,
         }}
       >
-        <div style={{ ...grid.container }}>
+        <div style={{ ...gridContainerStyles }}>
           <div
             style={{
               display: breakpoint === "sm" ? "inline-block" : "flex",

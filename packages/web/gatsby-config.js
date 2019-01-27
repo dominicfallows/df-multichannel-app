@@ -1,7 +1,3 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
-
 const titleParts = [
   "Dominic Fallows",
   "Technical Lead and Senior Developer",
@@ -9,32 +5,6 @@ const titleParts = [
 ];
 
 const siteUrl = "https://dominicfallows.uk";
-
-/*
-GitHub GraphQL Query
-{
-  repositoryOwner(login: "dominicfallows") {
-    ... on User {
-      pinnedRepositories(first: 100) {
-        edges {
-          node {
-            name
-            updatedAt
-            createdAt
-            pushedAt
-            descriptionHTML
-            id
-            isFork
-            isPrivate
-            url
-          }
-        }
-      }
-    }
-  }
-}
-
-*/
 
 module.exports = {
   siteMetadata: {
@@ -174,6 +144,19 @@ module.exports = {
             updated: node.frontmatter.updated,
             html: node.html,
           })),
+      },
+    },
+    {
+      // GraphQL Source from GitHub
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "GitHub",
+        fieldName: "github",
+        url: "https://api.github.com/graphql",
+        headers: {
+          Authorization: `bearer ${process.env.GITHUB_PAT_READ_ALL_USER_PROFILE_DATA}`,
+        },
+        fetchOptions: {},
       },
     },
   ],

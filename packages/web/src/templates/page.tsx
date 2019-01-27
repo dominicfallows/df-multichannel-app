@@ -2,7 +2,7 @@ import { graphql } from "gatsby";
 import * as React from "react";
 
 import SubNav from "@df/multichannel-app-shared-web/components/SubNav";
-import { grid } from "@df/multichannel-app-shared-web/styles/grid";
+import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
 import { MarkdownRemarkNode } from "@df/multichannel-app-shared/interfaces/markdown";
 
 import SEO from "../components/SEO";
@@ -29,7 +29,7 @@ class PageTemplate extends React.Component<PageTemplateProps> {
 
         <article
           style={{
-            ...grid.container,
+            ...gridContainerStyles,
           }}
         >
           <header>

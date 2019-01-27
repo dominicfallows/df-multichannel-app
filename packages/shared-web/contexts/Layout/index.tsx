@@ -2,7 +2,10 @@ import { debounce } from "lodash";
 import * as React from "react";
 
 import { LayoutBreakpoint } from "./interfaces/breakpoint";
-import { LayoutContext, LayoutContextInjectedProps } from "./interfaces/context";
+import {
+  LayoutContext,
+  LayoutContextInjectedProps,
+} from "./interfaces/context";
 
 /**
  * Helpers
@@ -26,7 +29,7 @@ const getBreakpoint = (): LayoutBreakpoint => {
 const Context = React.createContext({
   breakpoint: getBreakpoint(),
   previousBreakpoint: getBreakpoint(),
-  breakpointChanged: false
+  breakpointChanged: false,
 });
 
 /**
@@ -37,10 +40,16 @@ export const Consumer = Context.Consumer;
 /**
  * Export Consumer HOC creator
  */
-export const withLayout = <P extends object>() => (Component: React.ComponentType<P & LayoutContextInjectedProps>) =>
+export const withLayout = <P extends object>() => (
+  Component: React.ComponentType<P & LayoutContextInjectedProps>,
+) =>
   class WithLayout extends React.Component<P> {
     render() {
-      return <Context.Consumer>{layout => <Component {...this.props} layout={layout} />}</Context.Consumer>;
+      return (
+        <Context.Consumer>
+          {(layout) => <Component {...this.props} layout={layout} />}
+        </Context.Consumer>
+      );
     }
   };
 
@@ -58,7 +67,7 @@ export class Provider extends React.Component<{}, LayoutContext> {
     this.state = {
       breakpoint: breakpointOnLoad,
       previousBreakpoint: breakpointOnLoad,
-      breakpointChanged: false
+      breakpointChanged: false,
     };
 
     this.resizeDebounce = debounce(() => {
@@ -67,7 +76,7 @@ export class Provider extends React.Component<{}, LayoutContext> {
       this.setState({
         breakpoint: nextBreakpoint,
         previousBreakpoint: this.state.breakpoint,
-        breakpointChanged: nextBreakpoint !== this.state.breakpoint
+        breakpointChanged: nextBreakpoint !== this.state.breakpoint,
       });
     }, 150);
   }
@@ -85,13 +94,17 @@ export class Provider extends React.Component<{}, LayoutContext> {
   }
 
   render() {
-    return <Context.Provider value={this.state}>{this.props.children}</Context.Provider>;
+    return (
+      <Context.Provider value={this.state}>
+        {this.props.children}
+      </Context.Provider>
+    );
   }
 }
 
 const Layout = {
   Consumer,
-  Provider
+  Provider,
 };
 
 export default Layout;

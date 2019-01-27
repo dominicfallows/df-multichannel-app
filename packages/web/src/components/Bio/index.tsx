@@ -4,11 +4,12 @@ import * as React from "react";
 
 import Link from "@df/multichannel-app-shared-web/components/Link";
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
-import { grid } from "@df/multichannel-app-shared-web/styles/grid";
+import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 import { linearGradientCssString } from "@df/multichannel-app-shared/styles/gradients";
 
-import IconLink, { IconLinkType } from "./components/IconLink";
+import IconLink from "@df/multichannel-app-shared-web/components/Icon/IconLink";
+import { IconType } from "@df/multichannel-app-shared-web/components/Icon/interfaces/types";
 
 export interface BioProps {
   isHome?: boolean;
@@ -46,7 +47,7 @@ class Bio extends React.Component<BioProps, BioState> {
               {({ breakpoint }) => (
                 <div
                   style={{
-                    ...grid.container,
+                    ...gridContainerStyles,
                     display: `flex`,
                     marginBottom: "1rem",
                   }}
@@ -81,8 +82,8 @@ class Bio extends React.Component<BioProps, BioState> {
                           <span
                             style={{
                               background: linearGradientCssString,
-                              webkitBackgroundClip: "text",
-                              webkitTextFillColor: "transparent",
+                              WebkitBackgroundClip: "text",
+                              WebkitTextFillColor: "transparent",
                             }}
                           >
                             web, mobile and cloud apps
@@ -186,17 +187,17 @@ class Bio extends React.Component<BioProps, BioState> {
                           },
                           i: number,
                         ) => (
-                          <>
+                          <React.Fragment key={i}>
                             <IconLink
                               href={s.url}
                               title={`${s.name} @${s.profile}`}
-                              icon={s.name.toLowerCase() as IconLinkType}
+                              icon={s.name.toLowerCase() as IconType}
                               style={{
                                 marginRight: "5px",
                               }}
                             />
                             {i + 1 < social.length ? " " : ""}
-                          </>
+                          </React.Fragment>
                         ),
                       )}
                     </p>

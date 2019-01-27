@@ -1,14 +1,18 @@
 import { graphql } from "gatsby";
 import * as React from "react";
 
+import Card from "@df/multichannel-app-shared-web/components/Card";
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
+import { tagStyle } from "@df/multichannel-app-shared/styles/tags";
 
-import Link from "@df/multichannel-app-shared-web/components/Link";
 import Bio from "../components/Bio";
 import SEO from "../components/SEO";
 import Layout from "../containers/Layout";
 
-import { grid } from "@df/multichannel-app-shared-web/styles/grid";
+import {
+  cardGridContainerStyles,
+  gridContainerStyles,
+} from "@df/multichannel-app-shared-web/styles/grid";
 import { MarkdownRemarkNode } from "@df/multichannel-app-shared/interfaces/markdown";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 
@@ -44,74 +48,32 @@ class BlogIndex extends React.Component<BlogIndexProps> {
 
               <section
                 style={{
-                  background: colors.grey1,
-                  padding: "2rem 2rem",
+                  ...gridContainerStyles,
+                  padding: "1rem 1rem",
                 }}
               >
-                <div style={{ ...grid.container }}>
+                <h2>Latest Posts</h2>
+
+                <div
+                  style={{ ...cardGridContainerStyles(breakpoint) }}
+                >
                   {posts.map(({ node }: { node: MarkdownRemarkNode }, i) => {
                     const title = node.frontmatter.title;
                     return (
-                      <article
+                      <Card
                         key={node.fields.path}
-                        style={{
-                          padding: "1rem",
-                          marginBottom: i + 1 < posts.length ? "1rem" : 0,
-                          background: colors.white,
-                        }}
+                        width={50}
+                        to={node.fields.path}
+                        title={title}
                       >
-                        <header
+                        <h3
                           style={{
-                            display: breakpoint === "sm" ? "block" : "flex",
+                            marginBottom: "0.5rem",
                           }}
                         >
-                          <h3
-                            style={{
-                              marginBottom:
-                                breakpoint === "sm" ? "0.5rem" : "1rem",
-                              flexGrow: breakpoint === "sm" ? undefined : 1,
-                            }}
-                          >
-                            <Link
-                              style={{
-                                color: colors.blue,
-                                fontWeight: 400,
-                              }}
-                              to={node.fields.path}
-                              title={title}
-                              type="primary"
-                            >
-                              {title}
-                            </Link>
-                          </h3>
+                          {title}
+                        </h3>
 
-                          {node.frontmatter.taxonomy && (
-                            <nav
-                              style={{
-                                flexShrink: breakpoint === "sm" ? undefined : 1,
-                                marginBottom:
-                                  breakpoint === "sm" ? "0.5rem" : undefined,
-                              }}
-                            >
-                              {node.frontmatter.taxonomy.map((t: string) => (
-                                <Link
-                                  to={`/blog/${t}`}
-                                  title={`More posts about #${t}`}
-                                  type="tag"
-                                  style={{
-                                    marginBottom: "5px",
-                                    marginLeft:
-                                      breakpoint === "sm" ? undefined : "10px",
-                                    marginRight:
-                                      breakpoint === "sm" ? "10px" : undefined,
-                                  }}
-                                >
-                                  #{t}
-                                </Link>
-                              ))}
-                            </nav>
-                          )}
-                        </header>
                         <p
                           dangerouslySetInnerHTML={{ __html: node.excerpt }}
                           style={{
@@ -119,15 +81,39 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                             marginBottom: "1rem",
                           }}
                         />
-                        <footer
+
+                        {node.frontmatter.taxonomy && (
+                          <div
+                            style={{
+                              marginBottom: "0.5rem",
+                            }}
+                          >
+                            {node.frontmatter.taxonomy.map(
+                              (t: string, ti: number) => (
+                                <span
+                                  key={ti}
+                                  style={{
+                                    ...tagStyle,
+                                    marginBottom: 5,
+                                    marginRight: 10,
+                                  }}
+                                >
+                                  #{t}
+                                </span>
+                              ),
+                            )}
+                          </div>
+                        )}
+
+                        <div
                           style={{
                             fontSize: "0.8rem",
                             color: colors.grey2,
                           }}
                         >
                           {node.frontmatter.created}
-                        </footer>
-                      </article>
+                        </div>
+                      </Card>
                     );
                   })}
                 </div>

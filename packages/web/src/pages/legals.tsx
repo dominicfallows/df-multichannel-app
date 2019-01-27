@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { grid } from "@df/multichannel-app-shared-web/styles/grid";
+import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
 
 import SEO from "../components/SEO";
 import Layout from "../containers/Layout";
@@ -17,7 +17,7 @@ class Legals extends React.Component<LegalsProps> {
       <Layout location={this.props.location}>
         <SEO title="Legals" meta={[{ name: "robots", content: "noindex" }]} />
 
-        <div style={{ ...grid.container }}>
+        <div style={{ ...gridContainerStyles }}>
           <h1>Legals</h1>
 
           <p>

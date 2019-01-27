@@ -3,7 +3,7 @@ import * as React from "react";
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
 
 import Link from "@df/multichannel-app-shared-web/components/Link";
-import { grid } from "@df/multichannel-app-shared-web/styles/grid";
+import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 
 const SiteFooter = () => (
@@ -33,7 +33,7 @@ const SiteFooter = () => (
             : {}),
         }}
       >
-        <div style={{ ...grid.container, flexGrow: 1 }}>
+        <div style={{ ...gridContainerStyles, flexGrow: 1 }}>
           Copyright &copy; Dominic Fallows 2018-2019.{" "}
           <Link to="/legals" title="Legals" type="primary">
             The legal stuff

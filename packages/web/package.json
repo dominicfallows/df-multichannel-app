@@ -24,6 +24,7 @@
     "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/issues"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.120",
     "classnames": "^2.2.6",
     "gatsby": "^2.0.91",
     "gatsby-image": "^2.0.26",
@@ -45,6 +46,7 @@
     "gatsby-source-graphql": "^2.0.8",
     "gatsby-transformer-remark": "^2.2.0",
     "gatsby-transformer-sharp": "^2.1.10",
+    "lodash": "^4.17.11",
     "prismjs": "^1.15.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

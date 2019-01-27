@@ -4,7 +4,7 @@ import * as React from "react";
 
 import Link from "@df/multichannel-app-shared-web/components/Link";
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
-import { grid } from "@df/multichannel-app-shared-web/styles/grid";
+import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 import { linearGradientCssString } from "@df/multichannel-app-shared/styles/gradients";
 
@@ -46,7 +46,7 @@ class Bio extends React.Component<BioProps, BioState> {
               {({ breakpoint }) => (
                 <div
                   style={{
-                    ...grid.container,
+                    ...gridContainerStyles,
                     display: `flex`,
                     marginBottom: "1rem",
                   }}
@@ -81,8 +81,8 @@ class Bio extends React.Component<BioProps, BioState> {
                           <span
                             style={{
                               background: linearGradientCssString,
-                              webkitBackgroundClip: "text",
-                              webkitTextFillColor: "transparent",
+                              WebkitBackgroundClip: "text",
+                              WebkitTextFillColor: "transparent",
                             }}
                           >
                             web, mobile and cloud apps
@@ -186,7 +186,7 @@ class Bio extends React.Component<BioProps, BioState> {
                           },
                           i: number,
                         ) => (
-                          <>
+                          <React.Fragment key={i}>
                             <IconLink
                               href={s.url}
                               title={`${s.name} @${s.profile}`}
@@ -196,7 +196,7 @@ class Bio extends React.Component<BioProps, BioState> {
                               }}
                             />
                             {i + 1 < social.length ? " " : ""}
-                          </>
+                          </React.Fragment>
                         ),
                       )}
                     </p>

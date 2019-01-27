@@ -3,12 +3,16 @@ import * as React from "react";
 
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
 
+import Card from "@df/multichannel-app-shared-web/components/Card";
 import Link from "@df/multichannel-app-shared-web/components/Link";
 import Bio from "../components/Bio";
 import SEO from "../components/SEO";
 import Layout from "../containers/Layout";
 
-import { grid } from "@df/multichannel-app-shared-web/styles/grid";
+import {
+  cardGridContainerStyles,
+  gridContainerStyles,
+} from "@df/multichannel-app-shared-web/styles/grid";
 import { MarkdownRemarkNode } from "@df/multichannel-app-shared/interfaces/markdown";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 
@@ -44,23 +48,26 @@ class BlogIndex extends React.Component<BlogIndexProps> {
 
               <section
                 style={{
-                  background: colors.grey1,
-                  padding: "2rem 2rem",
+                  ...gridContainerStyles,
+                  padding: "0 1rem",
                 }}
               >
-                <div style={{ ...grid.container }}>
+                <div
+                  style={{ ...cardGridContainerStyles(breakpoint) }}
+                >
                   {posts.map(({ node }: { node: MarkdownRemarkNode }, i) => {
                     const title = node.frontmatter.title;
                     return (
-                      <article
+                      <Card
                         key={node.fields.path}
+                        width={50}
                         style={{
-                          padding: "1rem",
-                          marginBottom: i + 1 < posts.length ? "1rem" : 0,
-                          background: colors.white,
+                          // marginBottom: i + 1 < posts.length ? "1.5rem" : 0,
                         }}
+                        to={node.fields.path}
+                        title={title}
                       >
-                        <header
+                        <div
                           style={{
                             display: breakpoint === "sm" ? "block" : "flex",
                           }}
@@ -72,17 +79,7 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                               flexGrow: breakpoint === "sm" ? undefined : 1,
                             }}
                           >
-                            <Link
-                              style={{
-                                color: colors.blue,
-                                fontWeight: 400,
-                              }}
-                              to={node.fields.path}
-                              title={title}
-                              type="primary"
-                            >
-                              {title}
-                            </Link>
+                            {title}
                           </h3>
 
                           {node.frontmatter.taxonomy && (
@@ -93,25 +90,32 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                                   breakpoint === "sm" ? "0.5rem" : undefined,
                               }}
                             >
-                              {node.frontmatter.taxonomy.map((t: string) => (
-                                <Link
-                                  to={`/blog/${t}`}
-                                  title={`More posts about #${t}`}
-                                  type="tag"
-                                  style={{
-                                    marginBottom: "5px",
-                                    marginLeft:
-                                      breakpoint === "sm" ? undefined : "10px",
-                                    marginRight:
-                                      breakpoint === "sm" ? "10px" : undefined,
-                                  }}
-                                >
-                                  #{t}
-                                </Link>
-                              ))}
+                              {node.frontmatter.taxonomy.map(
+                                (t: string, i: number) => (
+                                  <Link
+                                    key={i}
+                                    to={`/blog/${t}`}
+                                    title={`More posts about #${t}`}
+                                    type="tag"
+                                    style={{
+                                      marginBottom: "5px",
+                                      marginLeft:
+                                        breakpoint === "sm"
+                                          ? undefined
+                                          : "10px",
+                                      marginRight:
+                                        breakpoint === "sm"
+                                          ? "10px"
+                                          : undefined,
+                                    }}
+                                  >
+                                    #{t}
+                                  </Link>
+                                ),
+                              )}
                             </nav>
                           )}
-                        </header>
+                        </div>
                         <p
                           dangerouslySetInnerHTML={{ __html: node.excerpt }}
                           style={{
@@ -119,15 +123,15 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                             marginBottom: "1rem",
                           }}
                         />
-                        <footer
+                        <div
                           style={{
                             fontSize: "0.8rem",
                             color: colors.grey2,
                           }}
                         >
                           {node.frontmatter.created}
-                        </footer>
-                      </article>
+                        </div>
+                      </Card>
                     );
                   })}
                 </div>

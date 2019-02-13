@@ -5,16 +5,17 @@ import * as React from "react";
 
 import Card from "@df/multichannel-app-shared-web/components/Card";
 import Icon from "@df/multichannel-app-shared-web/components/Icon";
-import Link from "@df/multichannel-app-shared-web/components/Link";
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
 import {
   cardGridContainerStyles,
   gridContainerStyles,
 } from "@df/multichannel-app-shared-web/styles/grid";
-import { tagStyle } from "@df/multichannel-app-shared/styles/tags";
+import { tagNonClickStyle } from "@df/multichannel-app-shared/styles/tags";
 
+import IILink from "../components/Links/ii";
+import MOMWLink from "../components/Links/mo+mw";
 import SEO from "../components/SEO";
-import Layout from "../containers/Layout";
+import SiteLayout from "../containers/SiteLayout";
 
 export interface IGitHubPinnedRepo {
   name: string;
@@ -53,12 +54,13 @@ class Projects extends React.Component<ProjectsProps> {
     let githubPinnedRepos: IGitHubPinnedRepo[] = [];
 
     if (github && has(github, "repositoryOwner.pinnedRepositories.edges")) {
-      githubPinnedRepos =
-        github.repositoryOwner.pinnedRepositories.edges.map(({ node }) => node);
+      githubPinnedRepos = github.repositoryOwner.pinnedRepositories.edges.map(
+        ({ node }) => node
+      );
     }
 
     return (
-      <Layout location={this.props.location}>
+      <SiteLayout location={this.props.location}>
         <SEO title="Projects" />
 
         <LayoutContextConsumer>
@@ -67,27 +69,13 @@ class Projects extends React.Component<ProjectsProps> {
               <h1>Projects</h1>
 
               <p>
-                During the day I am the{" "}
-                <strong>Apps Technical Lead (web, mobile, content)</strong>{" "}
-                for{" "}
-                <Link
-                  to="https://www.ii.co.uk"
-                  title="interactive investor is a low cost, award winning, online
-                  investment platform enabling you to easily manage shares, funds,
-                  SIPPs, ISAs and more...."
-                  target="_blank"
-                  type="secondary"
-                >
-                  interactive investor, a low cost, award winning, online
-                  investment platform
-                </Link>
-                , leading the technical strategy and teams who build the platform's apps
-                for web and mobile devices.
+                I'm currently Technical Lead for web, mobile and content apps{" "}
+                and teams at <IILink />, <MOMWLink />.
               </p>
 
               <p>
-                I also build open-source tools and contribute back to the OSS community,{" "}
-                some of my projects are below:
+                I also build open-source tools and contribute back to the OSS
+                community, some of my projects are below:
               </p>
 
               {githubPinnedRepos.length > 0 && (
@@ -114,9 +102,8 @@ class Projects extends React.Component<ProjectsProps> {
                         >
                           <h3
                             style={{
-                              display: "flex",
-                              alignItems: "flex-start",
-                              justifyContent: "flex-start",
+                              position: "relative",
+                              paddingLeft: "35px",
                             }}
                           >
                             <Icon
@@ -125,8 +112,11 @@ class Projects extends React.Component<ProjectsProps> {
                               }`}
                               icon="github"
                               style={{
-                                marginRight: "1rem",
-                                marginBottom: 0,
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                height: "25px",
+                                width: "25px",
                               }}
                             />
                             {repo.name}
@@ -149,11 +139,10 @@ class Projects extends React.Component<ProjectsProps> {
                             >
                               <span
                                 style={{
-                                  ...tagStyle,
+                                  ...tagNonClickStyle,
                                 }}
                               >
-                                This is fork where I contribute to official
-                                repo
+                                This is fork where I contribute to official repo
                               </span>
                             </div>
                           )}
@@ -165,7 +154,7 @@ class Projects extends React.Component<ProjectsProps> {
             </div>
           )}
         </LayoutContextConsumer>
-      </Layout>
+      </SiteLayout>
     );
   }
 }

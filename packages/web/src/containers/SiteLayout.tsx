@@ -5,13 +5,13 @@ import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-w
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
-export interface LayoutProps {
+export interface SiteLayoutProps {
   location: {
     pathname: string;
   };
 }
 
-class Layout extends React.Component<LayoutProps> {
+class SiteLayout extends React.Component<SiteLayoutProps> {
   render() {
     const { children } = this.props;
 
@@ -35,4 +35,4 @@ class Layout extends React.Component<LayoutProps> {
   }
 }
 
-export default Layout;
+export default SiteLayout;

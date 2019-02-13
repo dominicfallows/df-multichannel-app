@@ -1,165 +1,92 @@
-import { graphql } from "gatsby";
 import * as React from "react";
 
-import Link from "@df/multichannel-app-shared-web/components/Link";
+import Chips from "@df/multichannel-app-shared-web/components/Chips";
+import NextPrevNav from "@df/multichannel-app-shared-web/components/NextPrevNav";
+import SubNav from "@df/multichannel-app-shared-web/components/SubNav";
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
+import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
+import { scale } from "@df/multichannel-app-shared-web/styles/typography";
+import { articleTimeStr } from "@df/multichannel-app-shared/helpers/dates";
 import {
-  rhythm,
-  scale,
-} from "@df/multichannel-app-shared-web/styles/typography";
-import { MarkdownRemarkNode } from "@df/multichannel-app-shared/interfaces/markdown";
-import { colors } from "@df/multichannel-app-shared/styles/colors";
+  MdxNode,
+  MdxNodeFrontmatter,
+} from "@df/multichannel-app-shared/interfaces/markdown";
 
 import Bio from "../components/Bio";
 import SEO from "../components/SEO";
-import Layout from "../containers/Layout";
+import SiteLayout from "../containers/SiteLayout";
 
 export interface PostTemplateProps {
-  data: {
-    markdownRemark: MarkdownRemarkNode;
-  };
+  children: React.ReactNode;
 
   location: {
     pathname: string;
   };
 
   pageContext: {
-    next: MarkdownRemarkNode;
-    previous: MarkdownRemarkNode;
+    pagePath: string;
+    node: MdxNode;
+    next: MdxNode;
+    previous: MdxNode;
+    frontmatter: MdxNodeFrontmatter;
   };
 }
 
-class PostTemplate extends React.Component<PostTemplateProps> {
-  render() {
-    const { markdownRemark } = this.props.data;
-    const post = markdownRemark;
-    const { previous, next } = this.props.pageContext;
+export default (props: PostTemplateProps) => {
+  const { location, children } = props;
+  const { frontmatter, previous, next, node } = props.pageContext;
 
-    return (
-      <Layout location={this.props.location}>
-        <SEO title={post.frontmatter.title} description={post.excerpt} />
-
+  return (
+    <>
+      <SEO title={frontmatter.title} description={node.excerpt} />
+      <SiteLayout location={location}>
         <LayoutContextConsumer>
           {({ breakpoint }) => (
-            <>
-              <article>
-                <header>
-                  <h1>{post.frontmatter.title}</h1>
-                </header>
+            <article
+              style={{
+                ...gridContainerStyles,
+              }}
+            >
+              <header>
+                <h1>{frontmatter.title}</h1>
+              </header>
 
-                <div dangerouslySetInnerHTML={{ __html: post.html }} />
+              <SubNav items={frontmatter.subNavItems} />
 
-                {post.frontmatter.taxonomy && (
-                  <nav
-                    style={{
-                      marginBottom: breakpoint === "sm" ? "0.5rem" : undefined,
-                    }}
-                  >
-                    {post.frontmatter.taxonomy.map((t: string, ti: number) => (
-                      <Link
-                        key={ti}
-                        to={`/blog/${t}`}
-                        title={`More posts about #${t}`}
-                        type="tag"
-                        style={{
-                          marginBottom: "5px",
-                          marginLeft: breakpoint === "sm" ? undefined : "10px",
-                          marginRight: breakpoint === "sm" ? "10px" : undefined,
-                        }}
-                      >
-                        #{t}
-                      </Link>
-                    ))}
-                  </nav>
-                )}
+              {children}
 
-                <footer>
-                  <p
-                    style={{
-                      ...scale(-1 / 5),
-                      display: `block`,
-                      marginBottom: rhythm(1),
-                      marginTop: rhythm(-1),
-                    }}
-                  >
-                    Created: {post.frontmatter.created}.{" "}
-                    {post.frontmatter.created !== post.frontmatter.updated &&
-                      `Last updated: ${post.frontmatter.updated}`}
-                  </p>
+              {frontmatter.taxonomy && (
+                <Chips
+                  chips={frontmatter.taxonomy.map((t: string) => ({
+                    to: `/blog/${t}`,
+                    title: `More posts about #${t}`,
+                    label: `#${t}`,
+                  }))}
+                />
+              )}
 
-                  <ul
-                    style={{
-                      display: `flex`,
-                      flexWrap: `wrap`,
-                      justifyContent: `space-between`,
-                      listStyle: `none`,
-                      padding: 0,
-                      margin: `${rhythm(1)} 0`,
-                      borderTop: `1px solid ${colors.grey1}`,
-                      borderBottom: `1px solid ${colors.grey1}`,
-                    }}
-                  >
-                    <li
-                      style={{
-                        margin: 0,
-                        padding: `${rhythm(0.5)} ${rhythm(1)} ${rhythm(0.5)} 0`,
-                      }}
-                    >
-                      {previous && (
-                        <Link
-                          type="secondary"
-                          to={previous.fields.path}
-                          title={previous.frontmatter.title}
-                          rel="prev"
-                        >
-                          ← {previous.frontmatter.title}
-                        </Link>
-                      )}
-                    </li>
-                    <li
-                      style={{
-                        margin: 0,
-                        padding: `${rhythm(0.5)} 0 ${rhythm(0.5)} ${rhythm(1)}`,
-                      }}
-                    >
-                      {next && (
-                        <Link
-                          type="secondary"
-                          to={next.fields.path}
-                          title={next.frontmatter.title}
-                          rel="next"
-                        >
-                          {next.frontmatter.title} →
-                        </Link>
-                      )}
-                    </li>
-                  </ul>
-                </footer>
-              </article>
+              <footer>
+                <p
+                  style={{
+                    ...scale(-1 / 2),
+                    display: `block`,
+                    marginBottom: `1rem`,
+                    marginTop: `1rem`,
+                  }}
+                >
+                  {articleTimeStr(frontmatter.created, frontmatter.updated)}
+                </p>
 
-              <Bio />
-            </>
+                <NextPrevNav next={next} prev={previous} />
+              </footer>
+
+              <aside>
+                <Bio />
+              </aside>
+            </article>
           )}
         </LayoutContextConsumer>
-      </Layout>
-    );
-  }
-}
-
-export default PostTemplate;
-
-export const pageQuery = graphql`
-  query($pathForId: String!) {
-    markdownRemark(fields: { path: { eq: $pathForId } }) {
-      id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        created(formatString: "Do MMMM YYYY")
-        updated(formatString: "Do MMMM YYYY")
-        taxonomy
-      }
-    }
-  }
-`;
+      </SiteLayout>
+    </>
+  );
+};

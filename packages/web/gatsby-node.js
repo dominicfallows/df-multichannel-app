@@ -1,99 +1,90 @@
-const fs = require(`fs`);
-const path = require(`path`);
-const { createFilePath } = require(`gatsby-source-filesystem`);
-const slash = require(`slash`);
+const Promise = require("bluebird");
+const fs = require("fs");
+const path = require("path");
+const { createFilePath } = require("gatsby-source-filesystem");
+
+const createPosts = require("./tasks/createPosts");
+const createPages = require("./tasks/createPages");
 
 const publicPath = "./public";
-
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
-
-  return new Promise((resolve, reject) => {
-    const postTemplate = path.resolve(`./src/templates/post.tsx`);
-    const pageTemplate = path.resolve(`./src/templates/page.tsx`);
-
-    resolve(
-      graphql(
-        `
-          {
-            allMarkdownRemark(
-              sort: { fields: [frontmatter___created], order: DESC }
-              limit: 1000
-            ) {
-              edges {
-                node {
-                  fields {
-                    path
-                  }
-                  frontmatter {
-                    path
-                    title
-                    type
-                  }
-                }
-              }
-            }
-          }
-        `
-      ).then(result => {
-        if (result.errors) {
-          console.log(result.errors);
-          reject(result.errors);
-        }
-
-        // Create pages
-        const edges = result.data.allMarkdownRemark.edges;
-
-        edges.forEach((edge, index) => {
-          let previous;
-          let next;
-          let template;
-
-          switch (edge.node.frontmatter.type) {
-            case "post":
-              previous =
-                index === edges.length - 1 ? null : edges[index + 1].node;
-              next = index === 0 ? null : edges[index - 1].node;
-
-              template = postTemplate;
-              break;
-
-            case "page":
-              template = pageTemplate;
-              break;
-
-            default:
-              return;
-          }
-
-          const path = edge.node.frontmatter.path || edge.node.fields.path;
-
-          createPage({
-            path: path,
-            component: slash(template),
-            context: {
-              pathForId: path,
-              previous,
-              next,
-            },
-          });
-        });
-      })
-    );
-  });
-};
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === "Mdx") {
     const path = createFilePath({ node, getNode, trailingSlash: false });
 
     createNodeField({
-      name: `path`,
+      name: "path",
       node,
       value: path,
     });
+
+    // Assign node type
+    let type = "page";
+    if (path.startsWith("/blog/")) {
+      type = "post";
+    }
+
+    createNodeField({
+      name: "type",
+      node,
+      value: type,
+    });
+  }
+};
+
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions;
+
+  const edgesQueryStr = `edges {
+    node {
+      id
+      fields {
+        path
+        type
+      }
+      fileAbsolutePath
+      frontmatter {
+        path
+        title
+        created
+        updated
+        taxonomy
+        subNavItems {
+          to
+          title
+        }
+      }
+      excerpt(pruneLength: 160)
+      tableOfContents
+      timeToRead
+      wordCount {
+        paragraphs
+        sentences
+        words
+      }
+    }
+  }`;
+  
+  try {
+    await Promise.all([
+      createPosts({
+        edgesQueryStr,
+        graphql,
+        createPage,
+        reporter,
+      }),
+      createPages({
+        edgesQueryStr,
+        graphql,
+        createPage,
+        reporter,
+      }),
+    ]);
+  } catch (error) {
+    reporter.panic(error);
+    throw Error(error);
   }
 };
 
@@ -111,9 +102,9 @@ exports.onPostBuild = async ({ graphql }) => {
             siteUrl
           }
         }
-        allMarkdownRemark(
+        allMdx(
           sort: { fields: [frontmatter___created], order: DESC }
-          filter: { frontmatter: { type: { eq: "post" } } }
+          filter: { fields: { type: { eq: "post" } } }
           limit: 1000
         ) {
           edges {
@@ -136,13 +127,18 @@ exports.onPostBuild = async ({ graphql }) => {
     if (result.errors) {
       console.log(result.errors);
       throw new Error(
-        "Error creating JSON feed of grahpql allMarkdownRemarks of type `posts`"
+        "Error creating JSON feed of grahpql allMdx of type `posts`"
       );
     }
 
-    const { title, description, siteUrl, author } = result.data.site.siteMetadata;
-    const posts = result.data.allMarkdownRemark.edges.map(edge => edge.node);
-    
+    const {
+      title,
+      description,
+      siteUrl,
+      author,
+    } = result.data.site.siteMetadata;
+    const posts = result.data.allMdx.edges.map(edge => edge.node);
+
     const jsonFeed = {
       version: "https://jsonfeed.org/version/1",
       title: title,
@@ -151,7 +147,7 @@ exports.onPostBuild = async ({ graphql }) => {
       feed_url: `${siteUrl}/feed.json`,
       favicon: `${siteUrl}/icons/icon-48x48.png`,
       author: {
-        name: author
+        name: author,
       },
       items: posts.map(({ fields, frontmatter, excerpt }) => ({
         id: siteUrl + path.join(fields.path),
@@ -159,19 +155,16 @@ exports.onPostBuild = async ({ graphql }) => {
         title: frontmatter.title,
         date_published: new Date(frontmatter.created).toISOString(),
         date_modified: new Date(frontmatter.updated).toISOString(),
-        excerpt: excerpt
-      }))
+        excerpt: excerpt,
+      })),
     };
-
 
     fs.writeFileSync(
       path.join(publicPath, "feed.json"),
       JSON.stringify(jsonFeed),
       "utf8"
     );
-
-  } catch(err) {
+  } catch (err) {
     throw new Error(err);
   }
-
 };

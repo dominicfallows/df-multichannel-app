@@ -21,7 +21,7 @@ const Icon = (props: {
         style={{
           display: "inline-block",
           width: "25px",
-          maxHeight: "25px",
+          height: "25px",
           ...style,
         }}
       />

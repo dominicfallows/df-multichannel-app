@@ -3,7 +3,7 @@ import * as React from "react";
 import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
 
 import SEO from "../components/SEO";
-import Layout from "../containers/Layout";
+import SiteLayout from "../containers/SiteLayout";
 
 export interface LegalsProps {
   location: {
@@ -14,7 +14,7 @@ export interface LegalsProps {
 class Legals extends React.Component<LegalsProps> {
   render() {
     return (
-      <Layout location={this.props.location}>
+      <SiteLayout location={this.props.location}>
         <SEO title="Legals" meta={[{ name: "robots", content: "noindex" }]} />
 
         <div style={{ ...gridContainerStyles }}>
@@ -72,7 +72,7 @@ class Legals extends React.Component<LegalsProps> {
             </a>
           </p>
         </div>
-      </Layout>
+      </SiteLayout>
     );
   }
 }

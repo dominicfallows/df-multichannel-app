@@ -9,6 +9,11 @@ export const tagStyle = {
   fontWeight: 400,
 };
 
+export const tagNonClickStyle = {
+  ...tagStyle,
+  backgroundColor: colors.grey2,
+};
+
 export const tagStyleHover = {
   backgroundColor: colors.greenLight,
   textDecoration: "none",

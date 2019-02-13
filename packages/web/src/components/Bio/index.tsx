@@ -11,6 +11,9 @@ import { linearGradientCssString } from "@df/multichannel-app-shared/styles/grad
 import IconLink from "@df/multichannel-app-shared-web/components/Icon/IconLink";
 import { IconType } from "@df/multichannel-app-shared-web/components/Icon/interfaces/types";
 
+import IILink from "../Links/ii";
+import MOMWLink from "../Links/mo+mw";
+
 export interface BioProps {
   isHome?: boolean;
 }
@@ -98,83 +101,35 @@ class Bio extends React.Component<BioProps, BioState> {
                       }}
                     >
                       <p>
-                        Welcome, I’m Dominic. I have 18+ years experience in
-                        developing and delivering web, mobile and cloud
-                        applications using the latest technologies. I have a
-                        lifelong passion for technology, software engineering
-                        and business.{" "}
-                        {!moreOpen && (
-                          <span
-                            style={{
-                              color: colors.green,
-                              cursor: "pointer",
-                            }}
-                            onClick={() => this.toggleMore()}
-                          >
-                            &#65291; More
-                          </span>
-                        )}
+                        Hi, I'm Dominic, a Technical Lead and Senior Developer for web,{" "}
+                        mobile and cloud apps. I'm a seasoned developer, leader and{" "}
+                        life-long enthusiast of technology, software engineering and{" "}
+                        business. I have been working in technology and business for{" "}
+                        over 16 years and have a proven track record in using latest{" "}
+                        technologies to develop and deliver web, mobile and cloud solutions.
                       </p>
-
-                      <div
-                        style={{
-                          maxHeight: moreOpen ? "none" : "0",
-                          overflow: "hidden",
-                        }}
-                      >
-                        <p>
-                          I enjoy creating tools and experiences that make life
-                          easier for people, teams and businesses. My goal is to{" "}
-                          create well designed solutions and well crafted code,
-                          based on industry standards and design patterns.
-                        </p>
-
-                        <p>
-                          I'm an advocate for building happy and productive
-                          teams, with a healthy work-life balance, through
-                          better communication, improving processes and
-                          keeping-things-simple, taking an agile approach to
-                          projects.
-                        </p>
-
-                        <p>
-                          Currently building teams and products based on
-                          TypeScript, JavaScript, React, React Native, Node.js,
-                          AWS and Azure. Find out more about my{" "}
-                          <Link
-                            to="/projects"
-                            title="Dominic Fallows' Projects"
-                            type="primary"
-                          >
-                            Projects
-                          </Link>
-                          .
-                        </p>
-
-                        <p>
-                          Read more in{" "}
-                          <Link
-                            to="/about"
-                            title="About Dominic Fallows"
-                            type="primary"
-                          >
-                            About
-                          </Link>
-                          .
-                        </p>
-
-                        <p>
-                          <span
-                            style={{
-                              color: colors.green,
-                              cursor: "pointer",
-                            }}
-                            onClick={() => this.toggleMore()}
-                          >
-                            &#x2715; Close
-                          </span>
-                        </p>
-                      </div>
+                      <p>
+                        I'm currently Technical Lead for web, mobile and content apps and{" "}
+                        teams at <IILink />, <MOMWLink />.
+                      </p>
+                      <p>
+                        Read more {" "}
+                        <Link
+                          to="/about"
+                          title="About Dominic Fallows"
+                          type="primary"
+                        >
+                          About me
+                        </Link> and find out more about my{" "}
+                        <Link
+                          to="/projects"
+                          title="Dominic Fallows' Projects"
+                          type="primary"
+                        >
+                          Projects
+                        </Link>
+                        .
+                      </p>
                     </div>
 
                     <p>

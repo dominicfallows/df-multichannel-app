@@ -2,7 +2,7 @@ import * as React from "react";
 
 import Link from "@df/multichannel-app-shared-web/components/Link";
 import SEO from "../components/SEO";
-import Layout from "../containers/Layout";
+import SiteLayout from "../containers/SiteLayout";
 
 export interface NotFoundPageProps {
   location: {
@@ -15,7 +15,7 @@ class NotFoundPage extends React.Component<NotFoundPageProps> {
     const { location } = this.props;
 
     return (
-      <Layout location={location}>
+      <SiteLayout location={location}>
         <SEO
           title="404 Not Found"
           meta={[{ name: "robots", content: "noindex" }]}
@@ -28,7 +28,7 @@ class NotFoundPage extends React.Component<NotFoundPageProps> {
           </Link>
           .
         </p>
-      </Layout>
+      </SiteLayout>
     );
   }
 }

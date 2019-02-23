@@ -85,6 +85,10 @@ module.exports = {
         extensions: [".mdx", ".md"],
         gatsbyRemarkPlugins: [
           {
+            resolve: "gatsby-remark-autolink-headers",
+            options: {},
+          },
+          {
             resolve: "gatsby-remark-external-links",
             options: {
               target: "_blank",
@@ -94,7 +98,7 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 1035,
+              maxWidth: 650,
               sizeByPixelDensity: true,
               quality: 90,
               linkImagesToOriginal: false,

@@ -3,17 +3,12 @@ import * as React from "react";
 
 import SubNav from "@df/multichannel-app-shared-web/components/SubNav";
 import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
-import {
-  MdxNode,
-  MdxNodeFrontmatter,
-} from "@df/multichannel-app-shared/interfaces/markdown";
+import { MdxNode } from "@df/multichannel-app-shared/interfaces/markdown";
 
 import SEO from "../components/SEO";
 import SiteLayout from "../containers/SiteLayout";
 
 export interface PageTemplateProps {
-  children: React.ReactNode;
-
   location: {
     pathname: string;
   };
@@ -21,13 +16,13 @@ export interface PageTemplateProps {
   pageContext: {
     pagePath: string;
     node: MdxNode;
-    frontmatter: MdxNodeFrontmatter;
   };
 }
 
 export default (props: PageTemplateProps) => {
-  const { location, children } = props;
-  const { frontmatter, node } = props.pageContext;
+  const { location } = props;
+  const { node } = props.pageContext;
+  const { frontmatter } = node;
 
   const title = frontmatter.seo
     ? frontmatter.seo.title || frontmatter.title
@@ -51,9 +46,7 @@ export default (props: PageTemplateProps) => {
 
         <SubNav items={frontmatter.subNavItems} />
 
-        <MDXRenderer>
-          {node.code.body}
-        </MDXRenderer>
+        <MDXRenderer>{node.code.body}</MDXRenderer>
       </article>
     </SiteLayout>
   );

@@ -65,6 +65,9 @@ const typography = new Typography({
       fontFamily: "monospace,monospace",
       whiteSpace: "nowrap",
     },
+    "li": {
+      marginBottom: "4px",
+    },
   }),
 });
 

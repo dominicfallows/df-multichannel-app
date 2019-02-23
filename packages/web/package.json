@@ -24,6 +24,7 @@
     "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/issues"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.0.0",
     "bluebird": "^3.5.3",
     "classnames": "^2.2.6",
     "gatsby": "^2.1.17",

@@ -28,9 +28,16 @@ export default (props: PageTemplateProps) => {
   const { location, children } = props;
   const { frontmatter, node } = props.pageContext;
 
+  const title = frontmatter.seo
+    ? frontmatter.seo.title || frontmatter.title
+    : frontmatter.title;
+  const description = frontmatter.seo
+    ? frontmatter.seo.description || node.excerpt
+    : node.excerpt;
+
   return (
     <SiteLayout location={location}>
-      <SEO title={frontmatter.title} description={node.excerpt} />
+      <SEO title={title} description={description} />
 
       <article
         style={{
@@ -42,6 +49,7 @@ export default (props: PageTemplateProps) => {
         </header>
 
         <SubNav items={frontmatter.subNavItems} />
+
         {children}
       </article>
     </SiteLayout>

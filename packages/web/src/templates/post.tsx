@@ -36,9 +36,17 @@ export default (props: PostTemplateProps) => {
   const { location, children } = props;
   const { frontmatter, previous, next, node } = props.pageContext;
 
+  const title = frontmatter.seo
+    ? frontmatter.seo.title || frontmatter.title
+    : frontmatter.title;
+  const description = frontmatter.seo
+    ? frontmatter.seo.description || node.excerpt
+    : node.excerpt;
+
   return (
     <>
-      <SEO title={frontmatter.title} description={node.excerpt} />
+      <SEO title={title} description={description} />
+
       <SiteLayout location={location}>
         <LayoutContextConsumer>
           {({ breakpoint }) => (
@@ -52,6 +60,12 @@ export default (props: PostTemplateProps) => {
               </header>
 
               <SubNav items={frontmatter.subNavItems} />
+
+              {frontmatter.standfirst &&
+                <div style={{ fontSize: 1.4 }}>
+                  {frontmatter.standfirst}
+                </div>
+              }
 
               {children}
 

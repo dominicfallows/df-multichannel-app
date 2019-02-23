@@ -50,6 +50,9 @@ const typography = new Typography({
       marginBottom: "1rem",
       marginTop: 0,
     },
+    "p + h2, ul + h3, ol + h2, code + h2, pre + h2, quote + h2": {
+      marginTop: "2.4rem",
+    },
     "img[src~='float-left-md']": {
       float: "left",
     },

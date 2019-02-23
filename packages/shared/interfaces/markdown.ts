@@ -7,6 +7,12 @@ export interface MdxNodeFrontmatter {
     to: string;
     title: string;
   }>;
+  standfirst?: string;
+  toc?: boolean;
+  seo?: {
+    title?: string;
+    description?: string;
+  };
 }
 
 export interface MdxNode {

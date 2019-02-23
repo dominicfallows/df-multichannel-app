@@ -3,7 +3,7 @@ async function createPages({ edgesQueryStr, graphql, createPage, reporter }) {
   const activity = reporter.activityTimer(`creating pages from allMdx`, {})
   activity.start();
 
-  const { data } = await graphql(`{
+  const { data, errors } = await graphql(`{
     allMdx(
       sort: { fields: [frontmatter___created], order: DESC }
       filter: { fields: { type: { eq: "page" } } }
@@ -12,9 +12,13 @@ async function createPages({ edgesQueryStr, graphql, createPage, reporter }) {
     }
   }`);
 
-  if (data.errors) {
-    reporter.panic(data.errors);
-    throw Error(data.errors);
+  if (errors) {
+    reporter.panic(errors);
+  }
+  
+  if (!data) {
+    const error = "No `data` object returned by graphql query in `createPages`";
+    reporter.panic(error);
   }
 
   if (!data || !data.allMdx || !data.allMdx.edges || !data.allMdx.edges.length === 0) {
@@ -74,7 +78,6 @@ async function createPages({ edgesQueryStr, graphql, createPage, reporter }) {
   // Run all promises
   await Promise.all(processPromises).catch(err => {
     reporter.panic(err);
-    throw Error(err);
   });
 
   activity.end();

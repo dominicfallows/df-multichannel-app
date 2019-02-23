@@ -11,7 +11,8 @@ module.exports = {
     title: `${titleParts[0]} - ${titleParts[1]} for ${titleParts[2]}`,
     titleParts: titleParts,
     author: "Dominic Fallows",
-    description: "Hi, I’m Dominic, a seasoned developer, leader and life-long enthusiast of technology, software engineering and business. Building web, mobile and cloud apps, products and teams.",
+    description:
+      "Hi, I’m Dominic, a seasoned developer, leader and life-long enthusiast of technology, software engineering and business. Building web, mobile and cloud apps, products and teams.",
     siteUrl: siteUrl,
     social: [
       {
@@ -44,38 +45,15 @@ module.exports = {
     // "gatsby-transformer-remark",
     "gatsby-image",
     "gatsby-plugin-offline",
+    // Add source files before MDX
     {
-      resolve: "gatsby-mdx",
+      resolve: "gatsby-source-filesystem",
       options: {
-        decks: [],
-        defaultLayouts: {
-          posts: require.resolve("./src/templates/post.tsx"),
-          default: require.resolve("./src/templates/page.tsx"),
-        },
-        extensions: [".mdx", ".md"],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: "gatsby-remark-prismjs",
-            options: {
-              classPrefix: "language-",
-              inlineCodeMarker: {
-                tsx: "tsx",
-              },
-              aliases: {},
-            },
-          },
-          {
-            resolve: "gatsby-remark-images",
-            options: {
-              maxWidth: 1035,
-              sizeByPixelDensity: true
-            }
-          }
-        ]
-      }
+        path: "../shared/content/markdown/dummyModels",
+        ignore: ["**/.tsx*"],
+        name: "dummyModels",
+      },
     },
-
-    // Add static assets before markdown files
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -97,6 +75,40 @@ module.exports = {
       options: {
         path: "../shared/content/assets",
         name: "assets",
+      },
+    },
+    // Now MDX
+    {
+      resolve: "gatsby-mdx",
+      options: {
+        decks: [],
+        defaultLayouts: {
+          posts: require.resolve("./src/templates/post.tsx"),
+          default: require.resolve("./src/templates/page.tsx"),
+        },
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-prismjs",
+            options: {},
+          },
+          {
+            resolve: "gatsby-remark-external-links",
+            options: {
+              target: "_blank",
+              rel: "nofollow noopener noreferrer",
+            },
+          },
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1035,
+              sizeByPixelDensity: true,
+              quality: 90,
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
       },
     },
     {
@@ -167,7 +179,9 @@ module.exports = {
         fieldName: "github",
         url: "https://api.github.com/graphql",
         headers: {
-          Authorization: `bearer ${process.env.GITHUB_PAT_READ_ALL_USER_PROFILE_DATA}`,
+          Authorization: `bearer ${
+            process.env.GITHUB_PAT_READ_ALL_USER_PROFILE_DATA
+          }`,
         },
         fetchOptions: {},
       },

@@ -22,6 +22,15 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
     // Assign node type
     let type = "page";
+
+    if (path.startsWith("/dummyPost")) {
+      type = "dummyPost";
+    }
+
+    if (path.startsWith("/dummyPage")) {
+      type = "dummyPage";
+    }
+    
     if (path.startsWith("/blog/")) {
       type = "post";
     }
@@ -55,6 +64,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           to
           title
         }
+        standfirst
+        toc
+        seo {
+          title
+          description
+        }
       }
       excerpt(pruneLength: 160)
       tableOfContents
@@ -66,7 +81,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     }
   }`;
-  
+
   try {
     await Promise.all([
       createPosts({
@@ -84,7 +99,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     ]);
   } catch (error) {
     reporter.panic(error);
-    throw Error(error);
   }
 };
 
@@ -117,6 +131,11 @@ exports.onPostBuild = async ({ graphql }) => {
                 created
                 updated
                 title
+                standfirst
+                seo {
+                  title
+                  description
+                }
               }
             }
           }
@@ -125,9 +144,9 @@ exports.onPostBuild = async ({ graphql }) => {
     `);
 
     if (result.errors) {
-      console.log(result.errors);
-      throw new Error(
-        "Error creating JSON feed of grahpql allMdx of type `posts`"
+      reporter.panic(
+        "Error creating JSON feed of grahpql allMdx of type `posts`",
+        result.errors
       );
     }
 
@@ -149,14 +168,24 @@ exports.onPostBuild = async ({ graphql }) => {
       author: {
         name: author,
       },
-      items: posts.map(({ fields, frontmatter, excerpt }) => ({
-        id: siteUrl + path.join(fields.path),
-        url: siteUrl + path.join(fields.path),
-        title: frontmatter.title,
-        date_published: new Date(frontmatter.created).toISOString(),
-        date_modified: new Date(frontmatter.updated).toISOString(),
-        excerpt: excerpt,
-      })),
+      items: posts.map(({ fields, frontmatter, excerpt }) => {
+        const url = siteUrl + path.join(frontmatter.path || fields.path);
+        const title = frontmatter.seo
+          ? frontmatter.seo.title || frontmatter.title
+          : frontmatter.title;
+        const postExcerpt = frontmatter.seo
+          ? frontmatter.seo.description || excerpt
+          : excerpt;
+
+        return {
+          id: url,
+          url: url,
+          title,
+          date_published: new Date(frontmatter.created).toISOString(),
+          date_modified: new Date(frontmatter.updated).toISOString(),
+          excerpt: postExcerpt,
+        };
+      }),
     };
 
     fs.writeFileSync(

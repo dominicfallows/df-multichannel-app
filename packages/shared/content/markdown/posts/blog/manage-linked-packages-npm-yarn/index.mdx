@@ -1,0 +1,140 @@
+---
+title: "Manage Linked Packages, for both npm or Yarn"
+created: "2019-01-06T10:00:00.000Z"
+updated: "2019-01-06T10:00:00.000Z"
+taxonomy:
+  - "open-source-software"
+  - "yarn"
+  - "npm"
+---
+
+## TLDR;
+
+`manage-linked-packages` is a tool to help you find, list and reset npm and Yarn global linked (`link`) packages, manually on the command-line or programmatically in scripts.
+
+**For installation and usage instructions carry on reading or visit the [`manage-linked-packages` npm registry page](https://www.npmjs.com/package/manage-linked-packages).**
+
+## Why would I need to `link` projects?
+
+During development of JavaScript projects, like [Node.js](https://nodejs.org), [React](https://reactjs.org) and [GatsbyJS](https://gatsbyjs.org) based projects, I will depend on the functionality and utilities of plugins and packages developed and distributed by the open-source community.
+
+Sometimes, projects will require custom functionality that isn't available in an existing plugin or package. The plugin and package patterns make reusing code across projects simple and efficient. In general, I will create new plugins or packages in their own GitHub repos and folder structure on my development machines.
+
+I work on projects based on the JavaScript mono-repo architecture, comprising of multiple linked packages, and on standalone projects. I often need to reuse the same custom plugin or package code across multiple projects on my local development machine.
+
+I _could_ work on the custom plugin or package code, then `commit` to GitHub, then install that plugin or package into my other projects from GitHub and reinstall or `pull` each time I need to update the shared code.
+
+Both the [npm](https://npmjs.com) and [Yarn](https://yarnpkg.com) package managers provide an easier way to help with the development workflow, in the form of `link` and `unlink` commands. However, as I will describe in this article, the `link` and `unlink` commands have some gaps in functionality for my use-case.
+
+## npm and Yarn `link` commands
+
+Both the npm and Yarn package management tools offer a simple way to link projects together, on your local development machine, using [npm `link`](https://docs.npmjs.com/cli/link.html) or [Yarn `link`](https://yarnpkg.com/lang/en/docs/cli/link). I've shown an example of how you use the link commands in [Why do I need `manage-linked-packages`](#why-do-I-need-manage-linked-packages).
+
+The `link` commands are great and I use them regularly in almost every project. However, there is no out-of-the-box way to locate or reset global symlinked packages, that have been linked with `link` commands (unless you manually go to each project and perform further `unlink` commands, which might suit your requirements perfectly).
+
+## `manage-linked-packages`
+
+`manage-linked-packages` enables me to find, list and reset npm and Yarn global linked (`link`) packages, manually on the command-line or programmatically in scripts.
+
+`manage-linked-packages` improves the development experience, with the size of projects, local development machine setup and number of plugin or package projects that I work on.
+
+**For installation and usage instructions carry on reading or visit the [`manage-linked-packages` npm registry page](https://www.npmjs.com/package/manage-linked-packages).**
+
+## How do the Yarn or npm `link` commands work?
+
+The `link` commands, in npm and Yarn, work by creating global symlinks to your plugin or package project (or Package A) on your local development machine. You can then use Package A in your other projects (or Package B) using `link` commands, which create a Project B symlink `package-b/node_modules/package-a` back to global Project A.
+
+Example:
+
+```bash
+cd /projects/project-a
+yarn link # or, npm link
+
+cd /projects/project-b
+yarn link "project-a" # or, npm link "project-a"
+```
+
+You can then reverse/remove these links manually:
+
+```bash
+cd /projects/project-b # or project-c, project-d etc
+yarn unlink "project-a" # or, npm unlink "project-a"
+
+# Then remove the global linked package:
+cd /projects/project-a
+yarn unlink # or, npm unlink
+```
+
+That would enable you to rename or move Project A.
+
+So far so good...
+
+**If you only keep your plugin or package projects at one path on your local development machine, then you are probably going to be fine with the out-of-the-box functionality of the `link` commands.**
+
+## Why do I need `manage-linked-packages`?
+
+Sometimes you might need to move the location of Project A or rename a project that is referenced in many child projects. You might also need Project A to be in multiple locations for development workflow, virtual machine setup, multiple workspaces, multiple IDEs, etc. You could perform the manual process as described above, but that would be time consuming in some scenarios.
+
+Both the npm and Yarn `link` and `unlink` commands start to present problems for these scenarios. They don't do any tidying up of the global symlinks automatically when you make changes to the project folder structure.
+
+**`manage-linked-packages` helps you to manage these packages manually or programmatically in Yarn/npm scripts.**
+
+## How to use `manage-linked-packages`?
+
+First, install `manage-linked-packages` globally:
+
+```bash
+yarn global add manage-linked-packages # or, npm install -g manage-linked-packages
+```
+
+Then, manually in your CLI or as part of your npm/Yarn scripts use `manage-linked-packages` like:
+
+```bash
+manage-linked-packages [options]
+```
+
+### Options:
+
+| Short Syntax           | Long Syntax                           | Description                                                    |
+| ---------------------- | ------------------------------------- | -------------------------------------------------------------- |
+| `-m <package-manager>` | `--package-manager <package-manager>` | **required:** package manager to manage (`yarn` or `npm`)      |
+| `-a <manage-action>`   | `--manage-action <manage-action>`     | **required:** manage action to take (`locate` or `reset`)      |
+| `-n <package-name>`    | `--package-name <package-name>`       | **required:** name of global linked yarn/npm package to manage |
+| `-V`                   | `--version`                           | output the version number                                      |
+
+| `-h, --help` output usage information
+
+### Examples
+
+#### To locate the Yarn global linked package called `project-a`:
+
+```bash
+manage-linked-packages -m yarn -a locate -n project-a
+```
+
+This returns a success message with the real path of the linked package, for example:
+`found: /Users/user1/Projects/project-a`
+
+#### To reset the npm global linked package called `project-a`:
+
+```bash
+manage-linked-packages -m npm -a reset -n project-a
+```
+
+This returns the output of the `yarn unlink` or `npm unlink` command that is performed in the appropriate global folder.
+
+### Uninstall
+
+```bash
+yarn global remove manage-linked-packages # or, npm uninstall -g manage-linked-packages
+```
+
+## Thank you
+
+Thank you for reading my introduction to `manage-linked-packages` - a tool to help you find, list and reset npm and Yarn global linked `link` packages, manually on the command-line or programmatically in scripts.
+
+For installation and usage instructions read this article or visit the [`manage-linked-packages` npm registry page](https://www.npmjs.com/package/manage-linked-packages).
+
+## Bugs, Issues and Feature Bequests
+
+To report any bugs, issues or request additional features - please submit an issue ticket via the [`manage-linked-packages` GitHub repository](https://github.com/dominicfallows/manage-linked-packages/issues).

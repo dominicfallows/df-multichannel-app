@@ -61,12 +61,17 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                   <h2>Latest Posts</h2>
                   <div style={{ ...cardGridContainerStyles(breakpoint) }}>
                     {posts.map(({ node }: { node: MdxNode }, i) => {
+                      const path = node.frontmatter.path || node.fields.path;
                       const title = node.frontmatter.title;
+                      const description = node.frontmatter.seo
+                        ? node.frontmatter.seo.description || node.excerpt
+                        : node.excerpt;
+
                       return (
                         <Card
-                          key={node.fields.path}
+                          key={path}
                           width={50}
-                          to={node.fields.path}
+                          to={path}
                           title={title}
                         >
                           <h3
@@ -78,7 +83,7 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                           </h3>
 
                           <p
-                            dangerouslySetInnerHTML={{ __html: node.excerpt }}
+                            dangerouslySetInnerHTML={{ __html: description }}
                             style={{
                               fontSize: "0.9em",
                               marginBottom: "1rem",
@@ -152,6 +157,9 @@ export const pageQuery = graphql`
             updated
             title
             taxonomy
+            seo {
+              description
+            }
           }
         }
       }

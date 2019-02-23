@@ -1,3 +1,4 @@
+import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import * as React from "react";
 
 import Chips from "@df/multichannel-app-shared-web/components/Chips";
@@ -34,7 +35,8 @@ export interface PostTemplateProps {
 
 export default (props: PostTemplateProps) => {
   const { location, children } = props;
-  const { frontmatter, previous, next, node } = props.pageContext;
+  const { previous, next, node } = props.pageContext;
+  const { frontmatter } = node;
 
   const title = frontmatter.seo
     ? frontmatter.seo.title || frontmatter.title
@@ -67,11 +69,13 @@ export default (props: PostTemplateProps) => {
                 </div>
               }
 
-              {children}
+              <MDXRenderer>
+                {node.code.body}
+              </MDXRenderer>
 
               {frontmatter.taxonomy && (
                 <Chips
-                  chips={frontmatter.taxonomy.map((t: string) => ({
+                  clickableChips={frontmatter.taxonomy.map((t: string) => ({
                     to: `/blog/${t}`,
                     title: `More posts about #${t}`,
                     label: `#${t}`,

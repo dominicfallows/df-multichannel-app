@@ -1,3 +1,5 @@
+const pathResolve = require("path").resolve;
+
 async function createPages({ edgesQueryStr, graphql, createPage, reporter }) {
 
   const activity = reporter.activityTimer(`creating pages from allMdx`, {})
@@ -59,7 +61,7 @@ async function createPages({ edgesQueryStr, graphql, createPage, reporter }) {
 
             createPage({
               path: path,
-              component: node.fileAbsolutePath,
+              component: pathResolve(`./src/templates/page.tsx`),
               context: {
                 pagePath: path,
                 node,

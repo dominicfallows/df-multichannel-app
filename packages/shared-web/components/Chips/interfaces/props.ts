@@ -1,9 +1,10 @@
-export interface ChipItem {
+export interface ClickableChipItem {
   to: string;
   title: string;
   label: string;
 }
 
 export interface ChipsProps {
-  chips: ChipItem[];
+  clickableChips?: ClickableChipItem[];
+  chips?: string[];
 }

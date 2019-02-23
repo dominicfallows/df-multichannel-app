@@ -56,6 +56,15 @@ const typography = new Typography({
     "img[src~='float-left-md']": {
       float: "left",
     },
+    ":not(pre) > code": {
+      fontSize: "1em",
+      lineHeight: 1,
+      background: colors.grey1,
+      padding: "0.125rem 0.25rem",
+      // http://meyerweb.com/eric/thoughts/2010/02/12/fixed-monospace-sizing
+      fontFamily: "monospace,monospace",
+      whiteSpace: "nowrap",
+    },
   }),
 });
 

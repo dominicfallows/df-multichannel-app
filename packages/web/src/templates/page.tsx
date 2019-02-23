@@ -1,3 +1,4 @@
+import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import * as React from "react";
 
 import SubNav from "@df/multichannel-app-shared-web/components/SubNav";
@@ -50,7 +51,9 @@ export default (props: PageTemplateProps) => {
 
         <SubNav items={frontmatter.subNavItems} />
 
-        {children}
+        <MDXRenderer>
+          {node.code.body}
+        </MDXRenderer>
       </article>
     </SiteLayout>
   );

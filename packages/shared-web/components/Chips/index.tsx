@@ -1,9 +1,9 @@
 import * as React from "react";
 
-import { Consumer as LayoutContextConsumer } from "../../contexts/Layout";
+import { tagStyle } from "@df/multichannel-app-shared/styles/tags";
 import Link from "../Link";
 
-import { ChipItem, ChipsProps } from "./interfaces/props";
+import { ChipsProps, ClickableChipItem } from "./interfaces/props";
 
 class Chips extends React.Component<ChipsProps> {
   static defaultProps = {
@@ -11,38 +11,43 @@ class Chips extends React.Component<ChipsProps> {
   };
 
   render() {
-    const { chips } = this.props;
+    const { chips, clickableChips } = this.props;
 
-    if (!chips || chips.length === 0) {
+    if ((!chips || chips.length === 0) && (!clickableChips || clickableChips.length === 0)) {
       return null;
     }
 
+    const chipStyle = {
+      marginBottom: "5px",
+      marginRight: "10px",
+    };
+
     return (
-      <LayoutContextConsumer>
-        {({ breakpoint }) => (
-          <nav
+      <nav>
+        {clickableChips && clickableChips.map((chip: ClickableChipItem, i: number) => (
+          <Link
+            key={i}
+            to={chip.to}
+            title={chip.title}
+            type="tag"
+            style={chipStyle}
+          >
+            {chip.label}
+          </Link>
+        ))}
+
+        {chips && chips.map((chip: string, i: number) => (
+          <span
+            key={i}
             style={{
-              marginBottom: breakpoint === "sm" ? "0.5rem" : undefined,
+              ...tagStyle,
+              ...chipStyle,
             }}
           >
-            {chips.map((chip: ChipItem, i: number) => (
-              <Link
-                key={i}
-                to={chip.to}
-                title={chip.title}
-                type="tag"
-                style={{
-                  marginBottom: "5px",
-                  marginLeft: breakpoint === "sm" ? undefined : "10px",
-                  marginRight: breakpoint === "sm" ? "10px" : undefined,
-                }}
-              >
-                {chip.label}
-              </Link>
-            ))}
-          </nav>
-        )}
-      </LayoutContextConsumer>
+            {chip}
+          </span>
+        ))}
+      </nav>
     );
   }
 }

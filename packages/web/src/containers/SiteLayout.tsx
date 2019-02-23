@@ -1,7 +1,9 @@
+import { MDXProvider } from "@mdx-js/tag";
 import * as React from "react";
 
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
 
+import MdxCodeComponent from "../components/MdxCodeComponent";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
@@ -26,7 +28,17 @@ class SiteLayout extends React.Component<SiteLayoutProps> {
             }}
           >
             <SiteHeader />
-            <main role="main">{children}</main>
+
+            <main role="main">
+              <MDXProvider
+                components={{
+                  code: MdxCodeComponent,
+                }}
+              >
+                {children}
+              </MDXProvider>
+            </main>
+
             <SiteFooter />
           </div>
         )}

@@ -82,16 +82,8 @@ module.exports = {
       resolve: "gatsby-mdx",
       options: {
         decks: [],
-        defaultLayouts: {
-          posts: require.resolve("./src/templates/post.tsx"),
-          default: require.resolve("./src/templates/page.tsx"),
-        },
         extensions: [".mdx", ".md"],
         gatsbyRemarkPlugins: [
-          {
-            resolve: "gatsby-remark-prismjs",
-            options: {},
-          },
           {
             resolve: "gatsby-remark-external-links",
             options: {

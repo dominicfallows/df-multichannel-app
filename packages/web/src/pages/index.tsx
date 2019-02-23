@@ -2,8 +2,8 @@ import { graphql } from "gatsby";
 import * as React from "react";
 
 import Card from "@df/multichannel-app-shared-web/components/Card";
+import Chips from "@df/multichannel-app-shared-web/components/Chips";
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
-import { articleTimeStr } from "@df/multichannel-app-shared/helpers/dates";
 import { tagStyle } from "@df/multichannel-app-shared/styles/tags";
 
 import Bio from "../components/Bio";
@@ -47,18 +47,14 @@ class BlogIndex extends React.Component<BlogIndexProps> {
             <>
               <Bio isHome={true} />
 
-              <section
-                style={{
-                  borderTop: `4px solid ${colors.grey1}`,
-                }}
-              >
+              <section>
                 <div
                   style={{
                     ...gridContainerStyles,
-                    padding: "2rem 1rem",
+                    padding: "1rem 1rem 2rem",
                   }}
                 >
-                  <h2>Latest Posts</h2>
+                  <h2>Blog</h2>
                   <div style={{ ...cardGridContainerStyles(breakpoint) }}>
                     {posts.map(({ node }: { node: MdxNode }, i) => {
                       const path = node.frontmatter.path || node.fields.path;
@@ -68,12 +64,7 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                         : node.excerpt;
 
                       return (
-                        <Card
-                          key={path}
-                          width={50}
-                          to={path}
-                          title={title}
-                        >
+                        <Card key={path} width={50} to={path} title={title}>
                           <h3
                             style={{
                               marginBottom: "0.5rem",
@@ -91,39 +82,12 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                           />
 
                           {node.frontmatter.taxonomy && (
-                            <div
-                              style={{
-                                marginBottom: "0.5rem",
-                              }}
-                            >
-                              {node.frontmatter.taxonomy.map(
-                                (t: string, ti: number) => (
-                                  <span
-                                    key={ti}
-                                    style={{
-                                      ...tagStyle,
-                                      marginBottom: 5,
-                                      marginRight: 10,
-                                    }}
-                                  >
-                                    #{t}
-                                  </span>
-                                )
+                            <Chips
+                              chips={node.frontmatter.taxonomy.map(
+                                (t: string) => `#${t}`,
                               )}
-                            </div>
+                            />
                           )}
-
-                          <div
-                            style={{
-                              fontSize: "0.8rem",
-                              color: colors.grey2,
-                            }}
-                          >
-                            {articleTimeStr(
-                              node.frontmatter.created,
-                              node.frontmatter.updated,
-                            )}
-                          </div>
                         </Card>
                       );
                     })}
@@ -153,8 +117,6 @@ export const pageQuery = graphql`
             path
           }
           frontmatter {
-            created
-            updated
             title
             taxonomy
             seo {

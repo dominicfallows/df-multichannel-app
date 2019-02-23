@@ -13,6 +13,7 @@ export interface MdxNodeFrontmatter {
     title?: string;
     description?: string;
   };
+  path?: string;
 }
 
 export interface MdxNode {
@@ -22,4 +23,7 @@ export interface MdxNode {
     path: string;
   };
   frontmatter: MdxNodeFrontmatter;
+  code: {
+    body: string;
+  };
 }

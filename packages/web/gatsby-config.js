@@ -4,7 +4,10 @@ const titleParts = [
   "web, mobile and cloud apps",
 ];
 
-const siteUrl = "https://dominicfallows.uk";
+const siteUrl =
+  process.env === "production"
+    ? process.env.SITE_URL || "http://localhost"
+    : "http://localhost:8000";
 
 module.exports = {
   siteMetadata: {
@@ -42,9 +45,8 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-typescript",
-    // "gatsby-transformer-remark",
     "gatsby-image",
-    "gatsby-plugin-offline",
+    // "gatsby-plugin-offline",
     // Add source files before MDX
     {
       resolve: "gatsby-source-filesystem",
@@ -110,7 +112,10 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        //trackingId: "ADD YOUR TRACKING ID HERE",
+        trackingId:
+          process.env === "production"
+            ? process.env.GOOGLE_ANALYTICS_TRACKING_ID
+            : undefined,
       },
     },
     {
@@ -120,7 +125,7 @@ module.exports = {
         short_name: "Dominic Fallows",
         start_url: "/",
         background_color: "#ffffff",
-        theme_color: "#0095cc",
+        theme_color: "#000000",
         // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
         // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
         display: "standalone",
@@ -148,6 +153,7 @@ module.exports = {
                   html
                   fields { path }
                   frontmatter {
+                    path
                     title
                     created
                     updated
@@ -159,7 +165,7 @@ module.exports = {
         `,
         serialize: results =>
           results.data.allMdx.edges.map(({ node }) => ({
-            path: node.fields.path, // MUST contain a path
+            path: node.frontmatter.path || node.fields.path, // MUST contain a path
             title: node.frontmatter.title,
             created: node.frontmatter.created,
             updated: node.frontmatter.updated,

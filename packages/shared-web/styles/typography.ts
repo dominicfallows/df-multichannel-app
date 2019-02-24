@@ -53,8 +53,8 @@ const typography = new Typography({
     "p + h2, ul + h3, ol + h2, code + h2, pre + h2, quote + h2": {
       marginTop: "2.4rem",
     },
-    "img[src~='float-left-md']": {
-      float: "left",
+    "img.gatsby-resp-image-image": {
+      borderRadius: "3px",
     },
     ":not(pre) > code": {
       fontSize: "1em",

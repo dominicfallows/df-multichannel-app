@@ -5,6 +5,9 @@ export interface ClickableChipItem {
 }
 
 export interface ChipsProps {
+  style?: {
+    [key: string]: string;
+  };
   clickableChips?: ClickableChipItem[];
   chips?: string[];
 }

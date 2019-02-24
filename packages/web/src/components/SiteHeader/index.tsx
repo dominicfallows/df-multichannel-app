@@ -9,6 +9,8 @@ import SiteTitle from "../SiteTitle";
 import NavBar from "./components/NavBar";
 import NavList from "./components/NavList";
 
+const siteHeaderHeight = "46px";
+
 const SiteHeader = () => (
   <LayoutContextConsumer>
     {({ breakpoint }) => (
@@ -19,9 +21,10 @@ const SiteHeader = () => (
           marginBottom: "1.5rem",
           position: "relative",
           zIndex: 9999,
+          height: siteHeaderHeight,
         }}
       >
-        <div style={{ ...gridContainerStyles }}>
+        <div style={{ ...gridContainerStyles, height: siteHeaderHeight }}>
           <div
             style={{
               display: breakpoint === "sm" ? "inline-block" : "flex",
@@ -38,7 +41,7 @@ const SiteHeader = () => (
             </div>
 
             {breakpoint === "sm" && <NavBar />}
-            {breakpoint !== "sm" && <NavList />}
+            {breakpoint !== "sm" && <NavList siteHeaderHeight={siteHeaderHeight} />}
           </div>
         </div>
       </header>

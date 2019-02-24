@@ -31,7 +31,7 @@ const SEO = (props: SEOProps) => {
             }}
             title={homepage ? data.site.siteMetadata.title : title}
             titleTemplate={
-              homepage ? `%s` : `%s | ${data.site.siteMetadata.title}`}
+              homepage ? `%s` : `%s | ${data.site.siteMetadata.author}`}
             meta={[
               {
                 name: `description`,

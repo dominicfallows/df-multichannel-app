@@ -12,6 +12,7 @@ import { MdxNode } from "@df/multichannel-app-shared/interfaces/markdown";
 import Bio from "../components/Bio";
 import SEO from "../components/SEO";
 import SiteLayout from "../containers/SiteLayout";
+import { colors } from "@df/multichannel-app-shared/styles/colors";
 
 export interface PostTemplateProps {
   location: {
@@ -60,32 +61,61 @@ export default (props: PostTemplateProps) => {
 
           <MDXRenderer>{node.code.body}</MDXRenderer>
 
-          {frontmatter.taxonomy && (
-            <Chips
-              clickableChips={frontmatter.taxonomy.map((t: string) => ({
-                to: `/blog/${t}`,
-                title: `More posts about #${t}`,
-                label: `#${t}`,
-              }))}
-            />
-          )}
-
-          <footer>
-            <p
+          <footer
+            style={{
+              margin: "3rem 0",
+            }}
+          >
+            <div
               style={{
-                ...scale(-1 / 2),
-                display: `block`,
-                marginBottom: `1rem`,
-                marginTop: `1rem`,
+                borderTop: `1px solid ${colors.grey1}`,
+                borderBottom: `1px solid ${colors.grey1}`,
+                padding: "1rem 0",
               }}
             >
-              {articleTimeStr(frontmatter.created, frontmatter.updated)}
-            </p>
+              <p
+                style={{
+                  fontSize: "0.85em",
+                  display: `block`,
+                  marginBottom: `1rem`,
+                  marginTop: `1rem`,
+                  color: colors.grey3,
+                  margin: `0 0 0.5rem 0`,
+                }}
+              >
+                {articleTimeStr(frontmatter.created, frontmatter.updated)}.{" "}
+              </p>
 
-            <NextPrevNav next={next} prev={previous} />
+              {frontmatter.taxonomy && (
+                <Chips
+                  clickableChips={frontmatter.taxonomy.map((t: string) => ({
+                    to: `/blog/${t}`,
+                    title: `More posts about #${t}`,
+                    label: `#${t}`,
+                  }))}
+                  style={{
+                    margin: `0.5rem 0 0 0`,
+                  }}
+                />
+              )}
+            </div>
+
+            <NextPrevNav
+              next={next}
+              prev={previous}
+              style={{
+                borderBottom: `1px solid ${colors.grey1}`,
+              }}
+            />
           </footer>
 
-          <aside>
+          <aside
+            style={{
+              background: colors.grey1,
+              padding: "2rem 1rem 0",
+              borderRadius: "3px",
+            }}
+          >
             <Bio />
           </aside>
         </article>

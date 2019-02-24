@@ -2,7 +2,7 @@ import * as React from "react";
 
 import Link from "@df/multichannel-app-shared-web/components/Link";
 
-const IILink = () => (
+const IILink = (props: { shortVersion?: boolean }) => (
   <>
     <Link
       to="https://www.ii.co.uk"
@@ -14,7 +14,9 @@ SIPPs, ISAs and more...."
     >
       interactive investor
     </Link>
-    , a low cost, award winning, online investment platform
+    {!props.shortVersion && (
+      <>, a low cost, award winning, online investment platform</>
+    )}
   </>
 );
 

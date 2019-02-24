@@ -16,8 +16,8 @@ const NavBar = () => (
     role="navigation"
     style={{
       textAlign: "center",
-      background: colors.greySlate,
-      borderTop: `1px solid ${colors.white}`,
+      background: `#fafafa`,
+      borderTop: `1px solid ${colors.grey1}`,
       position: "fixed",
       bottom: 0,
       left: 0,
@@ -94,7 +94,7 @@ const NavListItem = (props: {
       title={props.title}
       type={"grey"}
       style={{
-        fontSize: "11px",
+        fontSize: "12px",
         borderBottomColor: "transparent",
         color: props.active ? colors.blue : colors.grey2,
         textAlign: "center",
@@ -104,7 +104,7 @@ const NavListItem = (props: {
         lineHeight: 1,
       }}
       activeStyle={{
-        color: colors.white,
+        color: colors.blue,
       }}
     >
       <img
@@ -112,10 +112,10 @@ const NavListItem = (props: {
         alt={props.title}
         style={{
           display: "block",
-          width: "22px",
-          height: "20px",
+          width: "20px",
+          height: "18px",
           padding: 0,
-          margin: "0 auto 5px auto",
+          margin: "0 auto 6px auto",
         }}
       />
       {props.label}

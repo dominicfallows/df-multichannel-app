@@ -9,7 +9,7 @@ import { NextPrevNavProps } from "./interfaces/props";
 
 class NextPrevNav extends React.Component<NextPrevNavProps> {
   render() {
-    const { next, prev } = this.props;
+    const { style, next, prev } = this.props;
 
     if (!next && !prev) {
       return null;
@@ -25,20 +25,19 @@ class NextPrevNav extends React.Component<NextPrevNavProps> {
               justifyContent: `space-between`,
               listStyle: `none`,
               padding: 0,
-              margin: `1rem 0`,
-              borderTop: `1px solid ${colors.grey1}`,
-              borderBottom: `1px solid ${colors.grey1}`,
+              fontSize: "0.9em",
+              ...style,
             }}
           >
             <div
               style={{
-                padding: `0.5rem 1rem 0.5rem 0`,
+                padding: `1rem 1rem 1rem 0`,
               }}
             >
               {prev && (
                 <Link
                   type="secondary"
-                  to={prev.fields.path}
+                  to={prev.frontmatter.path || prev.fields.path}
                   title={prev.frontmatter.title}
                   rel="prev"
                 >
@@ -48,13 +47,13 @@ class NextPrevNav extends React.Component<NextPrevNavProps> {
             </div>
             <div
               style={{
-                padding: `0.5rem 0 0.5rem 1rem`,
+                padding: `1rem 0 1rem 1rem`,
               }}
             >
               {next && (
                 <Link
                   type="secondary"
-                  to={next.fields.path}
+                  to={next.frontmatter.path || next.fields.path}
                   title={next.frontmatter.title}
                   rel="next"
                 >

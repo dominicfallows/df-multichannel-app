@@ -1,24 +1,41 @@
-import { Location } from "@reach/router";
 import * as React from "react";
 
 import Link from "@df/multichannel-app-shared-web/components/Link";
+import { colors } from "../../../../../shared/styles/colors";
 
-const NavListItem = (props: { to: string; title: string; label: string }) => (
+const NavListItem = (props: {
+  to: string;
+  title: string;
+  label: string;
+}) => (
   <li
     style={{
-      marginLeft: "1rem",
-      marginRight: 0,
-      marginTop: 0,
-      marginBottom: 0,
+      margin: 0,
+      padding: 0,
     }}
   >
-    <Link to={props.to} title={props.title} type={"white"}>
+    <Link
+      to={props.to}
+      title={props.title}
+      type={"white"}
+      style={{
+        display: "inline-block",
+        padding: "0.3rem 1rem",
+        borderTopLeftRadius: "3px",
+        borderTopRightRadius: "3px",
+      }}
+      activeStyle={{
+        color: colors.greySlate,
+        background: colors.white,
+        textDecoration: "none",
+      }}
+    >
       {props.label}
     </Link>
   </li>
 );
 
-const NavList = () => (
+const NavList = (props: { siteHeaderHeight: string; }) => (
   <nav
     role="navigation"
     style={{
@@ -32,23 +49,18 @@ const NavList = () => (
         margin: 0,
         padding: 0,
         display: "inline-flex",
-        alignItems: "center",
+        alignItems: "flex-end",
         justifyContent: "right",
+        height: props.siteHeaderHeight,
       }}
     >
-      <Location>
-        {({ location }) => (
-          <>
-            <NavListItem to="/" title="Blog" label="Blog" />
-            <NavListItem
-              to="/about"
-              title="About Dominic Fallows"
-              label="About"
-            />
-            <NavListItem to="/projects" title="Projects" label="Projects" />
-          </>
-        )}
-      </Location>
+      <NavListItem to="/" title="Blog" label="Blog" />
+      <NavListItem
+        to="/about"
+        title="About Dominic Fallows"
+        label="About"
+      />
+      <NavListItem to="/projects" title="Projects" label="Projects" />
     </ul>
   </nav>
 );

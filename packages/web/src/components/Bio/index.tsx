@@ -18,120 +18,45 @@ export interface BioProps {
   isHome?: boolean;
 }
 
-export interface BioState {
-  moreOpen: boolean;
-}
-
-class Bio extends React.Component<BioProps, BioState> {
-  constructor(props: BioProps) {
-    super(props);
-
-    this.state = {
-      moreOpen: false,
-    };
-  }
-
-  toggleMore = () => {
-    this.setState({
-      moreOpen: !this.state.moreOpen,
-    });
-  }
-
+class Bio extends React.Component<BioProps> {
   render() {
-    const { moreOpen } = this.state;
+    const { isHome } = this.props;
 
     return (
       <StaticQuery
         query={bioQuery}
-        render={(data) => {
+        render={data => {
           const { author, social } = data.site.siteMetadata;
+
           return (
             <LayoutContextConsumer>
-              {({ breakpoint }) => (
-                <div
-                  style={{
-                    ...gridContainerStyles,
-                    display: `flex`,
-                    marginBottom: "1rem",
-                  }}
-                >
-                  <Image
-                    fixed={data.avatar.childImageSharp.fixed}
-                    alt={author}
-                    style={{
-                      borderRadius: `100%`,
-                      marginBottom: 0,
-                      marginRight: "1rem",
-                      minWidth: 50,
-                    }}
-                  />
-                  <div>
-                    {this.props.isHome === true && (
-                      <h1
-                        style={{
-                          fontSize: breakpoint === "sm" ? "1.4rem" : undefined,
-                        }}
-                      >
-                        Dominic Fallows <br />
-                        <span
-                          style={{
-                            fontWeight: 400,
-                            fontSize: breakpoint === "sm" ? "0.75em" : "0.65em",
-                            lineHeight: 1.2,
-                            display: "inline-block",
-                          }}
-                        >
-                          Technical Lead and Senior Developer for{" "}
-                          <span
-                            style={{
-                              background: linearGradientCssString,
-                              WebkitBackgroundClip: "text",
-                              WebkitTextFillColor: "transparent",
-                            }}
-                          >
-                            web, mobile and cloud apps
-                          </span>
-                        </span>
-                      </h1>
-                    )}
+              {({ breakpoint }) => {
 
-                    <div
+                const readMoreAndSocialText = (
+                  <>
+                    <p
                       style={{
                         fontSize: "0.9em",
                       }}
                     >
-                      <p>
-                        Hi, I'm Dominic, a Technical Lead and Senior Developer for web,{" "}
-                        mobile and cloud apps. I'm a seasoned developer, leader and{" "}
-                        life-long enthusiast of technology, software engineering and{" "}
-                        business. I have been working in technology and business for{" "}
-                        over 16 years and have a proven track record in using latest{" "}
-                        technologies to develop and deliver web, mobile and cloud solutions.
-                      </p>
-                      <p>
-                        I'm currently Technical Lead for web, mobile and content apps and{" "}
-                        teams at <IILink />, <MOMWLink />.
-                      </p>
-                      <p>
-                        Read more {" "}
-                        <Link
-                          to="/about"
-                          title="About Dominic Fallows"
-                          type="primary"
-                        >
-                          About me
-                        </Link> and find out more about my{" "}
-                        <Link
-                          to="/projects"
-                          title="Dominic Fallows' Projects"
-                          type="primary"
-                        >
-                          Projects
-                        </Link>
-                        .
-                      </p>
-                    </div>
-
+                      Read more{" "}
+                      <Link
+                        to="/about"
+                        title="About Dominic Fallows"
+                        type="primary"
+                      >
+                        About me
+                      </Link>{" "}
+                      and find out more about my{" "}
+                      <Link
+                        to="/projects"
+                        title="Dominic Fallows' Projects"
+                        type="primary"
+                      >
+                        Projects
+                      </Link>
+                      .
+                    </p>
                     <p>
                       {social.map(
                         (
@@ -140,7 +65,7 @@ class Bio extends React.Component<BioProps, BioState> {
                             profile: string;
                             url: string;
                           },
-                          i: number,
+                          i: number
                         ) => (
                           <React.Fragment key={i}>
                             <IconLink
@@ -153,12 +78,120 @@ class Bio extends React.Component<BioProps, BioState> {
                             />
                             {i + 1 < social.length ? " " : ""}
                           </React.Fragment>
-                        ),
+                        )
                       )}
                     </p>
+                  </>
+                );
+
+                const shortBioText = (
+                  <>
+                    <div
+                      style={{
+                        fontSize: "0.9em",
+                      }}
+                    >
+                      <p>
+                        Hi, I'm Dominic, a Technical Lead and Senior Developer
+                        for web, mobile and cloud apps.
+                      </p>
+                      <p>
+                        I'm currently Technical Lead for web, mobile and
+                        content apps and teams at{" "}
+                        <IILink shortVersion={breakpoint === "sm"} />,{" "}
+                        <MOMWLink shortVersion={breakpoint === "sm"} />.
+                      </p>
+                    </div>
+                    {readMoreAndSocialText}
+                  </>
+                );
+
+                const longBioText = (
+                  <>
+                    <div
+                      style={{
+                        fontSize: "0.9em",
+                      }}
+                    >
+                      <p>
+                        Hi, I'm Dominic, a Technical Lead and Senior Developer
+                        for web, mobile and cloud apps. I'm a seasoned
+                        developer, leader and life-long enthusiast of
+                        technology, software engineering and business. I have
+                        been working in technology and business for over 16
+                        years and have a proven track record in using latest
+                        technologies to develop and deliver web, mobile and
+                        cloud solutions.
+                      </p>
+                      <p>
+                        I'm currently Technical Lead for web, mobile and
+                        content apps and teams at <IILink />, <MOMWLink />.
+                      </p>
+                    </div>
+                    {readMoreAndSocialText}
+                  </>
+                );
+
+                return (
+                  <div
+                    style={{
+                      ...gridContainerStyles,
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    <div style={{ display: `flex` }}>
+                      <Image
+                        fixed={data.avatar.childImageSharp.fixed}
+                        alt={author}
+                        style={{
+                          borderRadius: "3px",
+                          marginBottom: 0,
+                          marginRight: "1rem",
+                          width: "60px",
+                          height: "60px",
+                          minWidth: "60px",
+                        }}
+                      />
+
+                      <div>
+                        {isHome && (
+                          <h1
+                            style={{
+                              fontSize:
+                                breakpoint === "sm" ? "1.4rem" : undefined,
+                            }}
+                          >
+                            Dominic Fallows <br />
+                            <span
+                              style={{
+                                fontWeight: 400,
+                                fontSize:
+                                  breakpoint === "sm" ? "0.75em" : "0.65em",
+                                lineHeight: 1.2,
+                                display: "inline-block",
+                              }}
+                            >
+                              Technical Lead and Senior Developer for{" "}
+                              <span
+                                style={{
+                                  background: linearGradientCssString,
+                                  WebkitBackgroundClip: "text",
+                                  WebkitTextFillColor: "transparent",
+                                }}
+                              >
+                                web, mobile and cloud apps
+                              </span>
+                            </span>
+                          </h1>
+                        )}
+                        {!isHome && shortBioText}
+                      </div>
+                    </div>
+
+                    {isHome && longBioText}
                   </div>
-                </div>
-              )}
+                )
+            }}
             </LayoutContextConsumer>
           );
         }}
@@ -171,7 +204,7 @@ const bioQuery = graphql`
   query BioQuery {
     avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
       childImageSharp {
-        fixed(width: 50, height: 50) {
+        fixed(width: 120, height: 120) {
           ...GatsbyImageSharpFixed
         }
       }

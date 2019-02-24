@@ -11,7 +11,7 @@ class Chips extends React.Component<ChipsProps> {
   };
 
   render() {
-    const { chips, clickableChips } = this.props;
+    const { style, chips, clickableChips } = this.props;
 
     if ((!chips || chips.length === 0) && (!clickableChips || clickableChips.length === 0)) {
       return null;
@@ -23,7 +23,7 @@ class Chips extends React.Component<ChipsProps> {
     };
 
     return (
-      <nav>
+      <nav style={style}>
         {clickableChips && clickableChips.map((chip: ClickableChipItem, i: number) => (
           <Link
             key={i}

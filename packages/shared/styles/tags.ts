@@ -7,6 +7,7 @@ export const tagStyle = {
   fontSize: "12px",
   padding: "2px 4px",
   fontWeight: 400,
+  borderRadius: "3px",
 };
 
 export const tagNonClickStyle = {

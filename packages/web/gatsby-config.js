@@ -1,7 +1,7 @@
 const titleParts = [
   "Dominic Fallows",
   "Technical Lead and Senior Developer",
-  "Web, Mobile and Cloud Apps",
+  "web, mobile and cloud apps",
 ];
 
 const siteUrl = "https://dominicfallows.uk";
@@ -12,7 +12,7 @@ module.exports = {
     titleParts: titleParts,
     author: "Dominic Fallows",
     description:
-      "Hi, I’m Dominic, a seasoned developer, leader and life-long enthusiast of technology, software engineering and business. Building web, mobile and cloud apps, products and teams.",
+      "Hi, I’m Dominic, a seasoned Developer, Technical Lead and life-long enthusiast of technology, software engineering and business. Building web, mobile and cloud apps, products and teams.",
     siteUrl: siteUrl,
     social: [
       {

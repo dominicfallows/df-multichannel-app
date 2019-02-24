@@ -1,11 +1,14 @@
 ---
 title: "Manage Linked Packages, for both npm or Yarn"
-created: "2019-01-06T10:00:00.000Z"
-updated: "2019-01-06T10:00:00.000Z"
+created: "2019-02-16T00:00:00.000Z"
+updated: "2019-02-16T00:00:00.000Z"
 taxonomy:
   - "open-source-software"
   - "yarn"
   - "npm"
+seo: {
+  description: "manage-linked-packages is a tool to help you find, list and reset npm and Yarn global linked (`link`) packages, manually on the command-line or programmatically in scripts."
+}
 ---
 
 ## TLDR;
@@ -45,7 +48,7 @@ The `link` commands are great and I use them regularly in almost every project. 
 The `link` commands, in npm and Yarn, work by creating global symlinks to your plugin or package project (or Package A) on your local development machine. You can then use Package A in your other projects (or Package B) using `link` commands, which create a Project B symlink `package-b/node_modules/package-a` back to global Project A.
 
 Example:
-  
+
 ```bash
 cd /projects/project-a
 yarn link # or, npm link

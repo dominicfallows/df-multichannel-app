@@ -142,7 +142,7 @@ class Projects extends React.Component<ProjectsProps> {
                                   ...tagNonClickStyle,
                                 }}
                               >
-                                This is fork where I contribute to official repo
+                                Fork with my contributions to the official repo
                               </span>
                             </div>
                           )}

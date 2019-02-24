@@ -5,6 +5,7 @@ import npmIconSrc from "@df/multichannel-app-shared/content/assets/font-awesome/
 import twitterIconSrc from "@df/multichannel-app-shared/content/assets/font-awesome/twitter-brands.svg";
 
 // UI icons
+import arrowDownSolidSrc from "@df/multichannel-app-shared/content/assets/font-awesome/arrow-down-solid.svg";
 import chevronRightSolidSrc from "@df/multichannel-app-shared/content/assets/font-awesome/chevron-right-solid.svg";
 
 // Interfaces
@@ -23,6 +24,8 @@ const getIconSrc = (type: IconType) => {
       return npmIconSrc;
     case "chevronRightSolid":
       return chevronRightSolidSrc;
+    case "arrowDownSolid":
+      return arrowDownSolidSrc;
     default:
       return "";
   }

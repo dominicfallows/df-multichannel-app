@@ -62,7 +62,7 @@ const typography = new Typography({
     ":not(pre) > code": {
       fontSize: "1em",
       lineHeight: 1,
-      background: colors.grey1,
+      background: colors.grey2,
     },
     "code, pre, tt": {
       fontFamily: "SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace",

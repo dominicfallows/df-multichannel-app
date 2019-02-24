@@ -25,7 +25,7 @@ class SubNav extends React.Component<SubNavProps> {
           listStyleType: "none",
           margin: "0 0 1.5rem 0",
           padding: 0,
-          borderTop: `1px dotted ${colors.grey2}`,
+          borderTop: `1px dotted ${colors.grey3}`,
           ...style,
         }}
       >
@@ -36,7 +36,7 @@ class SubNav extends React.Component<SubNavProps> {
               lineHeight: "1.4em",
               fontSize: "1em",
               margin: 0,
-              borderBottom: `1px dotted ${colors.grey2}`,
+              borderBottom: `1px dotted ${colors.grey3}`,
               padding: "0.5rem 0 0.4rem 0",
             }}
           >

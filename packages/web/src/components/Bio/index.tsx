@@ -95,7 +95,7 @@ class Bio extends React.Component<BioProps> {
                         fontSize: "0.9em",
                       }}
                     >
-                      <p>
+                      <p style={{ fontWeight: 600 }}>
                         Hi, I'm Dominic, a Technical Lead and Senior Developer
                         for web, mobile and cloud apps.
                       </p>

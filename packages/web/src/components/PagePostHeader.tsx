@@ -24,7 +24,7 @@ const PagePostHeader = (props: {
         style={{
           fontSize: "0.85em",
           display: `block`,
-          color: colors.grey3,
+          color: colors.grey4,
           margin: `1rem 0`,
         }}
         dateTime={props.created}

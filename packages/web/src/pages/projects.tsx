@@ -10,7 +10,7 @@ import {
   cardGridContainerStyles,
   gridContainerStyles,
 } from "@df/multichannel-app-shared-web/styles/grid";
-import { tagNonClickStyle } from "@df/multichannel-app-shared/styles/tags";
+import { tagStyle } from "@df/multichannel-app-shared/styles/tags";
 
 import IILink from "../components/Links/ii";
 import MOMWLink from "../components/Links/mo+mw";
@@ -139,7 +139,7 @@ class Projects extends React.Component<ProjectsProps> {
                             >
                               <span
                                 style={{
-                                  ...tagNonClickStyle,
+                                  ...tagStyle,
                                 }}
                               >
                                 Fork with my contributions to the official repo

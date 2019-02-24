@@ -3,4 +3,5 @@ export type IconType =
   | "linkedin"
   | "github"
   | "npm"
-  | "chevronRightSolid";
+  | "chevronRightSolid"
+  | "arrowDownSolid";

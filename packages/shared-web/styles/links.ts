@@ -14,7 +14,7 @@ export const linkStyle = (type: LinkType) => {
       style.color = colors.white;
       break;
     case "grey":
-      style.color = colors.grey2;
+      style.color = colors.grey3;
       break;
     case "tag":
       style = {

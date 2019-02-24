@@ -14,7 +14,7 @@ const SiteFooter = () => (
         style={{
           fontSize: "12px",
           marginTop: "1rem",
-          color: colors.grey3,
+          color: colors.grey4,
           textAlign: "center",
           // larger than small
           ...(breakpoint !== "sm"

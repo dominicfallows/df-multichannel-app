@@ -23,8 +23,8 @@ const NavBar = () => (
           role="navigation"
           style={{
             textAlign: "center",
-            background: `#fafafa`,
-            borderTop: `1px solid ${colors.grey1}`,
+            background: colors.grey1,
+            borderTop: `1px solid ${colors.grey2}`,
             position: "fixed",
             bottom: 0,
             left: 0,
@@ -93,8 +93,8 @@ const NavListItem = (props: {
 }) => (
   <li
     style={{
-      marginLeft: "1rem",
-      marginRight: "1rem",
+      marginLeft: "1.5rem",
+      marginRight: "1.5rem",
       marginTop: 0,
       marginBottom: 0,
     }}
@@ -106,7 +106,7 @@ const NavListItem = (props: {
       style={{
         fontSize: "12px",
         borderBottomColor: "transparent",
-        color: props.active ? colors.blue : colors.grey2,
+        color: props.active ? colors.blue : colors.grey3,
         textAlign: "center",
         borderBottom: "none",
         padding: 0,

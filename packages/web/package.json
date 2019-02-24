@@ -86,7 +86,7 @@
     "lint": "tslint --project .",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "format": "prettier-tslint fix 'src/**/*.{ts,tsx,md,mdx}'",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -H 0.0.0.0",
     "start": "yarn develop",
     "gatsby-build": "gatsby build",
     "build": "yarn lint && yarn format && yarn gatsby-build",

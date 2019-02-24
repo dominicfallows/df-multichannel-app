@@ -77,7 +77,7 @@ export default (props: PostTemplateProps) => {
 
           <aside
             style={{
-              background: colors.grey1,
+              background: colors.grey2,
               padding: "1.5rem 1rem",
               borderRadius: "3px",
             }}

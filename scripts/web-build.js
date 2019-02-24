@@ -4,12 +4,11 @@ const colors = require("colors");
 
 const { sourceLocalEnvVars } = require("./shared/source-local-env-vars.js");
 
-console.log(colors.cyan("Starting web packages"));
+console.log(colors.cyan("Building web packages"));
 
 try {
   const localEnvVarsStr = sourceLocalEnvVars();
   const buildCommand = `${localEnvVarsStr} yarn --cwd packages/web build`;
-  console.log(`Running command: ${buildCommand}`);
   execSync(buildCommand, { stdio: "inherit" });
 
   process.exit(0);

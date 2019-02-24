@@ -13,7 +13,7 @@ const NavListItem = (props: {
   active?: boolean;
 }) => {
   const activeStyle = {
-    color: colors.greySlate,
+    color: colors.grey6,
     background: "rgba(255, 255, 255, 0.5)",
     textDecoration: "none",
   };
@@ -23,6 +23,7 @@ const NavListItem = (props: {
       style={{
         margin: 0,
         padding: 0,
+        height: "100%",
       }}
     >
       <Link
@@ -30,16 +31,16 @@ const NavListItem = (props: {
         title={props.title}
         type={"white"}
         style={{
-          display: "inline-block",
+          display: "inline-flex",
+          alignItems: "center",
           padding: "0 0.75rem",
-          borderRadius: "3px",
-          lineHeight: "2em",
+          height: "100%",
           fontSize: "1em",
           ...(props.active ? activeStyle : {}),
         }}
         activeStyle={activeStyle}
       >
-        {props.label}
+        <span>{props.label}</span>
       </Link>
     </li>
   );
@@ -72,7 +73,7 @@ const NavList = (props: { siteHeaderHeight: string }) => (
                 <NavListItem
                   to="/#blog"
                   title="Skip to blog"
-                  label={(
+                  label={
                     <span
                       style={{
                         display: "flex",
@@ -93,7 +94,7 @@ const NavList = (props: { siteHeaderHeight: string }) => (
                       />
                       Skip to blog
                     </span>
-                  )}
+                  }
                 />
               )}
               {breakpoint !== "sm" && (

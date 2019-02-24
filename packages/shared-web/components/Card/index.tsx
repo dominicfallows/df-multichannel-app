@@ -1,6 +1,9 @@
 import * as React from "react";
 
-import { cardStyle, cardStyleHover } from "@df/multichannel-app-shared/styles/cards";
+import {
+  cardStyle,
+  cardStyleHover,
+} from "@df/multichannel-app-shared/styles/cards";
 import {
   cardGridItem100Percent,
   cardGridItem25Percent,
@@ -31,22 +34,33 @@ class Card extends React.Component<CardProps, CardState> {
   }
 
   render() {
-    const { activeStyle, children, rel, style, target, title, to, width } = this.props;
+    const {
+      activeStyle,
+      children,
+      rel,
+      style,
+      target,
+      title,
+      to,
+      width,
+    } = this.props;
     const { hover } = this.state;
 
-    const cardWidthStyle = () => {
-      switch (width) {
-        case 25:
-          return cardGridItem25Percent;
-        case 33:
-          return cardGridItem33Percent;
-        case 50:
-          return cardGridItem50Percent;
-        case 100:
-        default:
-          return cardGridItem100Percent;
-      }
-    };
+    let cardWidthStyle = {};
+    switch (width) {
+      case 25:
+        cardWidthStyle = cardGridItem25Percent;
+        break;
+      case 33:
+        cardWidthStyle = cardGridItem33Percent;
+        break;
+      case 50:
+        cardWidthStyle = cardGridItem50Percent;
+        break;
+      case 100:
+      default:
+        cardWidthStyle = cardGridItem100Percent;
+    }
 
     return (
       <Link
@@ -59,7 +73,7 @@ class Card extends React.Component<CardProps, CardState> {
         style={{
           ...cardStyle,
           ...(hover ? cardStyleHover : {}),
-          ...cardWidthStyle(),
+          ...cardWidthStyle,
           ...style,
         }}
         activeStyle={activeStyle}

@@ -31,7 +31,6 @@ class Bio extends React.Component<BioProps> {
           return (
             <LayoutContextConsumer>
               {({ breakpoint }) => {
-
                 const readMoreAndSocialText = (
                   <>
                     <p
@@ -100,8 +99,8 @@ class Bio extends React.Component<BioProps> {
                         for web, mobile and cloud apps.
                       </p>
                       <p>
-                        I'm currently Technical Lead for web, mobile and
-                        content apps and teams at{" "}
+                        I'm currently Technical Lead for web, mobile and content{" "}
+                        apps and teams at{" "}
                         <IILink shortVersion={breakpoint === "sm"} />,{" "}
                         <MOMWLink shortVersion={breakpoint === "sm"} />.
                       </p>
@@ -128,8 +127,8 @@ class Bio extends React.Component<BioProps> {
                         cloud solutions.
                       </p>
                       <p>
-                        I'm currently Technical Lead for web, mobile and
-                        content apps and teams at <IILink />, <MOMWLink />.
+                        I'm currently Technical Lead for web, mobile and content{" "}
+                        apps and teams at <IILink />, <MOMWLink />.
                       </p>
                     </div>
                     {readMoreAndSocialText}
@@ -142,7 +141,12 @@ class Bio extends React.Component<BioProps> {
                       ...gridContainerStyles,
                     }}
                   >
-                    <div style={{ display: !isHome && breakpoint === "sm" ? "display" : "flex" }}>
+                    <div
+                      style={{
+                        display:
+                          !isHome && breakpoint === "sm" ? "display" : "flex",
+                      }}
+                    >
                       <Image
                         fixed={data.avatar.childImageSharp.fixed}
                         alt={author}
@@ -178,7 +182,9 @@ class Bio extends React.Component<BioProps> {
                               Technical Lead and Senior Developer for{" "}
                               <span
                                 style={{
-                                  background: linearGradientCssString,
+                                  color: colors.grey4,
+                                  // prefixed with -webkit so IE doesn't use the gradient
+                                  background: `-webkit-${linearGradientCssString}`,
                                   WebkitBackgroundClip: "text",
                                   WebkitTextFillColor: "transparent",
                                 }}
@@ -194,8 +200,8 @@ class Bio extends React.Component<BioProps> {
 
                     {isHome && longBioText}
                   </div>
-                )
-            }}
+                );
+              }}
             </LayoutContextConsumer>
           );
         }}

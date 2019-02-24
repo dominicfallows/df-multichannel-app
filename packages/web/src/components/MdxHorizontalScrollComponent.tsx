@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const MdxHorizontalScrollComponent = ({ children, ...props }) => {
-    return (
+  return (
     <div
       style={{
         maxWidth: "100%",

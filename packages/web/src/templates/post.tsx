@@ -71,7 +71,7 @@ export default (props: PostTemplateProps) => {
 
           <MDXRenderer>{node.code.body}</MDXRenderer>
 
-          <footer style={{ margin: "4rem 0" }} >
+          <footer style={{ margin: "4rem 0" }}>
             <NextPrevNav next={next} prev={previous} />
           </footer>
 

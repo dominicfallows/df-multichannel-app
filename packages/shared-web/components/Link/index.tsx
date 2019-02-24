@@ -39,7 +39,7 @@ class Link extends React.Component<LinkProps, LinkState> {
 
   isInternalLink = (url: string): boolean => {
     /**
-     * Check if we're an internal link because the new Gatsby Link is intended 
+     * Check if we're an internal link because the new Gatsby Link is intended
      * for internal links only, see:
      * https://www.gatsbyjs.org/docs/gatsby-link/?no-cache=1#use-link-only-for-internal-links
      */

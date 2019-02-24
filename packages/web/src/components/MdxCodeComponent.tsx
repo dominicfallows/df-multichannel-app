@@ -8,11 +8,19 @@ const MdxCodeComponent = ({ children, ...props }) => {
   let language: string | undefined;
   if (typeof props.className !== "undefined") {
     const matches = props.className.match(regexp);
-    language = matches && matches.length > 0 ? matches[0].replace("language-", "") : undefined;
+    language =
+      matches && matches.length > 0
+        ? matches[0].replace("language-", "")
+        : undefined;
   }
 
   return (
-    <Highlight {...defaultProps} theme={vsDarkPlusTheme} code={children} language={language}>
+    <Highlight
+      {...defaultProps}
+      theme={vsDarkPlusTheme}
+      code={children}
+      language={language}
+    >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <code
           className={className}
@@ -29,17 +37,17 @@ const MdxCodeComponent = ({ children, ...props }) => {
           {tokens.map((line, i) => (
             <div {...getLineProps({ line, key: i })}>
               {line.map((token, key) => {
-
-                if (tokens.length === i + 1 && line.length === key + 1 && token.empty) {
+                if (
+                  tokens.length === i + 1 &&
+                  line.length === key + 1 &&
+                  token.empty
+                ) {
                   // if we are on the last line of code, and the last token
                   // and the token is empty, don't render it
                   return null;
                 }
 
-                return (
-                  <span key={key} {...getTokenProps({ token, key })} />
-                );
-
+                return <span key={key} {...getTokenProps({ token, key })} />;
               })}
             </div>
           ))}

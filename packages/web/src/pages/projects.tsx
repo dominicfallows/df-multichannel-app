@@ -55,7 +55,7 @@ class Projects extends React.Component<ProjectsProps> {
 
     if (github && has(github, "repositoryOwner.pinnedRepositories.edges")) {
       githubPinnedRepos = github.repositoryOwner.pinnedRepositories.edges.map(
-        ({ node }) => node
+        ({ node }) => node,
       );
     }
 
@@ -90,7 +90,7 @@ class Projects extends React.Component<ProjectsProps> {
                       .sort(
                         (a: IGitHubPinnedRepo, b: IGitHubPinnedRepo) =>
                           moment(a.updatedAt).unix() +
-                          moment(b.updatedAt).unix()
+                          moment(b.updatedAt).unix(),
                       )
                       .map((repo: IGitHubPinnedRepo, i: number) => (
                         <Card

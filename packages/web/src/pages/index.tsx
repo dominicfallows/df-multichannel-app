@@ -88,7 +88,7 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                           {node.frontmatter.taxonomy && (
                             <Chips
                               chips={node.frontmatter.taxonomy.map(
-                                (t: string) => `#${t}`
+                                (t: string) => `#${t}`,
                               )}
                             />
                           )}

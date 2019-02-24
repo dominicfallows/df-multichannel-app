@@ -8,8 +8,8 @@ export const MOMWLink = (props: { shortVersion?: boolean }) => (
     <MOLink /> and <MWLink />
     {!props.shortVersion && (
       <>
-        , two of the UK's leading digital and print{" "}
-        personal finance and investment magazines
+        , two of the UK's leading digital and print personal finance and{" "}
+        investment magazines
       </>
     )}
   </>

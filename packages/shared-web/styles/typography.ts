@@ -46,6 +46,9 @@ const typography = new Typography({
     "a:hover": {
       color: colors.green,
     },
+    "h1": {
+      marginBottom: "1rem",
+    },
     "h2, h3, h4": {
       marginBottom: "1rem",
       marginTop: 0,
@@ -60,10 +63,12 @@ const typography = new Typography({
       fontSize: "1em",
       lineHeight: 1,
       background: colors.grey1,
-      padding: "0.125rem 0.25rem",
-      // http://meyerweb.com/eric/thoughts/2010/02/12/fixed-monospace-sizing
-      fontFamily: "monospace,monospace",
-      whiteSpace: "nowrap",
+    },
+    "code, pre, tt": {
+      fontFamily: "SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace",
+      borderRadius: "3px",
+      fontSize: "1em",
+      padding: ".125em .25em",
     },
     "li": {
       marginBottom: "4px",

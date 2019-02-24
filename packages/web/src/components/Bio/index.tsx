@@ -57,7 +57,11 @@ class Bio extends React.Component<BioProps> {
                       </Link>
                       .
                     </p>
-                    <p>
+                    <p
+                      style={{
+                        marginBottom: 0,
+                      }}
+                    >
                       {social.map(
                         (
                           s: {
@@ -136,16 +140,15 @@ class Bio extends React.Component<BioProps> {
                   <div
                     style={{
                       ...gridContainerStyles,
-                      marginBottom: "1rem",
                     }}
                   >
-                    <div style={{ display: `flex` }}>
+                    <div style={{ display: !isHome && breakpoint === "sm" ? "display" : "flex" }}>
                       <Image
                         fixed={data.avatar.childImageSharp.fixed}
                         alt={author}
                         style={{
                           borderRadius: "3px",
-                          marginBottom: 0,
+                          marginBottom: "1rem",
                           marginRight: "1rem",
                           width: "60px",
                           height: "60px",
@@ -159,6 +162,7 @@ class Bio extends React.Component<BioProps> {
                             style={{
                               fontSize:
                                 breakpoint === "sm" ? "1.4rem" : undefined,
+                              lineHeight: 1,
                             }}
                           >
                             Dominic Fallows <br />

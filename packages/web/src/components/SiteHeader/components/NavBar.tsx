@@ -2,6 +2,7 @@ import { Location } from "@reach/router";
 import * as React from "react";
 
 import Link from "@df/multichannel-app-shared-web/components/Link";
+import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
 
 import aboutIconActive from "@df/multichannel-app-shared/content/assets/about-icon-active.svg";
 import aboutIcon from "@df/multichannel-app-shared/content/assets/about-icon.svg";
@@ -12,65 +13,74 @@ import projectsIcon from "@df/multichannel-app-shared/content/assets/projects-ic
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 
 const NavBar = () => (
-  <nav
-    role="navigation"
-    style={{
-      textAlign: "center",
-      background: `#fafafa`,
-      borderTop: `1px solid ${colors.grey1}`,
-      position: "fixed",
-      bottom: 0,
-      left: 0,
-      right: 0,
-      padding: "8px 8px 6px 8px",
-      zIndex: 9999,
+  <LayoutContextConsumer>
+    {({ breakpoint }) => {
+      if (breakpoint !== "sm") {
+        return null;
+      }
+      return (
+        <nav
+          role="navigation"
+          style={{
+            textAlign: "center",
+            background: `#fafafa`,
+            borderTop: `1px solid ${colors.grey1}`,
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            padding: "8px 8px 6px 8px",
+            zIndex: 9999,
+          }}
+        >
+          <ul
+            style={{
+              listStyleType: "none",
+              margin: 0,
+              padding: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Location>
+              {({ location }) => (
+                <>
+                  <NavListItem
+                    to="/"
+                    title="Blog"
+                    label="Blog"
+                    icon={blogIcon}
+                    iconActive={blogIconActive}
+                    active={
+                      location.pathname.startsWith("/blog") ||
+                      location.pathname === "/"
+                    }
+                  />
+                  <NavListItem
+                    to="/about"
+                    title="About Dominic Fallows"
+                    label="About"
+                    icon={aboutIcon}
+                    iconActive={aboutIconActive}
+                    active={location.pathname.startsWith("/about")}
+                  />
+                  <NavListItem
+                    to="/projects"
+                    title="Projects"
+                    label="Projects"
+                    icon={projectsIcon}
+                    iconActive={projectsIconActive}
+                    active={location.pathname.startsWith("/projects")}
+                  />
+                </>
+              )}
+            </Location>
+          </ul>
+        </nav>
+      );
     }}
-  >
-    <ul
-      style={{
-        listStyleType: "none",
-        margin: 0,
-        padding: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Location>
-        {({ location }) => (
-          <>
-            <NavListItem
-              to="/"
-              title="Blog"
-              label="Blog"
-              icon={blogIcon}
-              iconActive={blogIconActive}
-              active={
-                location.pathname.startsWith("/blog") ||
-                location.pathname === "/"
-              }
-            />
-            <NavListItem
-              to="/about"
-              title="About Dominic Fallows"
-              label="About"
-              icon={aboutIcon}
-              iconActive={aboutIconActive}
-              active={location.pathname.startsWith("/about")}
-            />
-            <NavListItem
-              to="/projects"
-              title="Projects"
-              label="Projects"
-              icon={projectsIcon}
-              iconActive={projectsIconActive}
-              active={location.pathname.startsWith("/projects")}
-            />
-          </>
-        )}
-      </Location>
-    </ul>
-  </nav>
+  </LayoutContextConsumer>
 );
 
 const NavListItem = (props: {

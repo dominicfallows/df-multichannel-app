@@ -10,7 +10,6 @@ const Icon = (props: {
   style?: React.CSSProperties;
 }) => {
   const { title, icon, style } = props;
-
   const iconSrc = getIconSrc(icon);
 
   if (iconSrc) {

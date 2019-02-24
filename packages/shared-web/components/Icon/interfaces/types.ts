@@ -1,1 +1,6 @@
-export type IconType = "twitter" | "linkedin" | "github" | "npm";
+export type IconType =
+  | "twitter"
+  | "linkedin"
+  | "github"
+  | "npm"
+  | "chevronRightSolid";

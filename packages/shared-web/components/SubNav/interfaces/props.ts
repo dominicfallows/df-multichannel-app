@@ -5,4 +5,7 @@ export interface SubNavItem {
 
 export interface SubNavProps {
   items: SubNavItem[];
+  style?: {
+    [key: string]: string;
+  };
 }

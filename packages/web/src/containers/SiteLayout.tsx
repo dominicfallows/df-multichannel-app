@@ -4,6 +4,7 @@ import * as React from "react";
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
 
 import MdxCodeComponent from "../components/MdxCodeComponent";
+import MdxTableComponent from "../components/MdxTableComponent";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 
@@ -33,6 +34,7 @@ class SiteLayout extends React.Component<SiteLayoutProps> {
               <MDXProvider
                 components={{
                   code: MdxCodeComponent,
+                  table: MdxTableComponent,
                 }}
               >
                 {children}

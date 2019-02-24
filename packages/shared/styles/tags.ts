@@ -1,8 +1,8 @@
 import { colors } from "./colors";
 
 export const tagStyle = {
-  color: colors.white,
-  backgroundColor: colors.green,
+  color: colors.grey3,
+  backgroundColor: colors.grey1,
   display: "inline-block",
   fontSize: "12px",
   padding: "2px 4px",
@@ -16,6 +16,7 @@ export const tagNonClickStyle = {
 };
 
 export const tagStyleHover = {
-  backgroundColor: colors.greenLight,
+  color: colors.white,
+  backgroundColor: colors.green,
   textDecoration: "none",
 };

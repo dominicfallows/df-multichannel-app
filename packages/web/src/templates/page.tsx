@@ -1,10 +1,10 @@
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import * as React from "react";
 
-import SubNav from "@df/multichannel-app-shared-web/components/SubNav";
 import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
 import { MdxNode } from "@df/multichannel-app-shared/interfaces/markdown";
 
+import PagePostHeader from "../components/PagePostHeader";
 import SEO from "../components/SEO";
 import SiteLayout from "../containers/SiteLayout";
 
@@ -40,11 +40,11 @@ export default (props: PageTemplateProps) => {
           ...gridContainerStyles,
         }}
       >
-        <header>
-          <h1>{frontmatter.title}</h1>
-        </header>
-
-        <SubNav items={frontmatter.subNavItems} />
+        <PagePostHeader
+          title={frontmatter.title}
+          subNavItems={frontmatter.subNavItems}
+          standfirst={frontmatter.standfirst}
+        />
 
         <MDXRenderer>{node.code.body}</MDXRenderer>
       </article>

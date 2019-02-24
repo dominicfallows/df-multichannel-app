@@ -3,16 +3,15 @@ import * as React from "react";
 
 import Chips from "@df/multichannel-app-shared-web/components/Chips";
 import NextPrevNav from "@df/multichannel-app-shared-web/components/NextPrevNav";
-import SubNav from "@df/multichannel-app-shared-web/components/SubNav";
 import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
-import { scale } from "@df/multichannel-app-shared-web/styles/typography";
-import { articleTimeStr } from "@df/multichannel-app-shared/helpers/dates";
+
 import { MdxNode } from "@df/multichannel-app-shared/interfaces/markdown";
+import { colors } from "@df/multichannel-app-shared/styles/colors";
 
 import Bio from "../components/Bio";
+import PagePostHeader from "../components/PagePostHeader";
 import SEO from "../components/SEO";
 import SiteLayout from "../containers/SiteLayout";
-import { colors } from "@df/multichannel-app-shared/styles/colors";
 
 export interface PostTemplateProps {
   location: {
@@ -49,70 +48,37 @@ export default (props: PostTemplateProps) => {
             ...gridContainerStyles,
           }}
         >
-          <header>
-            <h1>{frontmatter.title}</h1>
-          </header>
-
-          <SubNav items={frontmatter.subNavItems} />
-
-          {frontmatter.standfirst && (
-            <div style={{ fontSize: 1.4 }}>{frontmatter.standfirst}</div>
+          {frontmatter.taxonomy && (
+            <Chips
+              clickableChips={frontmatter.taxonomy.map((t: string) => ({
+                to: `/blog/${t}`,
+                title: `More posts about #${t}`,
+                label: `#${t}`,
+              }))}
+              style={{
+                margin: `1rem 0 1rem 0`,
+              }}
+            />
           )}
+
+          <PagePostHeader
+            title={frontmatter.title}
+            subNavItems={frontmatter.subNavItems}
+            standfirst={frontmatter.standfirst}
+            created={frontmatter.created}
+            updated={frontmatter.updated}
+          />
 
           <MDXRenderer>{node.code.body}</MDXRenderer>
 
-          <footer
-            style={{
-              margin: "3rem 0",
-            }}
-          >
-            <div
-              style={{
-                borderTop: `1px solid ${colors.grey1}`,
-                borderBottom: `1px solid ${colors.grey1}`,
-                padding: "1rem 0",
-              }}
-            >
-              <p
-                style={{
-                  fontSize: "0.85em",
-                  display: `block`,
-                  marginBottom: `1rem`,
-                  marginTop: `1rem`,
-                  color: colors.grey3,
-                  margin: `0 0 0.5rem 0`,
-                }}
-              >
-                {articleTimeStr(frontmatter.created, frontmatter.updated)}.{" "}
-              </p>
-
-              {frontmatter.taxonomy && (
-                <Chips
-                  clickableChips={frontmatter.taxonomy.map((t: string) => ({
-                    to: `/blog/${t}`,
-                    title: `More posts about #${t}`,
-                    label: `#${t}`,
-                  }))}
-                  style={{
-                    margin: `0.5rem 0 0 0`,
-                  }}
-                />
-              )}
-            </div>
-
-            <NextPrevNav
-              next={next}
-              prev={previous}
-              style={{
-                borderBottom: `1px solid ${colors.grey1}`,
-              }}
-            />
+          <footer style={{ margin: "4rem 0" }} >
+            <NextPrevNav next={next} prev={previous} />
           </footer>
 
           <aside
             style={{
               background: colors.grey1,
-              padding: "2rem 1rem 0",
+              padding: "1.5rem 1rem",
               borderRadius: "3px",
             }}
           >

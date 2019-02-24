@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
 import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
 
 import { linearGradientBlockStyle } from "@df/multichannel-app-shared/styles/gradients";
@@ -12,41 +11,37 @@ import NavList from "./components/NavList";
 const siteHeaderHeight = "46px";
 
 const SiteHeader = () => (
-  <LayoutContextConsumer>
-    {({ breakpoint }) => (
-      <header
-        role="banner"
+  <header
+    role="banner"
+    style={{
+      ...linearGradientBlockStyle,
+      marginBottom: "1.5rem",
+      position: "relative",
+      zIndex: 9999,
+      height: siteHeaderHeight,
+    }}
+  >
+    <div
+      style={{
+        ...gridContainerStyles,
+        height: siteHeaderHeight,
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <div
         style={{
-          ...linearGradientBlockStyle,
-          marginBottom: "1.5rem",
-          position: "relative",
-          zIndex: 9999,
-          height: siteHeaderHeight,
+          flexShrink: 1,
+          marginLeft: "-1rem",
         }}
       >
-        <div style={{ ...gridContainerStyles, height: siteHeaderHeight }}>
-          <div
-            style={{
-              display: breakpoint === "sm" ? "inline-block" : "flex",
-              alignItems: breakpoint === "sm" ? undefined : "center",
-            }}
-          >
-            <div
-              style={{
-                flexShrink: breakpoint === "sm" ? undefined : 1,
-                marginLeft: "-1rem",
-              }}
-            >
-              <SiteTitle />
-            </div>
+        <SiteTitle />
+      </div>
 
-            {breakpoint === "sm" && <NavBar />}
-            {breakpoint !== "sm" && <NavList siteHeaderHeight={siteHeaderHeight} />}
-          </div>
-        </div>
-      </header>
-    )}
-  </LayoutContextConsumer>
+      <NavBar />
+      <NavList siteHeaderHeight={siteHeaderHeight} />
+    </div>
+  </header>
 );
 
 export default SiteHeader;

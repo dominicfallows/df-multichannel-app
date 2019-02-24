@@ -51,17 +51,20 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                 <div
                   style={{
                     ...gridContainerStyles,
-                    padding: "1rem 1rem 2rem",
+                    marginTop: "3rem",
+                    marginBottom: "3rem",
                   }}
                 >
-                  <h2>Blog</h2>
+                  <h2 id="blog">Blog</h2>
+
                   <div style={{ ...cardGridContainerStyles(breakpoint) }}>
                     {posts.map(({ node }: { node: MdxNode }, i) => {
                       const path = node.frontmatter.path || node.fields.path;
                       const title = node.frontmatter.title;
-                      const description = node.frontmatter.seo
-                        ? node.frontmatter.seo.description || node.excerpt
-                        : node.excerpt;
+                      const description =
+                        (node.frontmatter.seo &&
+                          node.frontmatter.seo.description) ||
+                        node.excerpt;
 
                       return (
                         <Card key={path} width={50} to={path} title={title}>
@@ -74,17 +77,18 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                           </h3>
 
                           <p
-                            dangerouslySetInnerHTML={{ __html: description }}
                             style={{
                               fontSize: "0.9em",
                               marginBottom: "1rem",
                             }}
-                          />
+                          >
+                            {description}
+                          </p>
 
                           {node.frontmatter.taxonomy && (
                             <Chips
                               chips={node.frontmatter.taxonomy.map(
-                                (t: string) => `#${t}`,
+                                (t: string) => `#${t}`
                               )}
                             />
                           )}

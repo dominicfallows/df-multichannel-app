@@ -25,7 +25,7 @@ class Bio extends React.Component<BioProps> {
     return (
       <StaticQuery
         query={bioQuery}
-        render={data => {
+        render={(data) => {
           const { author, social } = data.site.siteMetadata;
 
           return (
@@ -68,7 +68,7 @@ class Bio extends React.Component<BioProps> {
                             profile: string;
                             url: string;
                           },
-                          i: number
+                          i: number,
                         ) => (
                           <React.Fragment key={i}>
                             <IconLink
@@ -81,7 +81,7 @@ class Bio extends React.Component<BioProps> {
                             />
                             {i + 1 < social.length ? " " : ""}
                           </React.Fragment>
-                        )
+                        ),
                       )}
                     </p>
                   </>

@@ -1,8 +1,14 @@
-const titleParts = [
+const siteTitleParts = [
   "Dominic Fallows",
   "Technical Lead and Senior Developer",
   "web, mobile and cloud apps",
 ];
+const siteTitle = `${siteTitleParts[0]} - ${siteTitleParts[1]} for ${
+  siteTitleParts[2]
+}`;
+const siteAuthorName = "Dominic Fallows";
+const siteDescription =
+  "Hi, I’m Dominic, a seasoned Developer, Technical Lead and life-long enthusiast of technology, software engineering and business. Building web, mobile and cloud apps, products and teams.";
 
 const siteUrl =
   process.env === "production"
@@ -11,11 +17,10 @@ const siteUrl =
 
 module.exports = {
   siteMetadata: {
-    title: `${titleParts[0]} - ${titleParts[1]} for ${titleParts[2]}`,
-    titleParts: titleParts,
-    author: "Dominic Fallows",
-    description:
-      "Hi, I’m Dominic, a seasoned Developer, Technical Lead and life-long enthusiast of technology, software engineering and business. Building web, mobile and cloud apps, products and teams.",
+    title: siteTitle,
+    siteTitleParts: siteTitleParts,
+    author: siteAuthorName,
+    description: siteDescription,
     siteUrl: siteUrl,
     social: [
       {
@@ -121,8 +126,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Dominic Fallows",
-        short_name: "Dominic Fallows",
+        name: siteTitle,
+        short_name: siteAuthorName,
         start_url: "/",
         background_color: "#ffffff",
         theme_color: "#000000",
@@ -151,7 +156,11 @@ module.exports = {
               edges {
                 node {
                   html
-                  fields { path }
+                  excerpt
+                  fields {
+                    type
+                    path
+                  }
                   frontmatter {
                     path
                     title
@@ -164,13 +173,35 @@ module.exports = {
           }
         `,
         serialize: results =>
-          results.data.allMdx.edges.map(({ node }) => ({
-            path: node.frontmatter.path || node.fields.path, // MUST contain a path
-            title: node.frontmatter.title,
-            created: node.frontmatter.created,
-            updated: node.frontmatter.updated,
-            html: node.html,
-          })),
+          results.data.allMdx.edges
+            .filter(({ node }) => ["post", "page"].includes(node.fields.type))
+            .map(({ node }) => ({
+              path: node.frontmatter.path || node.fields.path, // MUST contain a path
+              title: node.frontmatter.title,
+              created: node.frontmatter.created,
+              updated: node.frontmatter.updated,
+              html: node.html,
+            })),
+        feedMeta: {
+          author: {
+            name: siteAuthorName,
+          },
+          description: siteDescription,
+          favicon: `${siteUrl}/icons/icon-48x48.png`,
+          title: siteTitle,
+        },
+        serializeFeed: results =>
+          results.data.allMdx.edges
+            .filter(({ node }) => ["post"].includes(node.fields.type))
+            .map(({ node }) => ({
+              date_modified: new Date(node.frontmatter.updated).toISOString(),
+              date_published: new Date(node.frontmatter.created).toISOString(),
+              excerpt: node.excerpt,
+              id: node.frontmatter.path || node.fields.path,
+              title: node.frontmatter.title,
+              url: siteUrl + (node.frontmatter.path || node.fields.path),
+            })),
+        nodesPerFeedFile: 1,
       },
     },
     {
@@ -181,9 +212,7 @@ module.exports = {
         fieldName: "github",
         url: "https://api.github.com/graphql",
         headers: {
-          Authorization: `bearer ${
-            process.env.GITHUB_PAT_READ_ALL_USER_PROFILE_DATA
-          }`,
+          Authorization: `bearer ${process.env.GITHUB_PAT_READ_ALL_USER_PROFILE_DATA}`,
         },
         fetchOptions: {},
       },

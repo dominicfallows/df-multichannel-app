@@ -100,6 +100,11 @@ Because we use both TypeScript and multiple different frameworks across the pack
 - Gatsby compiles TypeScript using [@babel/preset-typescript](@babel/preset-typescript) - which prevents use of more recent TypeScript monorepo support, like [TypeScript Project References](https://www.typescriptlang.org/docs/handbook/project-references.html)
 - Lerna is designed to work with JavaScript monorepos that publish compiled code to NPM. We need to handle raw TypeScript code and store to GitHub.
 
+<!-- ## Hosting
+AWS Amplify rewrite rule for hybrid Gatsby app (static and dymaic route app)
+</^[^.]+$|\.(?!(css|gif|html|ico|jpg|js|json|png|txt|svg|woff|ttf)$)([^.]+$)/>
+-->
+
 ## License
 
 See [LICENSE.md](LICENSE.md)

@@ -1,0 +1,17 @@
+version: 0.1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - yarn install
+        - yarn web:install
+    build:
+      commands:
+        - GITHUB_PAT_READ_ALL_USER_PROFILE_DATA=$GITHUB_PAT_READ_ALL_USER_PROFILE_DATA GOOGLE_ANALYTICS_TRACKING_ID=$GOOGLE_ANALYTICS_TRACKING_ID SITE_URL=$SITE_URL yarn web:build
+  artifacts:
+    baseDirectory: /packages/web/public
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*

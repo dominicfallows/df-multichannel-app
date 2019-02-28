@@ -23,35 +23,62 @@ We can't use other existing monorepo tools - see [Why we don't use Yarn Workspac
 
 ```bash
 packages/
-  mobile/ # React Native with TypeScript
-  mobile-web/ # Gatsby SPWA with TypeScript and React Native for Web
+  # mobile/ # React Native with TypeScript
+  # mobile-web/ # Gatsby SPWA with TypeScript and React Native for Web
   shared/
-    content/ # Shared content (text, images etc)
-    contexts/ # Shared React contexts
-    helpers/ # Shared JS helpers
-    services/ # Shared JS services
-    styles/ # Shared JS styles
-  shared-native/ # Shared React Native components
+    content/ # Shared content (markdown, text, images etc) for web and mobile
+    helpers/ # Shared helpers for web and mobile
+    interfaces/ # Shared interfaces for web and mobile
+    styles/ # Shared styles for web and mobile
+  # shared-native/ # Shared React Native components
+  shared-web/
+    components/ # Shared React components for web
+    contexts/ # Shared React contexts for web
+    styles/ # Shared styles for web
   web/ # Gatsby SPWa with TypeScript and React DOM
+scripts/ # Monorepo scripts triggered by Yarn commands
 ```
 
 ## How to develop
 
 Make sure you are in the root of the project.
 
-First run `yarn install && yarn bootstrap` command from the root of the project. This will prepare each of the packages.
+First run `yarn install` command from the root of the project.
 
 Then you can run a package script from the table below.
 
 > At the moment we can only run one package script at-a-time, however each command starts multiple package processes as required.
-> - [ ] TODO: enable running of multiple commands without conflicting package processes.
 
-| Job | Packages started | Command |
+- [ ] TODO: enable running of multiple commands without conflicting package processes.
+
+### Web package
+
+By running the commands for the web package, we also run the required commands for each dependency package, so you don't need to run those independently.
+
+| Command | Job | Packages used |
 |---|---|---|
-| Develop the Web package | shared, web | `yarn start:web` |
-| Develop the Mobile Web package | shared, shared-native, mobile-web | yarn start:mobile-web |
-| Develop the Mobile Native package (Android) | shared, shared-native, mobile | `yarn start:mobile:android` |
-| Develop the Mobile Native package (iOS) | shared, shared-native, mobile | `yarn start:mobile:ios` |
+| `yarn web:install` | Prepares the web and dependency packages for development and build | web, shared, shared-web |
+| `yarn web:start` | Develop the web package | web, shared, shared-web |
+| `yarn web:build` | Build the web package | web, shared, shared-web |
+| `yarn web:serve` | Serve the built the web package | web, shared, shared-web |
+
+### Shared (web and mobile)
+
+| Command | Job | Packages used |
+|---|---|---|
+| `yarn shared:install` | Prepares the shared package for development and build | shared |
+| `yarn shared:start` | Develop the shared package | shared |
+
+### Shared (web)
+
+| Command | Job | Packages used |
+|---|---|---|
+| `yarn shared-web:install` | Prepares the shared-web and dependency packages for development and build | shared, shared-web |
+| `yarn shared-web:start` | Develop the shared-web package | shared, shared-web |
+
+<!-- | `yarn start:mobile-web` | Develop the Mobile Web package | shared, shared-native, mobile-web |
+| `yarn start:mobile:android` | Develop the Mobile Native package (Android) | shared, shared-native, mobile |
+| `yarn start:mobile:ios` | Develop the Mobile Native package (iOS) | shared, shared-native, mobile | -->
 
 <!---
 ### To run your app on iOS

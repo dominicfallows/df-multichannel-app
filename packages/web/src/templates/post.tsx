@@ -50,11 +50,14 @@ export default (props: PostTemplateProps) => {
         >
           {frontmatter.taxonomy && (
             <Chips
-              clickableChips={frontmatter.taxonomy.map((t: string) => ({
+              /* clickableChips={frontmatter.taxonomy.map((t: string) => ({
                 to: `/blog/${t}`,
                 title: `More posts about #${t}`,
                 label: `#${t}`,
-              }))}
+              }))} */
+              chips={frontmatter.taxonomy.map(
+                (t: string) => `#${t}`,
+              )}
               style={{
                 margin: `1rem 0 1rem 0`,
               }}

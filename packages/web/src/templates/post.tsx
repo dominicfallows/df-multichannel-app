@@ -55,9 +55,7 @@ export default (props: PostTemplateProps) => {
                 title: `More posts about #${t}`,
                 label: `#${t}`,
               }))} */
-              chips={frontmatter.taxonomy.map(
-                (t: string) => `#${t}`,
-              )}
+              chips={frontmatter.taxonomy.map((t: string) => `#${t}`)}
               style={{
                 margin: `1rem 0 1rem 0`,
               }}

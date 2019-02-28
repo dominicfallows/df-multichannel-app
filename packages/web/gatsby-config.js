@@ -12,7 +12,7 @@ const siteDescription =
 
 const siteUrl =
   process.env === "production"
-    ? process.env.SITE_URL || "http://localhost"
+    ? process.env.SITE_URL || "http://localhost:9000"
     : "http://localhost:8000";
 
 module.exports = {

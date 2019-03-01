@@ -15,7 +15,10 @@ import { colors } from "@df/multichannel-app-shared/styles/colors";
 const NavBar = () => (
   <LayoutContextConsumer>
     {({ breakpoint }) => {
+      console.log("NavBar breakpoint", breakpoint);
+
       if (breakpoint !== "sm") {
+        console.log("Not on desktop, returning null");
         return null;
       }
       return (

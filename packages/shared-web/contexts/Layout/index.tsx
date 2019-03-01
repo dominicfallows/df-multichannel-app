@@ -8,29 +8,9 @@ import {
 } from "./interfaces/context";
 
 /**
- * Helpers
- */
-const getBreakpoint = (): LayoutBreakpoint => {
-  if (typeof window !== "undefined") {
-    if (window.innerWidth >= 1440) {
-      return "xl";
-    } else if (window.innerWidth >= 1200) {
-      return "lg";
-    } else if (window.innerWidth >= 640) {
-      return "md";
-    }
-  }
-  return "sm";
-};
-
-/**
  * Non-exported Context
  */
-const Context = React.createContext({
-  breakpoint: getBreakpoint(),
-  previousBreakpoint: getBreakpoint(),
-  breakpointChanged: false,
-});
+const Context = React.createContext((undefined as any) as LayoutContext);
 
 /**
  * Export Consumer
@@ -57,12 +37,24 @@ export const withLayout = <P extends object>() => (
  * Export Provider
  */
 export class Provider extends React.Component<{}, LayoutContext> {
-  resizeDebounce: () => void;
+  private resizeDebounce = debounce(() => {
+    const nextBreakpoint = this.getBreakpoint();
+
+    if (nextBreakpoint !== this.state.breakpoint) {
+      console.log("resizeDebounce() nextBreakpoint", nextBreakpoint);
+
+      this.setState({
+        breakpoint: nextBreakpoint,
+        previousBreakpoint: this.state.breakpoint,
+        breakpointChanged: true,
+      });
+    }
+  }, 150);
 
   constructor(props: {}) {
     super(props);
 
-    const breakpointOnLoad = getBreakpoint();
+    const breakpointOnLoad = this.getBreakpoint();
 
     this.state = {
       breakpoint: breakpointOnLoad,
@@ -70,15 +62,7 @@ export class Provider extends React.Component<{}, LayoutContext> {
       breakpointChanged: false,
     };
 
-    this.resizeDebounce = debounce(() => {
-      const nextBreakpoint = getBreakpoint();
-
-      this.setState({
-        breakpoint: nextBreakpoint,
-        previousBreakpoint: this.state.breakpoint,
-        breakpointChanged: nextBreakpoint !== this.state.breakpoint,
-      });
-    }, 150);
+    console.log("constructor() breakpointOnLoad", breakpointOnLoad);
   }
 
   componentDidMount() {
@@ -99,6 +83,19 @@ export class Provider extends React.Component<{}, LayoutContext> {
         {this.props.children}
       </Context.Provider>
     );
+  }
+
+  private getBreakpoint = (): LayoutBreakpoint => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth >= 1440) {
+        return "xl";
+      } else if (window.innerWidth >= 1200) {
+        return "lg";
+      } else if (window.innerWidth >= 640) {
+        return "md";
+      }
+    }
+    return "sm";
   }
 }
 

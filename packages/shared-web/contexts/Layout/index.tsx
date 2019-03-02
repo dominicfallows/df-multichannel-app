@@ -8,9 +8,9 @@ import {
 } from "./interfaces/context";
 
 /**
- * Non-exported Context
+ * Exported core Context to use with hook `useContext`
  */
-const Context = React.createContext((undefined as any) as LayoutContext);
+export const Context = React.createContext((undefined as any) as LayoutContext);
 
 /**
  * Export Consumer
@@ -41,15 +41,13 @@ export class Provider extends React.Component<{}, LayoutContext> {
     const nextBreakpoint = this.getBreakpoint();
 
     if (nextBreakpoint !== this.state.breakpoint) {
-      console.log("resizeDebounce() nextBreakpoint", nextBreakpoint);
-
       this.setState({
         breakpoint: nextBreakpoint,
         previousBreakpoint: this.state.breakpoint,
         breakpointChanged: true,
       });
     }
-  }, 150);
+  }, 100);
 
   constructor(props: {}) {
     super(props);
@@ -61,8 +59,6 @@ export class Provider extends React.Component<{}, LayoutContext> {
       previousBreakpoint: breakpointOnLoad,
       breakpointChanged: false,
     };
-
-    console.log("constructor() breakpointOnLoad", breakpointOnLoad);
   }
 
   componentDidMount() {

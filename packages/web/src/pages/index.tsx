@@ -4,7 +4,6 @@ import * as React from "react";
 import Card from "@df/multichannel-app-shared-web/components/Card";
 import Chips from "@df/multichannel-app-shared-web/components/Chips";
 import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
-import { tagStyle } from "@df/multichannel-app-shared/styles/tags";
 
 import Bio from "../components/Bio";
 import SEO from "../components/SEO";
@@ -15,7 +14,6 @@ import {
   gridContainerStyles,
 } from "@df/multichannel-app-shared-web/styles/grid";
 import { MdxNode } from "@df/multichannel-app-shared/interfaces/markdown";
-import { colors } from "@df/multichannel-app-shared/styles/colors";
 
 export interface BlogIndexProps {
   data: {
@@ -67,7 +65,12 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                         node.excerpt;
 
                       return (
-                        <Card key={path} width={50} to={path} title={title}>
+                        <Card
+                          key={path}
+                          width={breakpoint === "sm" ? 100 : 50}
+                          to={path}
+                          title={title}
+                        >
                           <h3
                             style={{
                               marginBottom: "0.5rem",
@@ -88,7 +91,7 @@ class BlogIndex extends React.Component<BlogIndexProps> {
                           {node.frontmatter.taxonomy && (
                             <Chips
                               chips={node.frontmatter.taxonomy.map(
-                                (t: string) => `#${t}`,
+                                (t: string) => `#${t}`
                               )}
                             />
                           )}

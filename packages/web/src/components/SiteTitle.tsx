@@ -1,16 +1,20 @@
-import { Location } from "@reach/router";
-import { graphql, Link, StaticQuery } from "gatsby";
-import * as React from "react";
+import { WindowLocation } from "@reach/router";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import React, { useState } from "react";
 
 import icon from "@df/multichannel-app-shared/content/assets/icon.svg";
 import logo from "@df/multichannel-app-shared/content/assets/logo.svg";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 
+export interface SiteTitleProps {
+  location: WindowLocation;
+}
+
 export interface SiteTitleState {
   hover: boolean;
 }
 
-export interface SiteTitleDataInterface {
+export interface SiteTitleStaticQueryInterface {
   site: {
     siteMetadata: {
       title: string;
@@ -18,80 +22,59 @@ export interface SiteTitleDataInterface {
   };
 }
 
-class SiteTitle extends React.Component<{}, SiteTitleState> {
-  state = {
-    hover: false,
-  };
-
-  mouseOver = () =>
-    this.setState({
-      hover: true,
-    })
-
-  mouseOut = () =>
-    this.setState({
-      hover: false,
-    })
-
-  render() {
-    return (
-      <StaticQuery
-        query={graphql`
-          query SiteTitleQuery {
-            site {
-              siteMetadata {
-                title
-              }
-            }
+const SiteTitle = (props: SiteTitleProps) => {
+  const { location } = props;
+  const [hover, setHover] = useState(false);
+  const { site }: SiteTitleStaticQueryInterface = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
           }
-        `}
-        render={(data: SiteTitleDataInterface) => (
-          <Location>
-            {({ location }) => {
-              const siteLogo = (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <img
-                    src={location.pathname === "/" ? icon : logo}
-                    alt="Dominic Fallows"
-                    style={{
-                      height: "30px",
-                      width: "auto",
-                      display: "block",
-                      marginBottom: 0,
-                    }}
-                  />
-                </div>
-              );
+        }
+      }
+    `,
+  );
 
-              return (
-                <Link
-                  style={{
-                    color: `inherit`,
-                    boxShadow: `none`,
-                    textDecoration: `none`,
-                    background: this.state.hover ? colors.blue : "transparent",
-                    display: "block",
-                    padding: "0.5rem 1rem",
-                  }}
-                  onMouseOver={() => this.mouseOver()}
-                  onMouseOut={() => this.mouseOut()}
-                  to={`/`}
-                  title={data.site.siteMetadata.title}
-                >
-                  {siteLogo}
-                </Link>
-              );
-            }}
-          </Location>
-        )}
+  const siteLogo = (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <img
+        src={location.pathname === "/" ? icon : logo}
+        alt="Dominic Fallows"
+        style={{
+          height: "30px",
+          width: "auto",
+          display: "block",
+          marginBottom: 0,
+        }}
       />
-    );
-  }
-}
+    </div>
+  );
+
+  return (
+    <Link
+      style={{
+        color: `inherit`,
+        boxShadow: `none`,
+        textDecoration: `none`,
+        background: hover ? colors.blue : "transparent",
+        display: "block",
+        padding: "0.5rem 1rem",
+      }}
+      onMouseOver={() => setHover(true)}
+      onMouseOut={() => setHover(false)}
+      to={`/`}
+      title={site.siteMetadata.title}
+    >
+      {siteLogo}
+    </Link>
+  );
+};
 
 export default SiteTitle;

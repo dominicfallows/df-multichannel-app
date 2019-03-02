@@ -1,8 +1,8 @@
-import { Location } from "@reach/router";
-import * as React from "react";
+import { WindowLocation } from "@reach/router";
+import React, { useContext } from "react";
 
 import Link from "@df/multichannel-app-shared-web/components/Link";
-import { Consumer as LayoutContextConsumer } from "@df/multichannel-app-shared-web/contexts/Layout";
+import { Context as LayoutContext } from "@df/multichannel-app-shared-web/contexts/Layout";
 
 import aboutIconActive from "@df/multichannel-app-shared/content/assets/about-icon-active.svg";
 import aboutIcon from "@df/multichannel-app-shared/content/assets/about-icon.svg";
@@ -12,81 +12,72 @@ import projectsIconActive from "@df/multichannel-app-shared/content/assets/proje
 import projectsIcon from "@df/multichannel-app-shared/content/assets/projects-icon.svg";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 
-const NavBar = () => (
-  <LayoutContextConsumer>
-    {({ breakpoint }) => {
-      console.log("NavBar breakpoint", breakpoint);
+const NavBar = ({ location }: { location?: WindowLocation }) => {
+  const { breakpoint } = useContext(LayoutContext);
 
-      if (breakpoint !== "sm") {
-        console.log("Not on desktop, returning null");
-        return null;
-      }
-      return (
-        <nav
-          role="navigation"
-          style={{
-            textAlign: "center",
-            background: colors.grey1,
-            borderTop: `1px solid ${colors.grey2}`,
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            padding: "8px 8px 6px 8px",
-            zIndex: 9999,
-          }}
-        >
-          <ul
-            style={{
-              listStyleType: "none",
-              margin: 0,
-              padding: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Location>
-              {({ location }) => (
-                <>
-                  <NavListItem
-                    to="/"
-                    title="Blog"
-                    label="Blog"
-                    icon={blogIcon}
-                    iconActive={blogIconActive}
-                    active={
-                      location.pathname.startsWith("/blog") ||
-                      location.pathname === "/"
-                    }
-                  />
-                  <NavListItem
-                    to="/about"
-                    title="About Dominic Fallows"
-                    label="About"
-                    icon={aboutIcon}
-                    iconActive={aboutIconActive}
-                    active={location.pathname.startsWith("/about")}
-                  />
-                  <NavListItem
-                    to="/projects"
-                    title="Projects"
-                    label="Projects"
-                    icon={projectsIcon}
-                    iconActive={projectsIconActive}
-                    active={location.pathname.startsWith("/projects")}
-                  />
-                </>
-              )}
-            </Location>
-          </ul>
-        </nav>
-      );
-    }}
-  </LayoutContextConsumer>
-);
+  if (breakpoint !== "sm") {
+    return null;
+  }
 
-const NavListItem = (props: {
+  return (
+    <div
+      id="SiteHeaderNavBar"
+      style={{
+        textAlign: "center",
+        background: colors.grey1,
+        borderTop: `1px solid ${colors.grey2}`,
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: "8px 8px 6px 8px",
+        zIndex: 9999,
+        display: breakpoint === "sm" ? "block" : "hidden",
+      }}
+    >
+      <ul
+        style={{
+          listStyleType: "none",
+          margin: 0,
+          padding: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <NavBarItem
+          to="/"
+          title="Blog"
+          label="Blog"
+          icon={blogIcon}
+          iconActive={blogIconActive}
+          active={
+            location &&
+            (location.pathname.startsWith("/blog") || location.pathname === "/")
+          }
+        />
+        <NavBarItem
+          to="/about"
+          title="About Dominic Fallows"
+          label="About"
+          icon={aboutIcon}
+          iconActive={aboutIconActive}
+          active={location && location.pathname.startsWith("/about")}
+        />
+        <NavBarItem
+          to="/projects"
+          title="Projects"
+          label="Projects"
+          icon={projectsIcon}
+          iconActive={projectsIconActive}
+          active={location && location.pathname.startsWith("/projects")}
+        />
+      </ul>
+    </div>
+  );
+};
+
+const NavBarItem = (props: {
   to: string;
   title: string;
   label: string;

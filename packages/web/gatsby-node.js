@@ -19,12 +19,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     // Assign node type
     let type = "page";
 
-    if (path.startsWith("/dummyPost")) {
-      type = "dummyPost";
-    }
-
-    if (path.startsWith("/dummyPage")) {
-      type = "dummyPage";
+    if (path.startsWith("/dummy")) {
+      type = "dummyModel";
     }
     
     if (path.startsWith("/blog/")) {

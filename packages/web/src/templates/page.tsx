@@ -33,7 +33,11 @@ export default (props: PageTemplateProps) => {
 
   return (
     <SiteLayout location={location}>
-      <SEO title={title} description={description} />
+      <SEO
+        title={title}
+        description={description}
+        path={node.frontmatter.path || node.fields.path}
+      />
 
       <article
         style={{

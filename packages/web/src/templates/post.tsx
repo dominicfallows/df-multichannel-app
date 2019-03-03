@@ -40,7 +40,11 @@ export default (props: PostTemplateProps) => {
 
   return (
     <>
-      <SEO title={title} description={description} />
+      <SEO
+        title={title}
+        description={description}
+        path={node.frontmatter.path || node.fields.path}
+      />
 
       <SiteLayout location={location}>
         <article

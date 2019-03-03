@@ -38,7 +38,7 @@ class BlogIndex extends React.Component<BlogIndexProps> {
 
     return (
       <SiteLayout location={this.props.location}>
-        <SEO homepage={true} />
+        <SEO homepage={true} path="/" />
 
         <LayoutContextConsumer>
           {({ breakpoint }) => (

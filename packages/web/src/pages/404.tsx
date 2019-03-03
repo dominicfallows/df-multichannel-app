@@ -19,6 +19,7 @@ class NotFoundPage extends React.Component<NotFoundPageProps> {
         <SEO
           title="404 Not Found"
           meta={[{ name: "robots", content: "noindex" }]}
+          path="/404"
         />
         <h1>Not Found</h1>
         <p>

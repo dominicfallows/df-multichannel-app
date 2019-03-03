@@ -4,7 +4,7 @@
   "description": "The shared package for Dominic Fallows' multichannel app for web, mobile web and mobile native.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dominicfallows/dominicfallows-multichannel-app.git"
+    "url": "git+https://github.com/dominicfallows/df-multichannel-app.git"
   },
   "author": "Dominic Fallows <consultant@dominicfallows.uk>",
   "licenses": [

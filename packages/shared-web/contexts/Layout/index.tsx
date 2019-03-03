@@ -8,29 +8,9 @@ import {
 } from "./interfaces/context";
 
 /**
- * Helpers
+ * Exported core Context to use with hook `useContext`
  */
-const getBreakpoint = (): LayoutBreakpoint => {
-  if (typeof window !== "undefined") {
-    if (window.innerWidth >= 1440) {
-      return "xl";
-    } else if (window.innerWidth >= 1200) {
-      return "lg";
-    } else if (window.innerWidth >= 640) {
-      return "md";
-    }
-  }
-  return "sm";
-};
-
-/**
- * Non-exported Context
- */
-const Context = React.createContext({
-  breakpoint: getBreakpoint(),
-  previousBreakpoint: getBreakpoint(),
-  breakpointChanged: false,
-});
+export const Context = React.createContext((undefined as any) as LayoutContext);
 
 /**
  * Export Consumer
@@ -57,32 +37,23 @@ export const withLayout = <P extends object>() => (
  * Export Provider
  */
 export class Provider extends React.Component<{}, LayoutContext> {
-  resizeDebounce: () => void;
+  private resizeDebounce = debounce(() => {
+    this.setBreakpointState();
+  }, 100);
 
   constructor(props: {}) {
     super(props);
 
-    const breakpointOnLoad = getBreakpoint();
-
     this.state = {
-      breakpoint: breakpointOnLoad,
-      previousBreakpoint: breakpointOnLoad,
+      breakpoint: "sm",
+      previousBreakpoint: "sm",
       breakpointChanged: false,
     };
-
-    this.resizeDebounce = debounce(() => {
-      const nextBreakpoint = getBreakpoint();
-
-      this.setState({
-        breakpoint: nextBreakpoint,
-        previousBreakpoint: this.state.breakpoint,
-        breakpointChanged: nextBreakpoint !== this.state.breakpoint,
-      });
-    }, 150);
   }
 
   componentDidMount() {
     if (typeof window !== "undefined") {
+      this.setBreakpointState();
       window.addEventListener("resize", this.resizeDebounce, false);
     }
   }
@@ -99,6 +70,29 @@ export class Provider extends React.Component<{}, LayoutContext> {
         {this.props.children}
       </Context.Provider>
     );
+  }
+
+  private setBreakpointState = () => {
+    const breakpoint = this.getBreakpoint();
+
+    this.setState({
+      breakpoint,
+      previousBreakpoint: this.state.breakpoint,
+      breakpointChanged: breakpoint !== this.state.breakpoint,
+    });
+  }
+
+  private getBreakpoint = (): LayoutBreakpoint => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth >= 1440) {
+        return "xl";
+      } else if (window.innerWidth >= 1200) {
+        return "lg";
+      } else if (window.innerWidth >= 640) {
+        return "md";
+      }
+    }
+    return "sm";
   }
 }
 

@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dominicfallows/dominicfallows-multichannel-app.git"
+    "url": "git+https://github.com/dominicfallows/df-multichannel-app.git"
   },
   "homepage": "https://dominicfallows.uk",
   "author": "Dominic Fallows <consultant@dominicfallows.uk>",

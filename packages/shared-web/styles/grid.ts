@@ -21,26 +21,27 @@ export const cardGridContainerStyles = (breakpoint: string): React.CSSProperties
   ),
 });
 
-export const cardGridItem25Percent: React.CSSProperties = {
+const cardGridItemBase: React.CSSProperties = {
   flex: "0 1 auto", // can't use calc() in flex with IE11
+  margin: "0.5rem 0.5rem 1rem 0.5rem",
+};
+
+export const cardGridItem25Percent: React.CSSProperties = {
+  ...cardGridItemBase,
   width: "calc(25% - 1rem)",
-  margin: "0.5rem",
 };
 
 export const cardGridItem33Percent: React.CSSProperties = {
-  flex: "0 1 auto", // can't use calc() in flex with IE11
+  ...cardGridItemBase,
   width: "calc(33% - 1rem)",
-  margin: "0.5rem",
 };
 
 export const cardGridItem50Percent: React.CSSProperties = {
-  flex: "0 1 auto", // can't use calc() in flex with IE11
+  ...cardGridItemBase,
   width: "calc(50% - 1rem)",
-  margin: "0.5rem",
 };
 
 export const cardGridItem100Percent: React.CSSProperties = {
-  flex: "0 1 auto", // can't use calc() in flex with IE11
+  ...cardGridItemBase,
   width: "calc(100% - 1rem)",
-  margin: "0.5rem",
 };

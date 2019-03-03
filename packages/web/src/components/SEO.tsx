@@ -31,11 +31,14 @@ const SEO = (props: SEOProps) => {
               lang,
             }}
             title={homepage ? data.site.siteMetadata.title : title}
-            titleTemplate={homepage ? `%s` : `%s | ${data.site.siteMetadata.author}`}
+            titleTemplate={
+              homepage ? `%s` : `%s | ${data.site.siteMetadata.author}`}
             link={[
               {
                 rel: "canonical",
-                href: `${data.site.siteMetadata.siteUrl}${path === "/" ? "" : path}`,
+                href: `${data.site.siteMetadata.siteUrl}${
+                  path === "/" ? "" : path
+                }`,
               },
             ]}
             meta={[

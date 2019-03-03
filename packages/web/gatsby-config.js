@@ -11,8 +11,8 @@ const siteDescription =
   "Hi, I’m Dominic, a seasoned Developer, Technical Lead and life-long enthusiast of technology, software engineering and business. Building web, mobile and cloud apps, products and teams.";
 
 const siteUrl =
-  process.env === "production"
-    ? process.env.SITE_URL || "http://localhost:9000"
+  process.env.NODE_ENV === "production"
+    ? process.env.GATSBY_SITE_URL || "http://localhost:9000"
     : "http://localhost:8000";
 
 module.exports = {
@@ -120,9 +120,9 @@ module.exports = {
       resolve: "gatsby-plugin-google-analytics",
       options: {
         trackingId:
-          process.env === "production"
-            ? process.env.GOOGLE_ANALYTICS_TRACKING_ID
-            : undefined,
+          process.env.NODE_ENV === "production"
+            ? process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID
+            : "",
       },
     },
     {

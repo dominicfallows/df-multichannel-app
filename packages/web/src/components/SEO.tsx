@@ -13,10 +13,11 @@ export interface SEOProps {
   ];
   title?: string;
   homepage?: boolean;
+  path: string;
 }
 
 const SEO = (props: SEOProps) => {
-  const { description, lang, meta, title, homepage } = props;
+  const { description, lang, meta, title, homepage, path } = props;
 
   return (
     <StaticQuery
@@ -30,8 +31,13 @@ const SEO = (props: SEOProps) => {
               lang,
             }}
             title={homepage ? data.site.siteMetadata.title : title}
-            titleTemplate={
-              homepage ? `%s` : `%s | ${data.site.siteMetadata.author}`}
+            titleTemplate={homepage ? `%s` : `%s | ${data.site.siteMetadata.author}`}
+            link={[
+              {
+                rel: "canonical",
+                href: `${data.site.siteMetadata.siteUrl}${path === "/" ? "" : path}`,
+              },
+            ]}
             meta={[
               {
                 name: `description`,
@@ -86,6 +92,7 @@ const detailsQuery = graphql`
         title
         description
         author
+        siteUrl
       }
     }
   }

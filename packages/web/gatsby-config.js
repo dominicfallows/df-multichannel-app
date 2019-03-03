@@ -51,7 +51,9 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-plugin-typescript",
     "gatsby-image",
-    // "gatsby-plugin-offline",
+    "gatsby-plugin-polyfill-io",
+    "gatsby-plugin-remove-trailing-slashes",
+    "gatsby-plugin-offline",
     // Add source files before MDX
     {
       resolve: "gatsby-source-filesystem",
@@ -151,6 +153,7 @@ module.exports = {
           {
             allMdx(
               sort: { fields: [frontmatter___created], order: DESC }
+              filter: {fields: {type: {in: ["page", "post"]}}}
               limit: 1000
             ) {
               edges {
@@ -215,6 +218,13 @@ module.exports = {
           Authorization: `bearer ${process.env.GITHUB_PAT_READ_ALL_USER_PROFILE_DATA}`,
         },
         fetchOptions: {},
+      },
+    },
+    {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        output: "/sitemap.xml",
+        exclude: [ "/legals" ],
       },
     },
   ],

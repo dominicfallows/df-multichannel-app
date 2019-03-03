@@ -38,31 +38,22 @@ export const withLayout = <P extends object>() => (
  */
 export class Provider extends React.Component<{}, LayoutContext> {
   private resizeDebounce = debounce(() => {
-    const nextBreakpoint = this.getBreakpoint();
-
-    if (nextBreakpoint !== this.state.breakpoint) {
-      this.setState({
-        breakpoint: nextBreakpoint,
-        previousBreakpoint: this.state.breakpoint,
-        breakpointChanged: true,
-      });
-    }
+    this.setBreakpointState();
   }, 100);
 
   constructor(props: {}) {
     super(props);
 
-    const breakpointOnLoad = this.getBreakpoint();
-
     this.state = {
-      breakpoint: breakpointOnLoad,
-      previousBreakpoint: breakpointOnLoad,
+      breakpoint: "sm",
+      previousBreakpoint: "sm",
       breakpointChanged: false,
     };
   }
 
   componentDidMount() {
     if (typeof window !== "undefined") {
+      this.setBreakpointState();
       window.addEventListener("resize", this.resizeDebounce, false);
     }
   }
@@ -79,6 +70,16 @@ export class Provider extends React.Component<{}, LayoutContext> {
         {this.props.children}
       </Context.Provider>
     );
+  }
+
+  private setBreakpointState = () => {
+    const breakpoint = this.getBreakpoint();
+
+    this.setState({
+      breakpoint,
+      previousBreakpoint: this.state.breakpoint,
+      breakpointChanged: breakpoint !== this.state.breakpoint,
+    });
   }
 
   private getBreakpoint = (): LayoutBreakpoint => {

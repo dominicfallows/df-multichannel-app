@@ -54,7 +54,10 @@ const SiteHeader = () => {
               }}
             >
               <NavBar location={location} />
-              <NavList location={location} siteHeaderHeight={siteHeaderHeight} />
+              <NavList
+                location={location}
+                siteHeaderHeight={siteHeaderHeight}
+              />
             </nav>
           </div>
         </header>

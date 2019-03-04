@@ -1,6 +1,6 @@
-# Dominic Fallows' multichannel app for web, mobile web and mobile native
+# Dominic Fallows's multichannel app for web, mobile web and mobile native
 
-A monorepo for Dominic Fallows' multichannel app for web, mobile web and mobile native.
+A monorepo for Dominic Fallows's multichannel app for web, mobile web and mobile native.
 
 ## What is a monorepo
 

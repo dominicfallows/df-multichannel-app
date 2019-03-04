@@ -4,6 +4,7 @@
 # Project dependencies
 .cache
 node_modules
+!packages/web/plugins/gatsby-mdx/node_modules
 yarn-error.log
 npm-debug.log
 

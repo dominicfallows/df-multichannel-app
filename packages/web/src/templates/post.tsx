@@ -1,4 +1,3 @@
-import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import * as React from "react";
 
 import Chips from "@df/multichannel-app-shared-web/components/Chips";
@@ -8,6 +7,7 @@ import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid
 import { MdxNode } from "@df/multichannel-app-shared/interfaces/markdown";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 
+import MDXRenderer from "../../plugins/gatsby-mdx/mdx-renderer";
 import Bio from "../components/Bio";
 import PagePostHeader from "../components/PagePostHeader";
 import SEO from "../components/SEO";

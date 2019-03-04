@@ -95,7 +95,7 @@ class Projects extends React.Component<ProjectsProps> {
                       .map((repo: IGitHubPinnedRepo, i: number) => (
                         <Card
                           key={i}
-                          width={50}
+                          width={breakpoint === "sm" ? 100 : 50}
                           to={repo.url}
                           target="_blank"
                           title={repo.name}

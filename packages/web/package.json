@@ -30,7 +30,6 @@
     "classnames": "^2.2.6",
     "gatsby": "^2.1.17",
     "gatsby-image": "^2.0.29",
-    "gatsby-mdx": "^0.4.0",
     "gatsby-plugin-google-analytics": "^2.0.14",
     "gatsby-plugin-json-output": "^1.1.0",
     "gatsby-plugin-manifest": "^2.0.19",

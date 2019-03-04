@@ -1,7 +1,7 @@
 {
   "name": "@df/multichannel-app-shared-web",
   "version": "1.0.0",
-  "description": "The web shared package for Dominic Fallows' multichannel app for web, mobile web and mobile native.",
+  "description": "The web shared package for Dominic Fallows's multichannel app for web, mobile web and mobile native.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dominicfallows/df-multichannel-app.git"

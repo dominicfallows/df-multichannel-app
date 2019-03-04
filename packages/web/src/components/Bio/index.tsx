@@ -49,7 +49,7 @@ class Bio extends React.Component<BioProps> {
                       and find out more about my{" "}
                       <Link
                         to="/projects"
-                        title="Dominic Fallows' Projects"
+                        title="Dominic Fallows's Projects"
                         type="primary"
                       >
                         Projects

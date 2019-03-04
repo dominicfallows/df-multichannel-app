@@ -1,4 +1,4 @@
-# The web app for Dominic Fallows' multichannel app
+# The web app for Dominic Fallows's multichannel app
 
 Bootstrapped from the official [Gatsby Starter Blog](https://github.com/gatsbyjs/gatsby-starter-blog) starter
 

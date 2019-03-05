@@ -14,6 +14,7 @@ export interface SEOProps {
   title?: string;
   homepage?: boolean;
   path: string;
+  canonicalUrl?: string;
 }
 
 const SEO = (props: SEOProps) => {
@@ -25,6 +26,10 @@ const SEO = (props: SEOProps) => {
       render={(data) => {
         const metaDescription =
           description || data.site.siteMetadata.description;
+        const canonicalUrl = props.canonicalUrl || `${data.site.siteMetadata.siteUrl}${
+          path === "/" ? "" : path
+        }`;
+
         return (
           <Helmet
             htmlAttributes={{
@@ -36,9 +41,7 @@ const SEO = (props: SEOProps) => {
             link={[
               {
                 rel: "canonical",
-                href: `${data.site.siteMetadata.siteUrl}${
-                  path === "/" ? "" : path
-                }`,
+                href: canonicalUrl,
               },
             ]}
             meta={[

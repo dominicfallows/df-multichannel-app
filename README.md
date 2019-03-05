@@ -55,26 +55,26 @@ Then you can run a package script from the table below.
 
 By running the commands for the web package, we also run the required commands for each dependency package, so you don't need to run those independently.
 
-| Command | Job | Packages used |
-|---|---|---|
+| Command            | Job                                                                | Packages used           |
+| ------------------ | ------------------------------------------------------------------ | ----------------------- |
 | `yarn web:install` | Prepares the web and dependency packages for development and build | web, shared, shared-web |
-| `yarn web:start` | Develop the web package | web, shared, shared-web |
-| `yarn web:build` | Build the web package | web, shared, shared-web |
-| `yarn web:serve` | Serve the built the web package | web, shared, shared-web |
+| `yarn web:start`   | Develop the web package                                            | web, shared, shared-web |
+| `yarn web:build`   | Build the web package                                              | web, shared, shared-web |
+| `yarn web:serve`   | Serve the built the web package                                    | web, shared, shared-web |
 
 ### Shared (web and mobile)
 
-| Command | Job | Packages used |
-|---|---|---|
-| `yarn shared:install` | Prepares the shared package for development and build | shared |
-| `yarn shared:start` | Develop the shared package | shared |
+| Command               | Job                                                   | Packages used |
+| --------------------- | ----------------------------------------------------- | ------------- |
+| `yarn shared:install` | Prepares the shared package for development and build | shared        |
+| `yarn shared:start`   | Develop the shared package                            | shared        |
 
 ### Shared (web)
 
-| Command | Job | Packages used |
-|---|---|---|
+| Command                   | Job                                                                       | Packages used      |
+| ------------------------- | ------------------------------------------------------------------------- | ------------------ |
 | `yarn shared-web:install` | Prepares the shared-web and dependency packages for development and build | shared, shared-web |
-| `yarn shared-web:start` | Develop the shared-web package | shared, shared-web |
+| `yarn shared-web:start`   | Develop the shared-web package                                            | shared, shared-web |
 
 <!-- | `yarn start:mobile-web` | Develop the Mobile Web package | shared, shared-native, mobile-web |
 | `yarn start:mobile:android` | Develop the Mobile Native package (Android) | shared, shared-native, mobile |

@@ -61,7 +61,13 @@ class Projects extends React.Component<ProjectsProps> {
 
     return (
       <SiteLayout location={this.props.location}>
-        <SEO title="Projects" path="/projects" />
+        <SEO
+          title="Projects"
+          path="/projects"
+          description="Information about the web, mobile and cloud app \
+          projects that I work on and see my contributions to open-source tools \
+          and the OSS community."
+        />
 
         <LayoutContextConsumer>
           {({ breakpoint }) => (

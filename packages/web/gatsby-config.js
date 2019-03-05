@@ -3,12 +3,10 @@ const siteTitleParts = [
   "Technical Lead and Senior Developer",
   "web, mobile and cloud apps",
 ];
-const siteTitle = `${siteTitleParts[0]} - ${siteTitleParts[1]} for ${
-  siteTitleParts[2]
-}`;
+const siteTitle = `Dominic Fallows | Web, Mobile, Cloud | Technical Lead | Senior Developer`;
 const siteAuthorName = "Dominic Fallows";
 const siteDescription =
-  "Hi, I’m Dominic, a seasoned Developer, Technical Lead and life-long enthusiast of technology, software engineering and business. Building web, mobile and cloud apps, products and teams.";
+  "Blog and project site of Dominic Fallows, Technical Lead and Senior Developer of web, mobile and cloud apps, products and teams, based in Manchester, UK";
 
 const siteUrl =
   process.env.NODE_ENV === "production"

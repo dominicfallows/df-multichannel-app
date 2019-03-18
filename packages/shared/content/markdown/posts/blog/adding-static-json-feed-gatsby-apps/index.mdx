@@ -1,0 +1,230 @@
+---
+title: "Adding a static JSON feed to Gatsby apps"
+created: "2019-03-18T19:00:00.000Z"
+updated: "2019-03-18T19:00:00.000Z"
+taxonomy:
+  - "open-source-software"
+  - "gatsby"
+  - "gatsby-plugin"
+  - "json"
+  - "api"
+seo: {
+  description: "Fetch JSON content from Gatsby apps with API-like static data feeds that automatically update with your builds."
+}
+standfirst: "gatsby-plugin-json-output is a Gatsby plugin that generates JSON formats and data feeds of your Gatsby content. Fetch JSON content from Gatsby with API-like static data feeds that automatically update with your builds."
+---
+
+`gatsby-plugin-json-output` makes it possible to expose your [React](https://reactjs.org) and [GatsbyJS](https://gatsbyjs.org) generated static content like a JSON data API. You can harness the ease of Gatsby platform's development and deployment, spend less time creating other APIs to expose your data and more time creating powerful user experiences.
+
+`gatsby-plugin-json-output` can act as a strong replacement for a separate content API, enabling you to consume a JSON data representation or feed for:
+
+- A dynamic feed widget in your web apps
+- Interactive component that filters and displays content based on meta data of your content
+- A mobile app that could feed from your Gatsby site and create screen on build or dynamically
+- automated email / newsletter distribution lists
+- etc
+
+**For installation and usage instructions carry on reading or visit the [`gatsby-plugin-json-output` npm registry page](https://www.npmjs.com/package/gatsby-plugin-json-output).**
+
+## Simple setup and customisation of JSON feeds
+
+First, install `gatsby-plugin-json-output` into your Gatsby project:
+
+```bash
+yarn add gatsby-plugin-json-output
+// or
+npm install gatsby-plugin-json-output
+```
+
+Add a configuration object to your `gatsby-config.js` to register the plugin and easily structure your JSON content, both individual JSON files and data feeds.
+
+```javascript
+// gatsby-config.js
+plugins: [
+  {
+    resolve: `gatsby-plugin-json-output`,
+    options: {
+      siteUrl: `https://example.com`,
+      graphQLQuery: `
+        {
+          allMarkdownRemark(limit: 1000) {
+            edges {
+              node {
+                excerpt
+                html
+                fields { path }
+                frontmatter {
+                  title
+                  created
+                  updated
+                }
+              }
+            }
+          }
+        }
+      `,
+      serialize: results => results.data.allMarkdownRemark.edges.map(({ node }) => ({
+        path: node.fields.path, // MUST contain a path
+        title: node.frontmatter.title,
+        created: node.frontmatter.created,
+        updated: node.frontmatter.updated,
+        html: node.html,
+      })),
+      feedMeta: {
+        author: {
+          name: author,
+        },
+        description: siteDescription,
+        favicon: `${siteUrl}/icons/icon-48x48.png`,
+        title: siteTitle,
+      },
+      serializeFeed: results => results.data.allMarkdownRemark.edges.map(({ node }) => ({
+        id: nodes.field.path
+        url: siteUrl + node.fields.path,
+        title: node.frontmatter.title,
+        date_published: new Date(node.frontmatter.created).toISOString(),
+        date_modified: new Date(node.frontmatter.updated).toISOString(),
+        excerpt: node.excerpt,
+      })),
+      nodesPerFeedFile: 100,
+    }
+  }
+];
+```
+
+### Required config fields
+
+#### `siteUrl`
+
+`siteUrl` should be a string of your site's URL with no trailing slash (as you would add that via `path` fields below).
+
+#### `graphQLQuery`
+
+`graphQLQuery` should be a Gatsby GraphQL query string, like you would pass to `graphql()` function. The result of this query must be an array of objects including the path/slug to each static HTML page and the contents you will use to serialize into a JSON file.
+
+For example, if I wanted to create a JSON file for each of the pages created using [gatsby-transformer-remark](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-remark), then I might use a query like:
+
+```javascript
+{
+  allMarkdownRemark(limit: 1000) {
+    edges {
+      node {
+        html
+        fields { path }
+        frontmatter {
+          title
+          created
+          updated
+        }
+      }
+    }
+  }
+}
+```
+
+The `fields { path }` object could be created using something like [gatsby-source-filesystem/#createfilepath](https://www.gatsbyjs.org/packages/gatsby-source-filesystem/#createfilepath).
+
+### Optional customisation fields
+
+#### `serialize`
+
+Provide a `serialize` function if you want to create individual JSON files for each node. This serialize function is used to structure the contents of the individual JSON files, overriding the deeply nested structure of `graphQLQuery`. This plugin will pass the results object of the `graphQLQuery` to your `serialize` function.
+
+Your `serialize` function must return an array of objects with any structure you'd like your JSON files to be, with only one requirement, you must provide a `path` field. The `path` field must be the relative path from the root of `public` (Gatsby's build output folder) of each static HTML file, like `/about` or `/blog/post-1` etc.
+
+For the example `graphQLQuery` above, you might provide a function like:
+
+```javascript
+// Using arrow functions
+serialize: results =>
+  results.data.allMarkdownRemark.edges.map(({ node }) => ({
+    path: node.fields.path, // MUST contain a path
+    title: node.frontmatter.title,
+    created: node.frontmatter.created,
+    updated: node.frontmatter.updated,
+    html: node.html,
+  }));
+```
+
+#### `serializeFeed`
+
+Provide a `serializeFeed` function if you want to create JSON feed files. `serializeFeed` enables you to structure the contents of the JSON feed files and override the nested nature of `graphQLQuery`. This plugin will pass the results object of the `graphQLQuery` to your `serializeFeed` function.
+
+This function must return an array of objects with any structure you'd like your JSON feed files to be.
+
+For the example `graphQLQuery` above, you might provide a function like:
+
+```javascript
+// Using arrow functions
+serializeFeed: results => results.data.allMarkdownRemark.edges.map(({ node }) => ({
+  id: nodes.field.path
+  url: path.join(siteUrl, node.fields.path),
+  title: node.frontmatter.title,
+  date_published: new Date(node.frontmatter.created).toISOString(),
+  date_modified: new Date(node.frontmatter.updated).toISOString(),
+  excerpt: node.excerpt,
+}))
+```
+
+#### `feedMeta`
+
+Provide a `feedMeta` object to include meta into the JSON feed files. This is an optional object, and can be any key-pair shape. A standard feed meta object might be something like:
+
+```javascript
+feedMeta: {
+  author: {
+    name: "Ex Ample",
+  },
+  description: "Read all the example blog posts from Ex Ample.",
+  favicon: `https://example.com/icons/icon-48x48.png`,
+  title: "Ex Ample's Blog",
+}
+```
+
+#### `nodesPerFeedFile`
+
+`nodesPerFeedFile` is an optional number (integer) of nodes to include per feed file. Defaults to 100.
+
+## Where will I find my JSON output files?
+
+For individual files, created by your [`serialize`](#serialize) function, you will find an `index.json` file in the same directory structure as your content, for example, if you created a page at `/about` then the JSON file will be `/about/index.json`.
+
+For JSON data feed files, created by your [`serializeFeed`](#serializeFeed) function, you will find the files in the built assets starting from `public/feed-1.json`, then `public/feed-2.json` (etc) as required for the number of posts. For the `feedMata` object and `serialiseFeed` function examples above you would get a JSON feed files in a format like:
+
+```json
+{
+  "author": {
+    "name": "Ex Ample"
+  },
+  "description": "Read all the example blog posts from Ex Ample.",
+  "favicon": "https://example.com/icons/icon-48x48.png",
+  "title": "Ex Ample's Blog",
+  "feed_url": "https://example.com/feed-1.json",
+  "home_page_url": "https://example.com",
+  "items": [
+    {
+      "date_modified": "2019-03-02T00:00:00.000Z",
+      "date_published": "2019-03-02T00:00:00.000Z",
+      "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at ultricies metus, vel hendrerit magna. Nullam iaculis faucibus feugiat. Mauris mollis, est eu congue placerat, ex odio auctor odio, sed viverra mi nulla in orci.",
+      "id": "/lorem-ipsum-dolor-sit-amet",
+      "title": "Lorem ipsum dolor sit amet",
+      "url": "https://example.com/lorem-ipsum-dolor-sit-amet"
+    }
+  ],
+  "next_feed_url": "https://example.com/feed-2.json",
+  "previous_feed_url": null,
+  "version": "https://jsonfeed.org/version/1"
+}
+```
+
+You can programmatically navigate through feed files in your apps by using `next_feed_url` and `previous_feed_url`. These fields will return the URL of the next/previous feed file, or null if there is no next or previous.
+
+## Thank you
+
+Thank you for reading my introduction to `gatsby-plugin-json-output` - a Gatsby plugin that generates JSON formats and feeds of your Gatsby content. Fetch JSON content from Gatsby with API-like static feeds that automatically update with your builds."
+
+**For installation and usage instructions read this article or visit the [`gatsby-plugin-json-output` npm registry page](https://www.npmjs.com/package/gatsby-plugin-json-output).**
+
+## Bugs, Issues and Feature Bequests
+
+To report any bugs, issues or request additional features - please submit an issue ticket via the [`gatsby-plugin-json-output` GitHub repository](https://github.com/dominicfallows/gatsby-plugin-json-output/issues).

@@ -38,8 +38,6 @@ export default (props: PostTemplateProps) => {
     ? frontmatter.seo.description || node.excerpt
     : node.excerpt;
 
-  console.log(node);
-
   return (
     <>
       <SEO

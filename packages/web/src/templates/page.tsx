@@ -31,8 +31,6 @@ export default (props: PageTemplateProps) => {
     ? frontmatter.seo.description || node.excerpt
     : node.excerpt;
 
-  console.log(node);
-
   return (
     <SiteLayout location={location}>
       <SEO

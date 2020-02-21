@@ -1,6 +1,6 @@
 {
   "name": "@df/multichannel-app-shared",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The shared package for Dominic Fallows's multichannel app for web, mobile web and mobile native.",
   "repository": {
     "type": "git",
@@ -23,21 +23,21 @@
     "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/issues"
   },
   "devDependencies": {
-    "@mdx-js/tag": "^0.17.5",
-    "@types/jest": "^24.0.6",
+    "@mdx-js/tag": "^0.20.3",
+    "@types/jest": "^25.1.3",
     "@types/moment": "^2.13.0",
-    "@types/node": "^11.9.5",
-    "@types/react": "^16.8.4",
-    "jest": "^24.1.0",
+    "@types/node": "^13.7.4",
+    "@types/react": "^16.9.21",
+    "jest": "^25.1.0",
     "moment": "^2.24.0",
-    "prettier": "^1.16.4",
-    "react": "^16.8.3",
-    "rimraf": "^2.6.3",
-    "ts-jest": "^24.0.0",
-    "tslint": "^5.12.1",
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^25.2.1",
+    "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-react": "^3.6.0",
-    "typescript": "^3.3.3333"
+    "tslint-react": "^4.2.0",
+    "typescript": "^3.8.2"
   },
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\"",

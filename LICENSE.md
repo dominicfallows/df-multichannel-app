@@ -2,7 +2,7 @@
 
 ## Content
 
-Unless otherwise stated, all content (text, images, graphics, logos, audio, video and other content) is copyright by **Copyright (c) 2018-2019 [Dominic Fallows](https://dominicfallows.uk)** and licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
+Unless otherwise stated, all content (text, images, graphics, logos, audio, video and other content) is copyright by **Copyright (c) 2018-2020 [Dominic Fallows](https://dominicfallows.uk)** and licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 
 The webfonts (Swiss721BT-Regular and Swiss721BT-Bold by Bitstream) are Copyright &#x00A9; 1990-2018 MyFonts Inc, All rights reserved, and [licensed](https://www.myfonts.com/viewlicense?type=web&buildid=3694157) to Dominic Fallows.
 

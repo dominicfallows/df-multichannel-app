@@ -86,7 +86,7 @@ module.exports = {
     },
     // Now MDX
     {
-      resolve: "gatsby-mdx",
+      resolve: "gatsby-plugin-mdx",
       options: {
         decks: [],
         extensions: [".mdx", ".md"],
@@ -106,7 +106,6 @@ module.exports = {
             resolve: "gatsby-remark-images",
             options: {
               maxWidth: 650,
-              sizeByPixelDensity: true,
               quality: 90,
               linkImagesToOriginal: false,
             },

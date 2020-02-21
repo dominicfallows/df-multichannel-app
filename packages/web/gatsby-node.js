@@ -41,9 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const edgesQueryStr = `edges {
     node {
       id
-      code {
-        body
-      }
+      body
       fields {
         path
         type

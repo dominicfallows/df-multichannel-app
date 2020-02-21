@@ -3,7 +3,7 @@ import * as React from "react";
 import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid";
 import { MdxNode } from "@df/multichannel-app-shared/interfaces/markdown";
 
-import MDXRenderer from "../../plugins/gatsby-mdx/mdx-renderer";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 import PagePostHeader from "../components/PagePostHeader";
 import SEO from "../components/SEO";
 import SiteLayout from "../containers/SiteLayout";
@@ -31,6 +31,8 @@ export default (props: PageTemplateProps) => {
     ? frontmatter.seo.description || node.excerpt
     : node.excerpt;
 
+  console.log(node);
+
   return (
     <SiteLayout location={location}>
       <SEO
@@ -50,7 +52,7 @@ export default (props: PageTemplateProps) => {
           standfirst={frontmatter.standfirst}
         />
 
-        <MDXRenderer>{node.code.body}</MDXRenderer>
+        <MDXRenderer>{node.body}</MDXRenderer>
       </article>
     </SiteLayout>
   );

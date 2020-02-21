@@ -23,7 +23,5 @@ export interface MdxNode {
     path: string;
   };
   frontmatter: MdxNodeFrontmatter;
-  code: {
-    body: string;
-  };
+  body: string;
 }

@@ -34,7 +34,7 @@ const SiteFooter = () => (
         }}
       >
         <div style={{ ...gridContainerStyles, flexGrow: 1 }}>
-          Copyright &copy; Dominic Fallows 2018-2019.{" "}
+          Copyright &copy; Dominic Fallows 2018-2020.{" "}
           <Link to="/legals" title="Legals" type="primary">
             The legal stuff
           </Link>

@@ -1,11 +1,11 @@
-import Highlight, { defaultProps } from "prism-react-renderer";
-import vsDarkPlusTheme from "prism-react-renderer/themes/vsDarkPlus";
+import Highlight, { defaultProps, Language, PrismTheme } from "prism-react-renderer";
+import vsDarkTheme from "prism-react-renderer/themes/vsDark";
 import * as React from "react";
 
 const MdxCodeComponent = ({ children, ...props }) => {
   const regexp = /language-(\w*)/gi;
 
-  let language: string | undefined;
+  let language: Language | undefined;
   if (typeof props.className !== "undefined") {
     const matches = props.className.match(regexp);
     language =
@@ -17,7 +17,7 @@ const MdxCodeComponent = ({ children, ...props }) => {
   return (
     <Highlight
       {...defaultProps}
-      theme={vsDarkPlusTheme}
+      theme={vsDarkTheme as PrismTheme}
       code={children}
       language={language}
     >

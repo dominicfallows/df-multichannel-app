@@ -7,7 +7,7 @@ import { gridContainerStyles } from "@df/multichannel-app-shared-web/styles/grid
 import { MdxNode } from "@df/multichannel-app-shared/interfaces/markdown";
 import { colors } from "@df/multichannel-app-shared/styles/colors";
 
-import MDXRenderer from "../../plugins/gatsby-mdx/mdx-renderer";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 import Bio from "../components/Bio";
 import PagePostHeader from "../components/PagePostHeader";
 import SEO from "../components/SEO";
@@ -74,7 +74,7 @@ export default (props: PostTemplateProps) => {
             updated={frontmatter.updated}
           />
 
-          <MDXRenderer>{node.code.body}</MDXRenderer>
+          <MDXRenderer>{node.body}</MDXRenderer>
 
           <footer style={{ margin: "4rem 0" }}>
             <NextPrevNav next={next} prev={previous} />

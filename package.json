@@ -27,7 +27,6 @@
     "chokidar": "^3.3.1",
     "colors": "^1.4.0",
     "concurrently": "^5.1.0",
-    "fsevents": "^2.1.2",
     "manage-linked-packages": "^1.0.6",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",

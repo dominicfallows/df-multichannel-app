@@ -123,6 +123,16 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          process.env.NODE_ENV === "production"
+            ? process.env.GATSBY_GOOGLE_GLOBAL_SITE_TAG
+            : "",
+        ],
+      },
+    },
+    {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: siteTitle,

@@ -55,7 +55,7 @@ class Projects extends React.Component<ProjectsProps> {
 
     if (github && has(github, "repositoryOwner.pinnedRepositories.edges")) {
       githubPinnedRepos = github.repositoryOwner.pinnedRepositories.edges.map(
-        ({ node }) => node,
+        ({ node }) => node
       );
     }
 
@@ -96,7 +96,7 @@ class Projects extends React.Component<ProjectsProps> {
                       .sort(
                         (a: IGitHubPinnedRepo, b: IGitHubPinnedRepo) =>
                           moment(a.updatedAt).unix() +
-                          moment(b.updatedAt).unix(),
+                          moment(b.updatedAt).unix()
                       )
                       .map((repo: IGitHubPinnedRepo, i: number) => (
                         <Card
@@ -113,9 +113,7 @@ class Projects extends React.Component<ProjectsProps> {
                             }}
                           >
                             <Icon
-                              title={`@dominicfallows GitHub Repo: ${
-                                repo.name
-                              }`}
+                              title={`@dominicfallows GitHub Repo: ${repo.name}`}
                               icon="github"
                               style={{
                                 position: "absolute",

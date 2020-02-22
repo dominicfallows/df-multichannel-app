@@ -23,12 +23,12 @@ const SEO = (props: SEOProps) => {
   return (
     <StaticQuery
       query={detailsQuery}
-      render={(data) => {
+      render={data => {
         const metaDescription =
           description || data.site.siteMetadata.description;
-        const canonicalUrl = props.canonicalUrl || `${data.site.siteMetadata.siteUrl}${
-          path === "/" ? "" : path
-        }`;
+        const canonicalUrl =
+          props.canonicalUrl ||
+          `${data.site.siteMetadata.siteUrl}${path === "/" ? "" : path}`;
 
         return (
           <Helmet
@@ -37,7 +37,8 @@ const SEO = (props: SEOProps) => {
             }}
             title={homepage ? data.site.siteMetadata.title : title}
             titleTemplate={
-              homepage ? `%s` : `%s | ${data.site.siteMetadata.author}`}
+              homepage ? `%s` : `%s | ${data.site.siteMetadata.author}`
+            }
             link={[
               {
                 rel: "canonical",

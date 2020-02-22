@@ -1,4 +1,8 @@
-import Highlight, { defaultProps, Language, PrismTheme } from "prism-react-renderer";
+import Highlight, {
+  defaultProps,
+  Language,
+  PrismTheme,
+} from "prism-react-renderer";
 import vsDarkTheme from "prism-react-renderer/themes/vsDark";
 import * as React from "react";
 

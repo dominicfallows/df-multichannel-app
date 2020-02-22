@@ -34,7 +34,7 @@ const SiteTitle = (props: SiteTitleProps) => {
           }
         }
       }
-    `,
+    `
   );
 
   const siteLogo = (

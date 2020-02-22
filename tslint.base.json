@@ -1,11 +1,10 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:latest", "tslint-react"],
+  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
     "interface-name": false,
     "member-access": [false],
-    "semicolon": [true],
     "ordered-imports": [true],
     "no-console": [false],
     "no-var-requires": true,
@@ -14,7 +13,6 @@
     "object-literal-sort-keys": false,
     "no-submodule-imports": false,
     "no-implicit-dependencies": false,
-    "quotemark": [true, "double", "jsx-double"],
     "max-classes-per-file": [true, 2, "exclude-class-expressions"]
   },
   "rulesDirectory": []

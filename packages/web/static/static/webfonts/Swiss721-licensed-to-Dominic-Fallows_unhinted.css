@@ -23,5 +23,5 @@
 */
 /* @import must be at top of file, otherwise CSS will not work */
 @import url("//hello.myfonts.net/count/385e4d");
-@font-face {font-family: 'Swiss721';font-weight: normal;font-style: normal;src:url('385E4D_0_unhinted_0.woff2') format('woff2'),url('385E4D_0_unhinted_0.woff') format('woff'),url('385E4D_0_unhinted_0.ttf') format('truetype');}
-@font-face {font-family: 'Swiss721';font-weight: bold;font-style: normal;src:url('385E4D_1_unhinted_0.woff2') format('woff2'),url('385E4D_1_unhinted_0.woff') format('woff'),url('385E4D_1_unhinted_0.ttf') format('truetype');}
+@font-face {font-family: 'Swiss721';font-weight: normal;font-style: normal;src:url('385E4D_0_unhinted_0.woff2') format('woff2'),url('385E4D_0_unhinted_0.woff') format('woff'),url('385E4D_0_unhinted_0.ttf') format('truetype');font-display: swap;}
+@font-face {font-family: 'Swiss721';font-weight: bold;font-style: normal;src:url('385E4D_1_unhinted_0.woff2') format('woff2'),url('385E4D_1_unhinted_0.woff') format('woff'),url('385E4D_1_unhinted_0.ttf') format('truetype');font-display: swap;}

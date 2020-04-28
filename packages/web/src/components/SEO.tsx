@@ -23,7 +23,7 @@ const SEO = (props: SEOProps) => {
   return (
     <StaticQuery
       query={detailsQuery}
-      render={data => {
+      render={(data) => {
         const metaDescription =
           description || data.site.siteMetadata.description;
         const canonicalUrl =

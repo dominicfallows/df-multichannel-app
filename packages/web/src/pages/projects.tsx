@@ -35,8 +35,8 @@ export interface ProjectsProps {
   };
   data?: {
     github?: {
-      repositoryOwner: {
-        pinnedRepositories: {
+      user: {
+        pinnedItems: {
           edges: [
             {
               node: IGitHubPinnedRepo;
@@ -53,8 +53,8 @@ class Projects extends React.Component<ProjectsProps> {
     const { github } = this.props.data;
     let githubPinnedRepos: IGitHubPinnedRepo[] = [];
 
-    if (github && has(github, "repositoryOwner.pinnedRepositories.edges")) {
-      githubPinnedRepos = github.repositoryOwner.pinnedRepositories.edges.map(
+    if (github && has(github, "user.pinnedItems.edges")) {
+      githubPinnedRepos = github.user.pinnedItems.edges.map(
         ({ node }) => node
       );
     }
@@ -169,19 +169,21 @@ export const pageQuery = process.env.GITHUB_PAT_READ_ALL_USER_PROFILE_DATA
   ? graphql`
       query {
         github {
-          repositoryOwner(login: "dominicfallows") {
-            pinnedRepositories(first: 100) {
+          user(login: "dominicfallows") {
+            pinnedItems(first: 100) {
               edges {
                 node {
-                  name
-                  updatedAt
-                  createdAt
-                  pushedAt
-                  descriptionHTML
-                  id
-                  isFork
-                  isPrivate
-                  url
+                  ... on GitHub_Repository {
+                    name
+                    updatedAt
+                    createdAt
+                    pushedAt
+                    descriptionHTML
+                    id
+                    isFork
+                    isPrivate
+                    url
+                  }
                 }
               }
             }

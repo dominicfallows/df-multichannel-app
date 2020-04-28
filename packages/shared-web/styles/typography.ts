@@ -38,7 +38,7 @@ const typography = new Typography({
   bodyWeight: "normal",
   includeNormalize: true,
   overrideStyles: (props) => ({
-    "a": {
+    a: {
       textDecoration: "none",
       color: colors.blue,
       outline: "none",
@@ -46,7 +46,7 @@ const typography = new Typography({
     "a:hover": {
       color: colors.green,
     },
-    "h1": {
+    h1: {
       marginBottom: "1rem",
     },
     "h2, h3, h4": {
@@ -65,12 +65,15 @@ const typography = new Typography({
       background: colors.grey2,
     },
     "code, pre, tt": {
-      fontFamily: "SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace",
+      fontFamily:
+        "SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace",
       borderRadius: "3px",
-      fontSize: "1em",
+      fontSize: "0.9em",
       padding: ".125em .25em",
+      maxWidth: "100%",
+      overflowX: "auto",
     },
-    "li": {
+    li: {
       marginBottom: "4px",
     },
   }),

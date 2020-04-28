@@ -179,10 +179,10 @@ commander@^2.12.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
-commander@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
-  integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
+commander@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
+  integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -570,13 +570,13 @@ lodash@^4.15.0, lodash@^4.17.15, lodash@^4.17.4:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
-manage-linked-packages@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/manage-linked-packages/-/manage-linked-packages-1.0.6.tgz#0041369f3929e79df2495485d837859e4a9365b2"
-  integrity sha512-6Eir/d9VuKYd71g/Hwnk2JksbivKYN/84DQMLlxpJ384w/9fpQlPlr350OBWYO31x8o50n32Fn0oQZooB5YI5Q==
+manage-linked-packages@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/manage-linked-packages/-/manage-linked-packages-1.0.7.tgz#7e4124b84f22719369fd49f40e6dfcf1d355060f"
+  integrity sha512-iwQxOe4/NHHWt/K4JXrRbkGha3UR2MjgWlZT8yvp+gwjiIJsqlRbEL+lpcA5p31wPj1StIR/hC93VJlFA2rg3g==
   dependencies:
     colors "^1.4.0"
-    commander "^4.1.1"
+    commander "^5.1.0"
     global-modules-path "^2.3.1"
 
 minimatch@^3.0.4:

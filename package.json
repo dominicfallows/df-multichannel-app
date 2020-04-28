@@ -27,7 +27,7 @@
     "chokidar": "^3.4.0",
     "colors": "^1.4.0",
     "concurrently": "^5.2.0",
-    "manage-linked-packages": "^1.0.6",
+    "manage-linked-packages": "^1.0.7",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^5.0.0",

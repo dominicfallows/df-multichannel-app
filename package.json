@@ -24,14 +24,14 @@
     "url": "https://github.com/dominicfallows/dominicfallows-multichannel-app/issues"
   },
   "devDependencies": {
-    "chokidar": "^3.3.1",
+    "chokidar": "^3.4.0",
     "colors": "^1.4.0",
-    "concurrently": "^5.1.0",
+    "concurrently": "^5.2.0",
     "manage-linked-packages": "^1.0.6",
-    "tslint": "^6.0.0",
+    "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
-    "tslint-react": "^4.2.0",
-    "typescript": "^3.8.2"
+    "tslint-react": "^5.0.0",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "shared:install": "node scripts/shared-install.js",
@@ -47,7 +47,7 @@
     "upgrade-dependencies": "node scripts/upgrade-dependencies.js"
   },
   "dependencies": {
-    "gatsby-remark-relative-images": "^0.2.3",
-    "prism-react-renderer": "^1.0.2"
+    "gatsby-remark-relative-images": "^0.3.0",
+    "prism-react-renderer": "^1.1.0"
   }
 }

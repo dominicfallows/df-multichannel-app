@@ -98,7 +98,7 @@ const NavBarItem = (props: {
       title={props.title}
       type={"grey"}
       style={{
-        fontSize: "12px",
+        fontSize: "0.9em",
         borderBottomColor: "transparent",
         color: props.active ? colors.blue : colors.grey3,
         textAlign: "center",

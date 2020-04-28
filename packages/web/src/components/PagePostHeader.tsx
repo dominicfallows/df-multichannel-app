@@ -22,7 +22,7 @@ const PagePostHeader = (props: {
     {(props.created || props.updated) && (
       <time
         style={{
-          fontSize: "0.85em",
+          fontSize: "0.9em",
           display: `block`,
           color: colors.grey4,
           margin: `1rem 0`,

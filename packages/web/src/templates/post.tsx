@@ -52,20 +52,6 @@ export default (props: PostTemplateProps) => {
             ...gridContainerStyles,
           }}
         >
-          {frontmatter.taxonomy && (
-            <Chips
-              /* clickableChips={frontmatter.taxonomy.map((t: string) => ({
-                to: `/blog/${t}`,
-                title: `More posts about #${t}`,
-                label: `#${t}`,
-              }))} */
-              chips={frontmatter.taxonomy.map((t: string) => `#${t}`)}
-              style={{
-                margin: `1rem 0 1rem 0`,
-              }}
-            />
-          )}
-
           <PagePostHeader
             title={frontmatter.title}
             subNavItems={frontmatter.subNavItems}
@@ -77,6 +63,20 @@ export default (props: PostTemplateProps) => {
           <MDXRenderer>{node.body}</MDXRenderer>
 
           <footer style={{ margin: "4rem 0" }}>
+            {frontmatter.taxonomy && (
+              <Chips
+                /* clickableChips={frontmatter.taxonomy.map((t: string) => ({
+                to: `/blog/${t}`,
+                title: `More posts about #${t}`,
+                label: `#${t}`,
+              }))} */
+                chips={frontmatter.taxonomy.map((t: string) => `#${t}`)}
+                style={{
+                  margin: `1rem 0 1rem 0`,
+                }}
+              />
+            )}
+
             <NextPrevNav next={next} prev={previous} />
           </footer>
 

@@ -4,7 +4,7 @@ export const tagStyle = {
   color: colors.grey4,
   backgroundColor: colors.grey2,
   display: "inline-block",
-  fontSize: "12px",
+  fontSize: "0.9em",
   padding: "2px 4px",
   fontWeight: 400,
   borderRadius: "3px",

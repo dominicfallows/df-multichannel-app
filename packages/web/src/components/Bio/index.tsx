@@ -76,7 +76,7 @@ class Bio extends React.Component<BioProps> {
                               title={`${s.name} @${s.profile}`}
                               icon={s.name.toLowerCase() as IconType}
                               style={{
-                                marginRight: "5px",
+                                marginRight: "1rem",
                               }}
                             />
                             {i + 1 < social.length ? " " : ""}

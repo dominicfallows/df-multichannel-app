@@ -12,7 +12,7 @@ const SiteFooter = () => (
       <footer
         role="contentinfo"
         style={{
-          fontSize: "12px",
+          fontSize: "0.9em",
           marginTop: "1rem",
           color: colors.grey4,
           textAlign: "center",

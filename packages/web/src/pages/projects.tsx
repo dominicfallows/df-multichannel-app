@@ -54,9 +54,7 @@ class Projects extends React.Component<ProjectsProps> {
     let githubPinnedRepos: IGitHubPinnedRepo[] = [];
 
     if (github && has(github, "user.pinnedItems.edges")) {
-      githubPinnedRepos = github.user.pinnedItems.edges.map(
-        ({ node }) => node
-      );
+      githubPinnedRepos = github.user.pinnedItems.edges.map(({ node }) => node);
     }
 
     return (

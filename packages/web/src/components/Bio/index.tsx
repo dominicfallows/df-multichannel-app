@@ -25,7 +25,7 @@ class Bio extends React.Component<BioProps> {
     return (
       <StaticQuery
         query={bioQuery}
-        render={data => {
+        render={(data) => {
           const { author, social } = data.site.siteMetadata;
 
           return (

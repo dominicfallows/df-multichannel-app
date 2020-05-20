@@ -42,7 +42,7 @@
     "web:start": "node scripts/web-start.js",
     "web:build": "node scripts/web-build.js",
     "web:serve": "node scripts/web-serve.js",
-    "mobile:install": "node scripts/mobile-install.js",
+    "mobile:install": "yarn shared:install && node scripts/mobile-install.js",
     "mobile:start": "concurrently -n shared,mobile \"\" \"yarn --cwd packages/mobile start\"",
     "upgrade-dependencies": "node scripts/upgrade-dependencies.js"
   },

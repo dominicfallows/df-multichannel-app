@@ -118,7 +118,7 @@ class Bio extends React.Component<BioProps> {
                     >
                       <p>
                         Hi, I'm Dominic, a Technical Lead and Senior Developer
-                        for web, mobile and cloud apps. I'm a seasoned
+                        for web, mobile and cloud apps. I'm an experienced senior
                         developer, leader and life-long enthusiast of
                         technology, software engineering and business. I have
                         been working in technology and business for over 16

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-GB" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="styles.css" rel="stylesheet" />
+    <title>Lanzarote Dashboard</title>
+  </head>
+  <body>
+    <div class="grid-container">
+      <header class="grid-header">
+        <h1>Lanzarote Dashboard</h1>
+        <a
+          class="weatherwidget-io"
+          href="https://forecast7.com/en/28d97n13d56/arrecife/"
+          data-label_1="ARRECIFE"
+          data-label_2="WEATHER"
+          data-font="Helvetica"
+          data-theme="pure"
+          data-basecolor="#333333"
+          data-textcolor="#ffffff"
+          data-highcolor="#f52525"
+          data-lowcolor="#1087dc"
+          data-raincolor="#1087dc"
+          >ARRECIFE WEATHER</a
+        >
+      </header>
+      <div class="grid-cell-1 beach-webcam">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/mpd2CHIgJ9A?modestbranding=1&autohide=1&showinfo=0&controls=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="grid-cell-2 airport-webcam">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/71Fi3INpot8?modestbranding=1&autohide=1&showinfo=0&controls=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="grid-cell-3 marina-webcam">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/OxYs24pAiUw?modestbranding=1&autohide=1&showinfo=0&controls=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="grid-cell-4 schedule">
+        <div class="airportia-widget-arrivals">
+          <iframe
+            scrolling="yes"
+            frameborder="0"
+            src="https://www.airportia.com/widgets/airport/ace/arrivals/"
+          ></iframe>
+        </div>
+        <div class="airportia-widget-departures">
+          <iframe
+            scrolling="yes"
+            frameborder="0"
+            src="https://www.airportia.com/widgets/airport/ace/departures/"
+          ></iframe>
+        </div>
+      </div>
+      <div class="grid-cell-5 flight-map">
+        <button id="reload-map" class="hide">Reload map</button>
+        <iframe
+          id="flight-map-iframe"
+          src="https://www.flightradar24.com/simple_index.php?lat=28.94&lon=-13.61&z=10"
+          frameborder="0"
+        ></iframe>
+      </div>
+    </div>
+
+    <script>
+      var flightMapIframe = document.getElementById("flight-map-iframe");
+      var reloadMapButton = document.getElementById("reload-map");
+
+      flightMapIframe.onload = function () {
+        reloadMapButton.classList.remove("hide");
+        reloadMapButton.onclick = function () {
+          flightMapIframe.src = flightMapIframe.src;
+        };
+      };
+    </script>
+    <script>
+      !(function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://weatherwidget.io/js/widget.min.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }
+      })(document, "script", "weatherwidget-io-js");
+    </script>
+  </body>
+</html>

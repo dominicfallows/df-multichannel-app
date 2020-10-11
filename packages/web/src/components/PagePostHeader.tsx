@@ -33,7 +33,7 @@ const PagePostHeader = (props: {
       </time>
     )}
 
-    <SubNav items={props.subNavItems} style={{ width: "260px" }} />
+    <SubNav items={props.subNavItems} style={{ minWidth: "260px", maxWidth: "360px" }} />
 
     {props.standfirst && (
       <div style={{ fontSize: "1.2em" }}>{props.standfirst}</div>

@@ -1,0 +1,3 @@
+[submodule "packages/lanzarote-dashboard"]
+	path = packages/lanzarote-dashboard
+	url = git@github.com:dominicfallows/lanzarote-dashboard.git

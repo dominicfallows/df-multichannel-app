@@ -1,0 +1,134 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ffffff;
+  color: #333333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.grid-container {
+  width: 100vw;
+  height: 100vw;
+}
+
+.grid-cell-* {
+  overflow: hidden;
+}
+
+.grid-header {
+  height: 120px;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #333333;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.grid-cell-1,
+.grid-cell-2,
+.grid-cell-3 {
+  position: absolute;
+  top: 120px;
+  width: calc(100vw / 3);
+  height: 40vh;
+}
+.grid-cell-1 {
+  left: 0;
+}
+.grid-cell-2 {
+  left: calc(100vw / 3);
+}
+.grid-cell-3 {
+  left: calc((100vw / 3) * 2);
+}
+
+.grid-cell-4,
+.grid-cell-5 {
+  position: absolute;
+  top: calc(120px + 40vh);
+  width: 50vw;
+  height: calc(100vh - (120px + 40vh));
+}
+.grid-cell-4 {
+  left: 0;
+}
+.grid-cell-5 {
+  left: 50vw;
+}
+
+.schedule .airportia-widget-arrivals,
+.schedule .airportia-widget-departures,
+.schedule .airportia-widget-arrivals iframe,
+.schedule .airportia-widget-departures iframe {
+  height: calc(100vh - (120px + 40vh));
+  width: calc(25vw - 4px);
+}
+
+.schedule .airportia-widget-arrivals {
+  border-right: 1px solid #dedede;
+}
+
+.schedule .airportia-widget-arrivals,
+.schedule .airportia-widget-departures {
+  display: inline-block;
+}
+
+.grid-header h1 {
+  padding: 1rem;
+  margin: 0;
+  width: 400px;
+}
+
+.grid-header .weatherwidget-io {
+  height: 88px !important;
+  width: calc(100vw - 400px) !important;
+}
+
+.beach-webcam iframe,
+.airport-webcam iframe,
+.marina-webcam iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.flight-map iframe {
+  width: 100%;
+  height: 100%;
+}
+
+#reload-map {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  margin-left: -50px;
+  background: #333333;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  z-index: 9999999;
+  width: 80px;
+  height: 16px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#reload-map:hover {
+  background: #666666;
+}
+
+.hide {
+  display: none;
+}

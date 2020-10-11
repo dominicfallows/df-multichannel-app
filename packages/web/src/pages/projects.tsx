@@ -13,7 +13,6 @@ import {
 import { tagStyle } from "@df/multichannel-app-shared/styles/tags";
 
 import IILink from "../components/Links/ii";
-import MOMWLink from "../components/Links/mo+mw";
 import SEO from "../components/SEO";
 import SiteLayout from "../containers/SiteLayout";
 
@@ -74,7 +73,7 @@ class Projects extends React.Component<ProjectsProps> {
 
               <p>
                 I'm currently Technical Lead for web, mobile and content apps{" "}
-                and teams at <IILink />, <MOMWLink />.
+                and teams at <IILink />.
               </p>
 
               <p>

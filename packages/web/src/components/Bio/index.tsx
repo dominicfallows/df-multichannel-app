@@ -95,12 +95,12 @@ class Bio extends React.Component<BioProps> {
                       }}
                     >
                       <p style={{ fontWeight: 600 }}>
-                        Hi, I'm Dominic, a Technical Lead and Senior Developer
-                        for web, mobile and cloud apps.
+                        Hi, I'm Dominic, a Technical Architect, Technical Lead and Senior Developer
+                        for cross-platform web, mobile, desktop and cloud apps, products and teams.
                       </p>
                       <p>
                         I'm currently Technical Lead for web, mobile and content{" "}
-                        apps and teams at{" "}
+                        apps, products and teams at{" "}
                         <IILink shortVersion={breakpoint === "sm"} />,{" "}
                         <MOMWLink shortVersion={breakpoint === "sm"} />.
                       </p>
@@ -117,18 +117,17 @@ class Bio extends React.Component<BioProps> {
                       }}
                     >
                       <p>
-                        Hi, I'm Dominic, a Technical Lead and Senior Developer
-                        for web, mobile and cloud apps. I'm an experienced senior
-                        developer, leader and life-long enthusiast of
-                        technology, software engineering and business. I have
-                        been working in technology and business for over 16
-                        years and have a proven track record in using latest
-                        technologies to develop and deliver web, mobile and
-                        cloud solutions.
+                        Hi, I'm Dominic, a Technical Architect, Technical Lead and Senior Developer
+                        for cross-platform web, mobile, desktop and cloud apps, products and teams. 
+                        I'm an experienced leader, senior developer and life-long enthusiast of 
+                        technology, software engineering and business. I have been working in 
+                        technology and business for over 18 years and have a proven track record 
+                        in using latest technologies to develop and deliver cross-platform web, 
+                        mobile, desktop and cloud solutions.
                       </p>
                       <p>
                         I'm currently Technical Lead for web, mobile and content{" "}
-                        apps and teams at <IILink />, <MOMWLink />.
+                        apps, products and teams at <IILink />, <MOMWLink />.
                       </p>
                     </div>
                     {readMoreAndSocialText}
@@ -166,7 +165,7 @@ class Bio extends React.Component<BioProps> {
                             style={{
                               fontSize:
                                 breakpoint === "sm" ? "1.4rem" : undefined,
-                              lineHeight: 1,
+                              lineHeight: 1.2,
                             }}
                           >
                             Dominic Fallows <br />
@@ -174,13 +173,13 @@ class Bio extends React.Component<BioProps> {
                               style={{
                                 fontWeight: 400,
                                 fontSize:
-                                  breakpoint === "sm" ? "0.75em" : "0.65em",
+                                  breakpoint === "sm" ? "0.6em" : "0.6em",
                                 lineHeight: 1.2,
                                 display: "inline-block",
                               }}
                             >
-                              Technical Lead and Senior Developer for{" "}
-                              <span
+                              Technical Architect, Technical Lead and Senior Developer<br />
+                              for <span
                                 style={{
                                   color: colors.grey4,
                                   // prefixed with -webkit so IE doesn't use the gradient
@@ -189,7 +188,7 @@ class Bio extends React.Component<BioProps> {
                                   WebkitTextFillColor: "transparent",
                                 }}
                               >
-                                web, mobile and cloud apps
+                                web, mobile, desktop and cloud
                               </span>
                             </span>
                           </h1>

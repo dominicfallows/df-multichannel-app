@@ -12,7 +12,6 @@ import IconLink from "@df/multichannel-app-shared-web/components/Icon/IconLink";
 import { IconType } from "@df/multichannel-app-shared-web/components/Icon/interfaces/types";
 
 import IILink from "../Links/ii";
-import MOMWLink from "../Links/mo+mw";
 
 export interface BioProps {
   isHome?: boolean;
@@ -101,8 +100,7 @@ class Bio extends React.Component<BioProps> {
                       <p>
                         I'm currently Technical Lead for web, mobile and content{" "}
                         apps, products and teams at{" "}
-                        <IILink shortVersion={breakpoint === "sm"} />,{" "}
-                        <MOMWLink shortVersion={breakpoint === "sm"} />.
+                        <IILink shortVersion={breakpoint === "sm"} />.
                       </p>
                     </div>
                     {readMoreAndSocialText}
@@ -126,7 +124,7 @@ class Bio extends React.Component<BioProps> {
                       </p>
                       <p>
                         I'm currently Technical Lead for web, mobile and content{" "}
-                        apps, products and teams at <IILink />, <MOMWLink />.
+                        apps, products and teams at <IILink />.
                       </p>
                     </div>
                     {readMoreAndSocialText}

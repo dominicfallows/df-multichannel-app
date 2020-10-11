@@ -1,12 +1,12 @@
 const siteTitleParts = [
   "Dominic Fallows",
-  "Technical Architect, Technical Lead and Senior Developer",
+  "Technical Leader and Senior Software Engineer",
   "web, mobile, desktop and cloud",
 ];
-const siteTitle = `Dominic Fallows | Technical Architect / Lead | Senior Developer | Web, Mobile, Desktop, Cloud`;
+const siteTitle = `Dominic Fallows | Technical Leader and Senior Software Engineer | Web, Mobile, Desktop, Cloud`;
 const siteAuthorName = "Dominic Fallows";
 const siteDescription =
-  "Blog and project site of Dominic Fallows, Technical Architect, Technical Lead and Senior Developer for cross-platform web, mobile, desktop and cloud apps, products and teams, based in Manchester, UK";
+  "Blog and project site of Dominic Fallows, experienced Technical Leader and Senior Software Engineer for cross-platform web, mobile, desktop and cloud apps, products and teams, based in Manchester, UK";
 
 const siteUrl =
   process.env.NODE_ENV === "production"

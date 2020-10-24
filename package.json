@@ -48,6 +48,7 @@
     "web:serve": "node scripts/web-serve.js",
     "mobile:install": "node scripts/mobile-install.js",
     "mobile:start": "concurrently -n shared,mobile \"\" \"yarn --cwd packages/mobile start\"",
-    "upgrade-dependencies": "node scripts/upgrade-dependencies.js"
+    "upgrade-dependencies": "node scripts/upgrade-dependencies.js",
+    "submodules:update": "git submodule update --init --recursive --remote"
   }
 }

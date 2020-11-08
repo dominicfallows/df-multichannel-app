@@ -94,8 +94,9 @@ class Bio extends React.Component<BioProps> {
                       }}
                     >
                       <p style={{ fontWeight: 600 }}>
-                        Hi, I'm Dominic, an experienced technical leader and senior software engineer for 
-                        cross-platform web, mobile, desktop and cloud apps, products and teams. 
+                        Hi, I'm Dominic, an experienced technical leader and
+                        senior software engineer for cross-platform web, mobile,
+                        desktop and cloud apps, products and teams.
                       </p>
                       <p>
                         I'm currently Technical Lead for web, mobile and content{" "}
@@ -115,12 +116,15 @@ class Bio extends React.Component<BioProps> {
                       }}
                     >
                       <p>
-                        Hi, I'm Dominic, an experienced technical leader and senior software engineer for 
-                        cross-platform web, mobile, desktop and cloud apps, products and teams. 
-                        I’m a life-long enthusiast of technology, software engineering and business. 
-                        I have been working in technology and business for over 18 years and have 
-                        a proven track record in using latest technologies to develop and deliver 
-                        cross-platform web, mobile, desktop and cloud solutions.
+                        Hi, I'm Dominic, an experienced technical leader and
+                        senior software engineer for cross-platform web, mobile,
+                        desktop and cloud apps, products and teams. I’m a
+                        life-long enthusiast of technology, software engineering
+                        and business. I have been working in technology and
+                        business for over 18 years and have a proven track
+                        record in using latest technologies to develop and
+                        deliver cross-platform web, mobile, desktop and cloud
+                        solutions.
                       </p>
                       <p>
                         I'm currently Technical Lead for web, mobile and content{" "}
@@ -175,7 +179,10 @@ class Bio extends React.Component<BioProps> {
                                 display: "inline-block",
                               }}
                             >
-                              Technical Leader and Senior Software Engineer <br />for <span
+                              Technical Leader and Senior Software Engineer{" "}
+                              <br />
+                              for{" "}
+                              <span
                                 style={{
                                   color: colors.grey4,
                                   // prefixed with -webkit so IE doesn't use the gradient

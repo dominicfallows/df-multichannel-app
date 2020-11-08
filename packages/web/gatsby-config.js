@@ -88,7 +88,6 @@ module.exports = {
     {
       resolve: "gatsby-plugin-mdx",
       options: {
-        decks: [],
         extensions: [".mdx", ".md"],
         gatsbyRemarkPlugins: [
           {
@@ -211,6 +210,70 @@ module.exports = {
               title: node.frontmatter.title,
               url: siteUrl + (node.frontmatter.path || node.fields.path),
             })),
+        feedFilename: "feed-jakob",
+        nodesPerFeedFile: 1,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-json-output",
+      options: {
+        siteUrl: siteUrl,
+        graphQLQuery: `
+          {
+            allMdx(
+              sort: { fields: [frontmatter___created], order: DESC }
+              filter: {fields: {type: {in: ["page", "post"]}}}
+              limit: 1000
+            ) {
+              edges {
+                node {
+                  html
+                  excerpt
+                  fields {
+                    type
+                    path
+                  }
+                  frontmatter {
+                    path
+                    title
+                    created
+                    updated
+                  }
+                }
+              }
+            }
+          }
+        `,
+        serialize: results =>
+          results.data.allMdx.edges
+            .filter(({ node }) => ["post", "page"].includes(node.fields.type))
+            .map(({ node }) => ({
+              path: node.frontmatter.path || node.fields.path, // MUST contain a path
+              title: node.frontmatter.title,
+              created: node.frontmatter.created,
+              updated: node.frontmatter.updated,
+              html: node.html,
+            })),
+        feedMeta: {
+          author: {
+            name: siteAuthorName,
+          },
+          description: siteDescription,
+          favicon: `${siteUrl}/icons/icon-48x48.png`,
+          title: siteTitle,
+        },
+        serializeFeed: results =>
+          results.data.allMdx.edges
+            .filter(({ node }) => ["post"].includes(node.fields.type))
+            .map(({ node }) => ({
+              date_modified: new Date(node.frontmatter.updated).toISOString(),
+              date_published: new Date(node.frontmatter.created).toISOString(),
+              excerpt: node.excerpt,
+              id: node.frontmatter.path || node.fields.path,
+              title: node.frontmatter.title,
+              url: siteUrl + (node.frontmatter.path || node.fields.path),
+            })),
+        feedFilename: "feed-matthew",
         nodesPerFeedFile: 1,
       },
     },
